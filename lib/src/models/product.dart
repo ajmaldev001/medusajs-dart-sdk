@@ -1,5 +1,13 @@
 import 'package:json_annotation/json_annotation.dart';
 import 'common.dart';
+import 'product_variant.dart';
+import 'product_image.dart';
+import 'product_option.dart';
+import 'product_tag.dart';
+import 'product_type.dart';
+import 'sales_channel.dart';
+import 'collection.dart';
+import 'category.dart';
 
 part 'product.g.dart';
 
@@ -51,6 +59,9 @@ class Product {
   /// Product material composition
   final String? material;
 
+  /// Mid code
+  final String? midCode;
+
   /// Whether discounts can be applied to this product
   final bool discountable;
 
@@ -59,6 +70,30 @@ class Product {
 
   /// Product metadata
   final Map<String, dynamic>? metadata;
+
+  /// Product images
+  final List<ProductImage>? images;
+
+  /// Product variants
+  final List<ProductVariant>? variants;
+
+  /// Product options
+  final List<ProductOption>? options;
+
+  /// Product tags
+  final List<ProductTag>? tags;
+
+  /// Product type
+  final ProductType? type;
+
+  /// Product collection
+  final Collection? collection;
+
+  /// Product categories
+  final List<Category>? categories;
+
+  /// Sales channels where this product is available
+  final List<SalesChannel>? salesChannels;
 
   /// When the product was created
   final DateTime createdAt;
@@ -85,9 +120,18 @@ class Product {
     this.originCountry,
     this.hsCode,
     this.material,
+    this.midCode,
     this.discountable = true,
     this.externalId,
     this.metadata,
+    this.images,
+    this.variants,
+    this.options,
+    this.tags,
+    this.type,
+    this.collection,
+    this.categories,
+    this.salesChannels,
     required this.createdAt,
     required this.updatedAt,
     this.deletedAt,

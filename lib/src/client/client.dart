@@ -1,6 +1,5 @@
 import 'dart:convert';
 import 'package:http/http.dart' as http;
-import 'package:shared_preferences/shared_preferences.dart';
 
 import '../types/types.dart';
 import '../exceptions/exceptions.dart';
@@ -199,6 +198,94 @@ class MedusaClient {
     return await _retrieveToken();
   }
 
+  // Convenience HTTP methods
+
+  /// Make a GET request
+  Future<Map<String, dynamic>> get(
+    String path, {
+    Map<String, dynamic>? queryParameters,
+    ClientHeaders? headers,
+    bool useCache = true,
+    Duration? cacheTtl,
+  }) async {
+    return await fetch<Map<String, dynamic>>(
+      path,
+      method: 'GET',
+      query: queryParameters,
+      headers: headers,
+      useCache: useCache,
+      cacheTtl: cacheTtl,
+    );
+  }
+
+  /// Make a POST request
+  Future<Map<String, dynamic>> post(
+    String path, {
+    dynamic data,
+    Map<String, dynamic>? queryParameters,
+    ClientHeaders? headers,
+  }) async {
+    return await fetch<Map<String, dynamic>>(
+      path,
+      method: 'POST',
+      query: queryParameters,
+      body: data,
+      headers: headers,
+      useCache: false,
+    );
+  }
+
+  /// Make a PUT request
+  Future<Map<String, dynamic>> put(
+    String path, {
+    dynamic data,
+    Map<String, dynamic>? queryParameters,
+    ClientHeaders? headers,
+  }) async {
+    return await fetch<Map<String, dynamic>>(
+      path,
+      method: 'PUT',
+      query: queryParameters,
+      body: data,
+      headers: headers,
+      useCache: false,
+    );
+  }
+
+  /// Make a PATCH request
+  Future<Map<String, dynamic>> patch(
+    String path, {
+    dynamic data,
+    Map<String, dynamic>? queryParameters,
+    ClientHeaders? headers,
+  }) async {
+    return await fetch<Map<String, dynamic>>(
+      path,
+      method: 'PATCH',
+      query: queryParameters,
+      body: data,
+      headers: headers,
+      useCache: false,
+    );
+  }
+
+  /// Make a DELETE request
+  Future<Map<String, dynamic>> delete(
+    String path, {
+    dynamic data,
+    Map<String, dynamic>? queryParameters,
+    ClientHeaders? headers,
+  }) async {
+    return await fetch<Map<String, dynamic>>(
+      path,
+      method: 'DELETE',
+      query: queryParameters,
+      body: data,
+      headers: headers,
+      useCache: false,
+    );
+  }
+
   /// Dispose resources
   void dispose() {
     _httpClient.close();
@@ -330,8 +417,9 @@ class MedusaClient {
 
     switch (authConfig.jwtTokenStorageMethod) {
       case StorageMethod.local:
-        final prefs = await SharedPreferences.getInstance();
-        await prefs.setString(authConfig.jwtTokenStorageKey, token);
+        _logger?.warn(
+          'Local storage not available in pure Dart, using memory storage',
+        );
         break;
       case StorageMethod.custom:
         if (authConfig.storage != null) {
@@ -359,8 +447,7 @@ class MedusaClient {
 
     switch (authConfig.jwtTokenStorageMethod) {
       case StorageMethod.local:
-        final prefs = await SharedPreferences.getInstance();
-        return prefs.getString(authConfig.jwtTokenStorageKey);
+        return null; // Local storage not available in pure Dart
       case StorageMethod.custom:
         if (authConfig.storage != null) {
           return await authConfig.storage!.getItem(
@@ -380,8 +467,7 @@ class MedusaClient {
 
     switch (authConfig.jwtTokenStorageMethod) {
       case StorageMethod.local:
-        final prefs = await SharedPreferences.getInstance();
-        await prefs.remove(authConfig.jwtTokenStorageKey);
+        // Local storage not available in pure Dart - nothing to remove
         break;
       case StorageMethod.custom:
         if (authConfig.storage != null) {

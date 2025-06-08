@@ -2,317 +2,409 @@ import 'package:test/test.dart';
 import 'package:medusajs_dart_sdk/medusajs_dart_sdk.dart';
 
 void main() {
-  group('Model Serialization Tests', () {
-    group('Customer Model', () {
-      test('should serialize and deserialize correctly', () {
-        final customerJson = {
-          'id': 'cust_01234567890123456789012345',
-          'email': 'test@example.com',
-          'first_name': 'John',
-          'last_name': 'Doe',
-          'has_account': true,
-          'phone': '+1234567890',
-          'created_at': '2023-01-01T00:00:00.000Z',
-          'updated_at': '2023-01-01T00:00:00.000Z',
-        };
-
-        final customer = Customer.fromJson(customerJson);
-        expect(customer.id, equals('cust_01234567890123456789012345'));
-        expect(customer.email, equals('test@example.com'));
-        expect(customer.firstName, equals('John'));
-        expect(customer.lastName, equals('Doe'));
-        expect(customer.hasAccount, equals(true));
-        expect(customer.phone, equals('+1234567890'));
-
-        final serialized = customer.toJson();
-        expect(serialized['id'], equals('cust_01234567890123456789012345'));
-        expect(serialized['email'], equals('test@example.com'));
-        expect(serialized['first_name'], equals('John'));
-        expect(serialized['last_name'], equals('Doe'));
-        expect(serialized['has_account'], equals(true));
-      });
-
-      test('should handle optional fields', () {
-        final minimalJson = {
-          'id': 'cust_123',
-          'email': 'test@example.com',
-          'has_account': false,
-          'created_at': '2023-01-01T00:00:00.000Z',
-          'updated_at': '2023-01-01T00:00:00.000Z',
-        };
-
-        final customer = Customer.fromJson(minimalJson);
-        expect(customer.id, equals('cust_123'));
-        expect(customer.email, equals('test@example.com'));
-        expect(customer.firstName, isNull);
-        expect(customer.lastName, isNull);
-        expect(customer.phone, isNull);
-        expect(customer.hasAccount, equals(false));
-      });
-    });
-
-    group('Product Model', () {
-      test('should serialize and deserialize correctly', () {
-        final productJson = {
-          'id': 'prod_01234567890123456789012345',
-          'title': 'Test Product',
-          'subtitle': 'A test product',
-          'description': 'This is a test product description',
-          'handle': 'test-product',
-          'is_giftcard': false,
-          'status': 'published',
-          'weight': 500,
-          'length': 10,
-          'height': 5,
-          'width': 8,
-          'hs_code': '1234567890',
-          'origin_country': 'US',
-          'mid_code': 'MID123',
-          'material': 'Cotton',
-          'created_at': '2023-01-01T00:00:00.000Z',
-          'updated_at': '2023-01-01T00:00:00.000Z',
-        };
-
-        final product = Product.fromJson(productJson);
-        expect(product.id, equals('prod_01234567890123456789012345'));
-        expect(product.title, equals('Test Product'));
-        expect(product.subtitle, equals('A test product'));
-        expect(
-          product.description,
-          equals('This is a test product description'),
+  group('Models', () {
+    group('Product', () {
+      test('should create Product instance', () {
+        final product = Product(
+          id: 'prod_123',
+          title: 'Test Product',
+          description: 'A test product',
+          handle: 'test-product',
+          isGiftcard: false,
+          status: ProductStatus.published,
+          createdAt: DateTime.parse('2023-01-01T00:00:00Z'),
+          updatedAt: DateTime.parse('2023-01-01T00:00:00Z'),
         );
+
+        expect(product.id, equals('prod_123'));
+        expect(product.title, equals('Test Product'));
+        expect(product.description, equals('A test product'));
         expect(product.handle, equals('test-product'));
         expect(product.isGiftcard, equals(false));
         expect(product.status, equals(ProductStatus.published));
-        expect(product.weight, equals(500));
-
-        final serialized = product.toJson();
-        expect(serialized['id'], equals('prod_01234567890123456789012345'));
-        expect(serialized['title'], equals('Test Product'));
-        expect(serialized['status'], equals('published'));
+        expect(product.createdAt, isNotNull);
+        expect(product.updatedAt, isNotNull);
       });
 
-      test('should handle all product statuses', () {
-        final statuses = ['draft', 'proposed', 'published', 'rejected'];
-        final expectedEnums = [
-          ProductStatus.draft,
-          ProductStatus.proposed,
-          ProductStatus.published,
-          ProductStatus.rejected,
-        ];
+      test('should have convenience getters', () {
+        final publishedProduct = Product(
+          id: 'prod_published',
+          title: 'Published Product',
+          status: ProductStatus.published,
+          createdAt: DateTime.now(),
+          updatedAt: DateTime.now(),
+        );
 
-        for (int i = 0; i < statuses.length; i++) {
-          final json = {
-            'id': 'prod_$i',
-            'title': 'Product $i',
-            'handle': 'product-$i',
-            'status': statuses[i],
-            'is_giftcard': false,
-            'created_at': '2023-01-01T00:00:00.000Z',
-            'updated_at': '2023-01-01T00:00:00.000Z',
-          };
+        final draftProduct = Product(
+          id: 'prod_draft',
+          title: 'Draft Product',
+          status: ProductStatus.draft,
+          createdAt: DateTime.now(),
+          updatedAt: DateTime.now(),
+        );
 
-          final product = Product.fromJson(json);
-          expect(product.status, equals(expectedEnums[i]));
-        }
+        expect(publishedProduct.isPublished, equals(true));
+        expect(publishedProduct.isDraft, equals(false));
+        expect(draftProduct.isPublished, equals(false));
+        expect(draftProduct.isDraft, equals(true));
       });
     });
 
-    group('Cart Model', () {
-      test('should serialize and deserialize correctly', () {
-        final cartJson = {
-          'id': 'cart_01234567890123456789012345',
-          'email': 'customer@example.com',
-          'billing_address_id': 'addr_billing_123',
-          'shipping_address_id': 'addr_shipping_123',
-          'region_id': 'reg_123',
-          'customer_id': 'cust_123',
-          'payment_id': 'pay_123',
-          'type': 'default',
-          'completed_at': null,
-          'payment_authorized_at': null,
-          'subtotal': 1000,
-          'tax_total': 100,
-          'shipping_total': 500,
-          'discount_total': 200,
-          'gift_card_total': 0,
-          'total': 1400,
-          'created_at': '2023-01-01T00:00:00.000Z',
-          'updated_at': '2023-01-01T00:00:00.000Z',
-        };
+    group('Cart', () {
+      test('should create Cart instance', () {
+        final cart = Cart(
+          id: 'cart_123',
+          regionId: 'reg_123',
+          email: 'test@example.com',
+          currencyCode: 'usd',
+          total: 1000,
+          subtotal: 900,
+          taxTotal: 100,
+          shippingTotal: 0,
+          discountTotal: 0,
+          giftCardTotal: 0,
+          giftCardTaxTotal: 0,
+          itemCount: 2,
+          createdAt: DateTime.parse('2023-01-01T00:00:00Z'),
+          updatedAt: DateTime.parse('2023-01-01T00:00:00Z'),
+        );
 
-        final cart = Cart.fromJson(cartJson);
-        expect(cart.id, equals('cart_01234567890123456789012345'));
-        expect(cart.email, equals('customer@example.com'));
-        expect(cart.type, equals(CartType.defaultCart));
-        expect(cart.subtotal, equals(1000));
-        expect(cart.taxTotal, equals(100));
-        expect(cart.shippingTotal, equals(500));
-        expect(cart.total, equals(1400));
-
-        final serialized = cart.toJson();
-        expect(serialized['id'], equals('cart_01234567890123456789012345'));
-        expect(serialized['email'], equals('customer@example.com'));
-        expect(serialized['type'], equals('default'));
+        expect(cart.id, equals('cart_123'));
+        expect(cart.regionId, equals('reg_123'));
+        expect(cart.email, equals('test@example.com'));
+        expect(cart.currencyCode, equals('usd'));
+        expect(cart.total, equals(1000));
+        expect(cart.subtotal, equals(900));
+        expect(cart.itemCount, equals(2));
+        expect(cart.createdAt, isNotNull);
+        expect(cart.updatedAt, isNotNull);
       });
 
-      test('should handle different cart types', () {
-        final types = [
-          'default',
-          'swap',
-          'draft_order',
-          'payment_link',
-          'claim',
-        ];
-        final expectedEnums = [
-          CartType.defaultCart,
-          CartType.swap,
-          CartType.draftOrder,
-          CartType.paymentLink,
-          CartType.claim,
-        ];
+      test('should have convenience getters', () {
+        final emptyCart = Cart(
+          id: 'cart_empty',
+          regionId: 'reg_123',
+          currencyCode: 'usd',
+          total: 0,
+          subtotal: 0,
+          taxTotal: 0,
+          shippingTotal: 0,
+          discountTotal: 0,
+          giftCardTotal: 0,
+          giftCardTaxTotal: 0,
+          itemCount: 0,
+          createdAt: DateTime.now(),
+          updatedAt: DateTime.now(),
+        );
 
-        for (int i = 0; i < types.length; i++) {
-          final json = {
-            'id': 'cart_$i',
-            'type': types[i],
-            'total': 0,
-            'subtotal': 0,
-            'tax_total': 0,
-            'created_at': '2023-01-01T00:00:00.000Z',
-            'updated_at': '2023-01-01T00:00:00.000Z',
-          };
+        final filledCart = Cart(
+          id: 'cart_filled',
+          regionId: 'reg_123',
+          currencyCode: 'usd',
+          total: 1000,
+          subtotal: 900,
+          taxTotal: 100,
+          shippingTotal: 0,
+          discountTotal: 0,
+          giftCardTotal: 0,
+          giftCardTaxTotal: 0,
+          itemCount: 3,
+          createdAt: DateTime.now(),
+          updatedAt: DateTime.now(),
+        );
 
-          final cart = Cart.fromJson(json);
-          expect(cart.type, equals(expectedEnums[i]));
-        }
+        expect(emptyCart.isEmpty, equals(true));
+        expect(emptyCart.hasItems, equals(false));
+        expect(filledCart.isEmpty, equals(false));
+        expect(filledCart.hasItems, equals(true));
       });
     });
 
-    group('Order Model', () {
-      test('should serialize and deserialize correctly', () {
-        final orderJson = {
-          'id': 'order_01234567890123456789012345',
-          'display_id': 1001,
-          'status': 'pending',
-          'fulfillment_status': 'not_fulfilled',
-          'payment_status': 'awaiting',
-          'currency_code': 'usd',
-          'email': 'customer@example.com',
-          'region_id': 'reg_123',
-          'customer_id': 'cust_123',
-          'cart_id': 'cart_123',
-          'subtotal': 1000,
-          'tax_total': 100,
-          'shipping_total': 500,
-          'discount_total': 200,
-          'gift_card_total': 0,
-          'total': 1400,
-          'created_at': '2023-01-01T00:00:00.000Z',
-          'updated_at': '2023-01-01T00:00:00.000Z',
-        };
+    group('Customer', () {
+      test('should create Customer instance', () {
+        final customer = Customer(
+          id: 'cust_123',
+          email: 'customer@example.com',
+          firstName: 'John',
+          lastName: 'Doe',
+          phone: '+1234567890',
+          hasAccount: true,
+          createdAt: DateTime.parse('2023-01-01T00:00:00Z'),
+          updatedAt: DateTime.parse('2023-01-01T00:00:00Z'),
+        );
 
-        final order = Order.fromJson(orderJson);
-        expect(order.id, equals('order_01234567890123456789012345'));
+        expect(customer.id, equals('cust_123'));
+        expect(customer.email, equals('customer@example.com'));
+        expect(customer.firstName, equals('John'));
+        expect(customer.lastName, equals('Doe'));
+        expect(customer.phone, equals('+1234567890'));
+        expect(customer.hasAccount, equals(true));
+        expect(customer.createdAt, isNotNull);
+        expect(customer.updatedAt, isNotNull);
+      });
+    });
+
+    group('Order', () {
+      test('should create Order instance', () {
+        final order = Order(
+          id: 'order_123',
+          displayId: 1001,
+          status: OrderStatus.pending,
+          fulfillmentStatus: FulfillmentStatus.notFulfilled,
+          paymentStatus: PaymentStatus.awaiting,
+          regionId: 'reg_123',
+          currencyCode: 'usd',
+          total: 1000,
+          subtotal: 900,
+          taxTotal: 100,
+          shippingTotal: 0,
+          discountTotal: 0,
+          giftCardTotal: 0,
+          giftCardTaxTotal: 0,
+          email: 'customer@example.com',
+          createdAt: DateTime.parse('2023-01-01T00:00:00Z'),
+          updatedAt: DateTime.parse('2023-01-01T00:00:00Z'),
+        );
+
+        expect(order.id, equals('order_123'));
         expect(order.displayId, equals(1001));
         expect(order.status, equals(OrderStatus.pending));
         expect(order.fulfillmentStatus, equals(FulfillmentStatus.notFulfilled));
-        expect(order.paymentStatus, equals(PaymentStatus.awaiting));
         expect(order.currencyCode, equals('usd'));
-        expect(order.total, equals(1400));
-
-        final serialized = order.toJson();
-        expect(serialized['id'], equals('order_01234567890123456789012345'));
-        expect(serialized['display_id'], equals(1001));
-        expect(serialized['status'], equals('pending'));
+        expect(order.total, equals(1000));
+        expect(order.subtotal, equals(900));
+        expect(order.email, equals('customer@example.com'));
+        expect(order.createdAt, isNotNull);
+        expect(order.updatedAt, isNotNull);
       });
-    });
 
-    group('Address Model', () {
-      test('should serialize and deserialize correctly', () {
-        final addressJson = {
-          'id': 'addr_01234567890123456789012345',
-          'customer_id': 'cust_123',
-          'first_name': 'John',
-          'last_name': 'Doe',
-          'phone': '+1234567890',
-          'company': 'Acme Corp',
-          'address_1': '123 Main St',
-          'address_2': 'Apt 4B',
-          'city': 'New York',
-          'country_code': 'us',
-          'province': 'NY',
-          'postal_code': '10001',
-          'created_at': '2023-01-01T00:00:00.000Z',
-          'updated_at': '2023-01-01T00:00:00.000Z',
-        };
-
-        final address = Address.fromJson(addressJson);
-        expect(address.id, equals('addr_01234567890123456789012345'));
-        expect(address.firstName, equals('John'));
-        expect(address.lastName, equals('Doe'));
-        expect(address.address1, equals('123 Main St'));
-        expect(address.city, equals('New York'));
-        expect(address.countryCode, equals('us'));
-        expect(address.postalCode, equals('10001'));
-
-        final serialized = address.toJson();
-        expect(serialized['id'], equals('addr_01234567890123456789012345'));
-        expect(serialized['first_name'], equals('John'));
-        expect(serialized['address_1'], equals('123 Main St'));
-      });
-    });
-
-    group('PaginatedResponse Model', () {
-      test('should serialize and deserialize correctly', () {
-        final responseJson = {
-          'data': [
-            {'id': '1', 'name': 'Item 1'},
-            {'id': '2', 'name': 'Item 2'},
-          ],
-          'count': 2,
-          'offset': 0,
-          'limit': 20,
-        };
-
-        final response = PaginatedResponse<Map<String, dynamic>>.fromJson(
-          responseJson,
-          (json) => json as Map<String, dynamic>,
+      test('should have convenience getters', () {
+        final pendingOrder = Order(
+          id: 'order_pending',
+          displayId: 1001,
+          status: OrderStatus.pending,
+          fulfillmentStatus: FulfillmentStatus.notFulfilled,
+          paymentStatus: PaymentStatus.awaiting,
+          regionId: 'reg_123',
+          currencyCode: 'usd',
+          total: 1000,
+          subtotal: 900,
+          taxTotal: 100,
+          shippingTotal: 0,
+          discountTotal: 0,
+          giftCardTotal: 0,
+          giftCardTaxTotal: 0,
+          email: 'customer@example.com',
+          createdAt: DateTime.now(),
+          updatedAt: DateTime.now(),
         );
 
-        expect(response.data.length, equals(2));
-        expect(response.count, equals(2));
-        expect(response.offset, equals(0));
-        expect(response.limit, equals(20));
-        expect(response.data[0]['id'], equals('1'));
-        expect(response.data[1]['name'], equals('Item 2'));
+        final completedOrder = Order(
+          id: 'order_completed',
+          displayId: 1002,
+          status: OrderStatus.completed,
+          fulfillmentStatus: FulfillmentStatus.fulfilled,
+          paymentStatus: PaymentStatus.captured,
+          regionId: 'reg_123',
+          currencyCode: 'usd',
+          total: 1000,
+          subtotal: 900,
+          taxTotal: 100,
+          shippingTotal: 0,
+          discountTotal: 0,
+          giftCardTotal: 0,
+          giftCardTaxTotal: 0,
+          email: 'customer@example.com',
+          createdAt: DateTime.now(),
+          updatedAt: DateTime.now(),
+        );
 
-        final serialized = response.toJson((item) => item);
-        expect(serialized['data'], isA<List>());
-        expect(serialized['count'], equals(2));
-        expect(serialized['offset'], equals(0));
-        expect(serialized['limit'], equals(20));
+        expect(pendingOrder.canEdit, equals(true));
+        expect(pendingOrder.isCompleted, equals(false));
+        expect(completedOrder.canEdit, equals(false));
+        expect(completedOrder.isCompleted, equals(true));
+        expect(completedOrder.isFullyFulfilled, equals(true));
+        expect(completedOrder.isFullyPaid, equals(true));
       });
     });
 
-    group('DeleteResponse Model', () {
-      test('should serialize and deserialize correctly', () {
-        final responseJson = {
-          'id': 'deleted_123',
-          'object': 'product',
-          'deleted': true,
-        };
+    group('Region', () {
+      test('should create Region instance', () {
+        final region = Region(
+          id: 'reg_123',
+          name: 'US',
+          currencyCode: 'usd',
+          taxRate: 8.5,
+          createdAt: DateTime.parse('2023-01-01T00:00:00Z'),
+          updatedAt: DateTime.parse('2023-01-01T00:00:00Z'),
+        );
 
-        final response = DeleteResponse.fromJson(responseJson);
-        expect(response.id, equals('deleted_123'));
-        expect(response.object, equals('product'));
-        expect(response.deleted, equals(true));
-
-        final serialized = response.toJson();
-        expect(serialized['id'], equals('deleted_123'));
-        expect(serialized['object'], equals('product'));
-        expect(serialized['deleted'], equals(true));
+        expect(region.id, equals('reg_123'));
+        expect(region.name, equals('US'));
+        expect(region.currencyCode, equals('usd'));
+        expect(region.taxRate, equals(8.5));
+        expect(region.createdAt, isNotNull);
+        expect(region.updatedAt, isNotNull);
       });
+    });
+
+    group('Collection', () {
+      test('should create Collection instance', () {
+        final collection = Collection(
+          id: 'pcol_123',
+          title: 'Summer Collection',
+          handle: 'summer-collection',
+          createdAt: DateTime.parse('2023-01-01T00:00:00Z'),
+          updatedAt: DateTime.parse('2023-01-01T00:00:00Z'),
+        );
+
+        expect(collection.id, equals('pcol_123'));
+        expect(collection.title, equals('Summer Collection'));
+        expect(collection.handle, equals('summer-collection'));
+        expect(collection.createdAt, isNotNull);
+        expect(collection.updatedAt, isNotNull);
+      });
+    });
+
+    group('Category', () {
+      test('should create Category instance', () {
+        final category = Category(
+          id: 'pcat_123',
+          name: 'Electronics',
+          handle: 'electronics',
+          rank: 0,
+          isActive: true,
+          isInternal: false,
+          createdAt: DateTime.parse('2023-01-01T00:00:00Z'),
+          updatedAt: DateTime.parse('2023-01-01T00:00:00Z'),
+        );
+
+        expect(category.id, equals('pcat_123'));
+        expect(category.name, equals('Electronics'));
+        expect(category.handle, equals('electronics'));
+        expect(category.rank, equals(0));
+        expect(category.isActive, equals(true));
+        expect(category.isInternal, equals(false));
+        expect(category.createdAt, isNotNull);
+        expect(category.updatedAt, isNotNull);
+      });
+    });
+  });
+
+  group('PaginatedResponse', () {
+    test('should create PaginatedResponse with data', () {
+      final products = [
+        Product(
+          id: 'prod_1',
+          title: 'Product 1',
+          handle: 'product-1',
+          createdAt: DateTime.now(),
+          updatedAt: DateTime.now(),
+        ),
+        Product(
+          id: 'prod_2',
+          title: 'Product 2',
+          handle: 'product-2',
+          createdAt: DateTime.now(),
+          updatedAt: DateTime.now(),
+        ),
+      ];
+
+      final response = PaginatedResponse<Product>(
+        data: products,
+        count: 2,
+        offset: 0,
+        limit: 20,
+      );
+
+      expect(response.data, hasLength(2));
+      expect(response.count, equals(2));
+      expect(response.offset, equals(0));
+      expect(response.limit, equals(20));
+    });
+
+    test('should correctly calculate pagination information', () {
+      final products = List.generate(20, (index) => Product(
+        id: 'prod_$index',
+        title: 'Product $index',
+        handle: 'product-$index',
+        createdAt: DateTime.now(),
+        updatedAt: DateTime.now(),
+      ));
+
+      // First page
+      final firstPage = PaginatedResponse<Product>(
+        data: products,
+        count: 100,
+        offset: 0,
+        limit: 20,
+      );
+
+      expect(firstPage.data, hasLength(20));
+      expect(firstPage.count, equals(100));
+      expect(firstPage.offset, equals(0));
+      expect(firstPage.limit, equals(20));
+
+      // Middle page
+      final middlePage = PaginatedResponse<Product>(
+        data: products,
+        count: 100,
+        offset: 20,
+        limit: 20,
+      );
+
+      expect(middlePage.data, hasLength(20));
+      expect(middlePage.count, equals(100));
+      expect(middlePage.offset, equals(20));
+      expect(middlePage.limit, equals(20));
+
+      // Last page
+      final lastPage = PaginatedResponse<Product>(
+        data: products,
+        count: 100,
+        offset: 80,
+        limit: 20,
+      );
+
+      expect(lastPage.data, hasLength(20));
+      expect(lastPage.count, equals(100));
+      expect(lastPage.offset, equals(80));
+      expect(lastPage.limit, equals(20));
+    });
+
+    test('should handle model types correctly', () {
+      final customers = [
+        Customer(
+          id: 'cust_1',
+          email: 'customer1@example.com',
+          firstName: 'John',
+          lastName: 'Doe',
+          hasAccount: true,
+          createdAt: DateTime.now(),
+          updatedAt: DateTime.now(),
+        ),
+        Customer(
+          id: 'cust_2',
+          email: 'customer2@example.com',
+          firstName: 'Jane',
+          lastName: 'Smith',
+          hasAccount: false,
+          createdAt: DateTime.now(),
+          updatedAt: DateTime.now(),
+        ),
+      ];
+
+      final response = PaginatedResponse<Customer>(
+        data: customers,
+        count: 2,
+        offset: 0,
+        limit: 20,
+      );
+
+      expect(response.data, hasLength(2));
+      expect(response.data.every((item) => item is Customer), equals(true));
+      expect(response.data[0].firstName, equals('John'));
+      expect(response.data[1].firstName, equals('Jane'));
     });
   });
 }

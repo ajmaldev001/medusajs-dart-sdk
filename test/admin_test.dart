@@ -2,240 +2,320 @@ import 'package:test/test.dart';
 import 'package:medusajs_dart_sdk/medusajs_dart_sdk.dart';
 
 void main() {
-  group('MedusaAdmin Tests', () {
-    late Medusa medusa;
+  group('MedusaAdmin', () {
     late MedusaAdmin admin;
+    late MedusaClient client;
 
     setUp(() {
-      medusa = Medusa(
-        MedusaConfig(
-          baseUrl: 'https://api.medusa-commerce.com',
-          apiKey: 'sk_test_123',
-        ),
+      final config = MedusaConfig(
+        baseUrl: 'https://test-medusa-backend.com',
+        publishableKey: 'pk_test_123',
       );
-      admin = medusa.admin;
+      client = MedusaClient(config);
+      admin = MedusaAdmin(client);
     });
 
-    test('should be able to create admin instance', () {
+    tearDown(() {
+      client.dispose();
+    });
+
+    test('should create admin instance', () {
+      expect(admin, isNotNull);
       expect(admin, isA<MedusaAdmin>());
     });
 
-    group('Product Management', () {
+    group('Core Admin Resources', () {
       test('should have product resource', () {
         expect(admin.product, isNotNull);
+        expect(admin.product, isA<AdminProductResource>());
       });
 
-      test('list products should return paginated response', () async {
-        expect(
-          () => admin.product.list(),
-          throwsA(isA<Exception>()), // Will throw since we're not mocking HTTP
-        );
-      });
-
-      test('create product should return product data', () async {
-        expect(
-          () => admin.product.create({
-            'title': 'Test Product',
-            'handle': 'test-product',
-            'description': 'A test product',
-            'status': 'draft',
-          }),
-          throwsA(isA<Exception>()), // Will throw since we're not mocking HTTP
-        );
-      });
-
-      test('update product should return updated product', () async {
-        expect(
-          () => admin.product.update('prod_123', {'title': 'Updated Product'}),
-          throwsA(isA<Exception>()), // Will throw since we're not mocking HTTP
-        );
-      });
-
-      test('delete product should return delete response', () async {
-        expect(
-          () => admin.product.delete('prod_123'),
-          throwsA(isA<Exception>()), // Will throw since we're not mocking HTTP
-        );
-      });
-    });
-
-    group('Order Management', () {
       test('should have order resource', () {
         expect(admin.order, isNotNull);
+        expect(admin.order, isA<AdminOrderResource>());
       });
 
-      test('list orders should return paginated response', () async {
-        expect(
-          () => admin.order.list(),
-          throwsA(isA<Exception>()), // Will throw since we're not mocking HTTP
-        );
-      });
-
-      test('retrieve order should return order data', () async {
-        expect(
-          () => admin.order.retrieve('order_123'),
-          throwsA(isA<Exception>()), // Will throw since we're not mocking HTTP
-        );
-      });
-
-      test('update order should return updated order', () async {
-        expect(
-          () => admin.order.update('order_123', {'status': 'fulfilled'}),
-          throwsA(isA<Exception>()), // Will throw since we're not mocking HTTP
-        );
-      });
-    });
-
-    group('Customer Management', () {
       test('should have customer resource', () {
         expect(admin.customer, isNotNull);
+        expect(admin.customer, isA<AdminCustomerResource>());
       });
 
-      test('list customers should return paginated response', () async {
-        expect(
-          () => admin.customer.list(),
-          throwsA(isA<Exception>()), // Will throw since we're not mocking HTTP
-        );
+      test('should have category resource', () {
+        expect(admin.category, isNotNull);
+        expect(admin.category, isA<AdminCategoryResource>());
       });
 
-      test('create customer should return customer data', () async {
-        expect(
-          () => admin.customer.create({
-            'email': 'admin@example.com',
-            'first_name': 'Admin',
-            'last_name': 'User',
-          }),
-          throwsA(isA<Exception>()), // Will throw since we're not mocking HTTP
-        );
-      });
-
-      test('update customer should return updated customer', () async {
-        expect(
-          () => admin.customer.update('cust_123', {'first_name': 'Updated'}),
-          throwsA(isA<Exception>()), // Will throw since we're not mocking HTTP
-        );
-      });
-
-      test('delete customer should return delete response', () async {
-        expect(
-          () => admin.customer.delete('cust_123'),
-          throwsA(isA<Exception>()), // Will throw since we're not mocking HTTP
-        );
+      test('should have collection resource', () {
+        expect(admin.collection, isNotNull);
+        expect(admin.collection, isA<AdminCollectionResource>());
       });
     });
 
-    group('User Management', () {
-      test('should have user resource', () {
-        expect(admin.user, isNotNull);
+    group('Extended Admin Resources', () {
+      test('should have api key resource', () {
+        expect(admin.apiKey, isNotNull);
+        expect(admin.apiKey, isA<AdminApiKeyResource>());
       });
 
-      test('list users should return paginated response', () async {
-        expect(
-          () => admin.user.list(),
-          throwsA(isA<Exception>()), // Will throw since we're not mocking HTTP
-        );
+      test('should have campaign resource', () {
+        expect(admin.campaign, isNotNull);
+        expect(admin.campaign, isA<AdminCampaignResource>());
       });
 
-      test('create user should return user data', () async {
-        expect(
-          () => admin.user.create({
-            'email': 'user@example.com',
-            'first_name': 'Test',
-            'last_name': 'User',
-            'role': 'member',
-          }),
-          throwsA(isA<Exception>()), // Will throw since we're not mocking HTTP
-        );
-      });
-    });
-
-    group('Inventory Management', () {
-      test('should have inventory resource', () {
-        expect(admin.inventory, isNotNull);
+      test('should have claim resource', () {
+        expect(admin.claim, isNotNull);
+        expect(admin.claim, isA<AdminClaimResource>());
       });
 
-      test('list inventory items should return paginated response', () async {
-        expect(
-          () => admin.inventory.list(),
-          throwsA(isA<Exception>()), // Will throw since we're not mocking HTTP
-        );
+      test('should have currency resource', () {
+        expect(admin.currency, isNotNull);
+        expect(admin.currency, isA<AdminCurrencyResource>());
       });
 
-      test('create inventory item should return inventory data', () async {
-        expect(
-          () => admin.inventory.create({
-            'sku': 'TEST-SKU-001',
-            'title': 'Test Inventory Item',
-          }),
-          throwsA(isA<Exception>()), // Will throw since we're not mocking HTTP
-        );
+      test('should have customer group resource', () {
+        expect(admin.customerGroup, isNotNull);
+        expect(admin.customerGroup, isA<AdminCustomerGroupResource>());
       });
-    });
 
-    group('Price List Management', () {
-      test('should have priceList resource', () {
+      test('should have draft order resource', () {
+        expect(admin.draftOrder, isNotNull);
+        expect(admin.draftOrder, isA<AdminDraftOrderResource>());
+      });
+
+      test('should have exchange resource', () {
+        expect(admin.exchange, isNotNull);
+        expect(admin.exchange, isA<AdminExchangeResource>());
+      });
+
+      test('should have fulfillment resource', () {
+        expect(admin.fulfillment, isNotNull);
+        expect(admin.fulfillment, isA<AdminFulfillmentResource>());
+      });
+
+      test('should have fulfillment provider resource', () {
+        expect(admin.fulfillmentProvider, isNotNull);
+        expect(admin.fulfillmentProvider, isA<AdminFulfillmentProviderResource>());
+      });
+
+      test('should have fulfillment set resource', () {
+        expect(admin.fulfillmentSet, isNotNull);
+        expect(admin.fulfillmentSet, isA<AdminFulfillmentSetResource>());
+      });
+
+      test('should have inventory item resource', () {
+        expect(admin.inventoryItem, isNotNull);
+        expect(admin.inventoryItem, isA<AdminInventoryItemResource>());
+      });
+
+      test('should have invite resource', () {
+        expect(admin.invite, isNotNull);
+        expect(admin.invite, isA<AdminInviteResource>());
+      });
+
+      test('should have notification resource', () {
+        expect(admin.notification, isNotNull);
+        expect(admin.notification, isA<AdminNotificationResource>());
+      });
+
+      test('should have order edit resource', () {
+        expect(admin.orderEdit, isNotNull);
+        expect(admin.orderEdit, isA<AdminOrderEditResource>());
+      });
+
+      test('should have payment resource', () {
+        expect(admin.payment, isNotNull);
+        expect(admin.payment, isA<AdminPaymentResource>());
+      });
+
+      test('should have payment collection resource', () {
+        expect(admin.paymentCollection, isNotNull);
+        expect(admin.paymentCollection, isA<AdminPaymentCollectionResource>());
+      });
+
+      test('should have plugin resource', () {
+        expect(admin.plugin, isNotNull);
+        expect(admin.plugin, isA<AdminPluginResource>());
+      });
+
+      test('should have price list resource', () {
         expect(admin.priceList, isNotNull);
+        expect(admin.priceList, isA<AdminPriceListResource>());
       });
 
-      test('list price lists should return paginated response', () async {
-        expect(
-          () => admin.priceList.list(),
-          throwsA(isA<Exception>()), // Will throw since we're not mocking HTTP
-        );
+      test('should have price preference resource', () {
+        expect(admin.pricePreference, isNotNull);
+        expect(admin.pricePreference, isA<AdminPricePreferenceResource>());
       });
 
-      test('create price list should return price list data', () async {
-        expect(
-          () => admin.priceList.create({
-            'name': 'VIP Pricing',
-            'description': 'Special pricing for VIP customers',
-            'type': 'sale',
-          }),
-          throwsA(isA<Exception>()), // Will throw since we're not mocking HTTP
-        );
+      test('should have product tag resource', () {
+        expect(admin.productTag, isNotNull);
+        expect(admin.productTag, isA<AdminProductTagResource>());
+      });
+
+      test('should have product type resource', () {
+        expect(admin.productType, isNotNull);
+        expect(admin.productType, isA<AdminProductTypeResource>());
+      });
+
+      test('should have product variant resource', () {
+        expect(admin.productVariant, isNotNull);
+        expect(admin.productVariant, isA<AdminProductVariantResource>());
+      });
+
+      test('should have promotion resource', () {
+        expect(admin.promotion, isNotNull);
+        expect(admin.promotion, isA<AdminPromotionResource>());
+      });
+
+      test('should have refund reason resource', () {
+        expect(admin.refundReason, isNotNull);
+        expect(admin.refundReason, isA<AdminRefundReasonResource>());
+      });
+
+      test('should have reservation resource', () {
+        expect(admin.reservation, isNotNull);
+        expect(admin.reservation, isA<AdminReservationResource>());
+      });
+
+      test('should have return resource', () {
+        expect(admin.returnResource, isNotNull);
+        expect(admin.returnResource, isA<AdminReturnResource>());
+      });
+
+      test('should have return reason resource', () {
+        expect(admin.returnReason, isNotNull);
+        expect(admin.returnReason, isA<AdminReturnReasonResource>());
+      });
+
+      test('should have sales channel resource', () {
+        expect(admin.salesChannel, isNotNull);
+        expect(admin.salesChannel, isA<AdminSalesChannelResource>());
+      });
+
+      test('should have shipping option resource', () {
+        expect(admin.shippingOption, isNotNull);
+        expect(admin.shippingOption, isA<AdminShippingOptionResource>());
+      });
+
+      test('should have shipping profile resource', () {
+        expect(admin.shippingProfile, isNotNull);
+        expect(admin.shippingProfile, isA<AdminShippingProfileResource>());
+      });
+
+      test('should have stock location resource', () {
+        expect(admin.stockLocation, isNotNull);
+        expect(admin.stockLocation, isA<AdminStockLocationResource>());
+      });
+
+      test('should have store resource', () {
+        expect(admin.store, isNotNull);
+        expect(admin.store, isA<AdminStoreResource>());
+      });
+
+      test('should have tax provider resource', () {
+        expect(admin.taxProvider, isNotNull);
+        expect(admin.taxProvider, isA<AdminTaxProviderResource>());
+      });
+
+      test('should have tax rate resource', () {
+        expect(admin.taxRate, isNotNull);
+        expect(admin.taxRate, isA<AdminTaxRateResource>());
+      });
+
+      test('should have tax region resource', () {
+        expect(admin.taxRegion, isNotNull);
+        expect(admin.taxRegion, isA<AdminTaxRegionResource>());
+      });
+
+      test('should have upload resource', () {
+        expect(admin.upload, isNotNull);
+        expect(admin.upload, isA<AdminUploadResource>());
+      });
+
+      test('should have workflow execution resource', () {
+        expect(admin.workflowExecution, isNotNull);
+        expect(admin.workflowExecution, isA<AdminWorkflowExecutionResource>());
       });
     });
 
-    group('Discount Management', () {
-      test('should have discount resource', () {
-        expect(admin.discount, isNotNull);
+    group('Batch Operations', () {
+      test('should create batch manager', () {
+        final batchManager = admin.createBatch();
+        expect(batchManager, isNotNull);
+        expect(batchManager, isA<BatchManager>());
       });
 
-      test('list discounts should return paginated response', () async {
-        expect(
-          () => admin.discount.list(),
-          throwsA(isA<Exception>()), // Will throw since we're not mocking HTTP
-        );
-      });
-
-      test('create discount should return discount data', () async {
-        expect(
-          () => admin.discount.create({
-            'code': 'SAVE10',
-            'rule': {'type': 'percentage', 'value': 10, 'allocation': 'total'},
-          }),
-          throwsA(isA<Exception>()), // Will throw since we're not mocking HTTP
-        );
+      test('should create batch manager with custom batch size', () {
+        final batchManager = admin.createBatch(maxBatchSize: 100);
+        expect(batchManager, isNotNull);
+        expect(batchManager, isA<BatchManager>());
       });
     });
 
-    group('Gift Card Management', () {
-      test('should have giftCard resource', () {
-        expect(admin.giftCard, isNotNull);
+    group('Resource Path Validation', () {
+      test('admin product resource should have correct path', () {
+        expect(admin.product.resourcePath, equals('/admin/products'));
       });
 
-      test('list gift cards should return paginated response', () async {
-        expect(
-          () => admin.giftCard.list(),
-          throwsA(isA<Exception>()), // Will throw since we're not mocking HTTP
-        );
+      test('admin order resource should have correct path', () {
+        expect(admin.order.resourcePath, equals('/admin/orders'));
       });
 
-      test('create gift card should return gift card data', () async {
-        expect(
-          () => admin.giftCard.create({'value': 5000, 'region_id': 'reg_123'}),
-          throwsA(isA<Exception>()), // Will throw since we're not mocking HTTP
-        );
+      test('admin customer resource should have correct path', () {
+        expect(admin.customer.resourcePath, equals('/admin/customers'));
+      });
+
+      test('admin api key resource should have correct path', () {
+        expect(admin.apiKey.resourcePath, equals('/admin/api-keys'));
+      });
+
+      test('admin campaign resource should have correct path', () {
+        expect(admin.campaign.resourcePath, equals('/admin/campaigns'));
+      });
+    });
+
+    group('Resource Inheritance', () {
+      test('all admin resources should extend AdminResource', () {
+        expect(admin.product, isA<AdminResource>());
+        expect(admin.order, isA<AdminResource>());
+        expect(admin.customer, isA<AdminResource>());
+        expect(admin.apiKey, isA<AdminResource>());
+        expect(admin.campaign, isA<AdminResource>());
+        expect(admin.claim, isA<AdminResource>());
+        expect(admin.currency, isA<AdminResource>());
+        expect(admin.customerGroup, isA<AdminResource>());
+        expect(admin.draftOrder, isA<AdminResource>());
+        expect(admin.exchange, isA<AdminResource>());
+        expect(admin.fulfillment, isA<AdminResource>());
+        expect(admin.fulfillmentProvider, isA<AdminResource>());
+        expect(admin.fulfillmentSet, isA<AdminResource>());
+        expect(admin.inventoryItem, isA<AdminResource>());
+        expect(admin.invite, isA<AdminResource>());
+        expect(admin.notification, isA<AdminResource>());
+        expect(admin.orderEdit, isA<AdminResource>());
+        expect(admin.payment, isA<AdminResource>());
+        expect(admin.paymentCollection, isA<AdminResource>());
+        expect(admin.plugin, isA<AdminResource>());
+        expect(admin.priceList, isA<AdminResource>());
+        expect(admin.pricePreference, isA<AdminResource>());
+        expect(admin.productTag, isA<AdminResource>());
+        expect(admin.productType, isA<AdminResource>());
+        expect(admin.productVariant, isA<AdminResource>());
+        expect(admin.promotion, isA<AdminResource>());
+        expect(admin.refundReason, isA<AdminResource>());
+        expect(admin.reservation, isA<AdminResource>());
+        expect(admin.returnResource, isA<AdminResource>());
+        expect(admin.returnReason, isA<AdminResource>());
+        expect(admin.salesChannel, isA<AdminResource>());
+        expect(admin.shippingOption, isA<AdminResource>());
+        expect(admin.shippingProfile, isA<AdminResource>());
+        expect(admin.stockLocation, isA<AdminResource>());
+        expect(admin.store, isA<AdminResource>());
+        expect(admin.taxProvider, isA<AdminResource>());
+        expect(admin.taxRate, isA<AdminResource>());
+        expect(admin.taxRegion, isA<AdminResource>());
+        expect(admin.upload, isA<AdminResource>());
+        expect(admin.workflowExecution, isA<AdminResource>());
       });
     });
   });

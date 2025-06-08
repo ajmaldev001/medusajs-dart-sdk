@@ -1,5 +1,6 @@
 library medusajs_dart_sdk;
 
+// Core SDK exports
 export 'src/medusa_client.dart';
 export 'src/client/client.dart';
 export 'src/admin/admin.dart';
@@ -14,3 +15,8 @@ export 'src/cache/cache.dart';
 export 'src/pagination/pagination.dart';
 export 'src/batch/batch.dart';
 export 'src/realtime/realtime.dart';
+
+// Resource exports for advanced usage
+export 'src/resources/base_resource.dart';
+export 'src/admin/resources/resources.dart';
+export 'src/store/resources/resources.dart';
