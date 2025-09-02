@@ -42,6 +42,7 @@ export 'return_reason.dart';
 // Final batch of admin resources
 export 'sales_channel.dart';
 export 'shipping_option.dart';
+export 'shipping_option_type.dart';
 export 'shipping_profile.dart';
 export 'stock_location.dart';
 export 'store.dart';

@@ -8,7 +8,7 @@ part of 'product.dart';
 
 Product _$ProductFromJson(Map<String, dynamic> json) => Product(
   id: json['id'] as String,
-  title: json['title'] as String,
+  title: json['title'] as String?,
   subtitle: json['subtitle'] as String?,
   description: json['description'] as String?,
   handle: json['handle'] as String?,
@@ -58,8 +58,14 @@ Product _$ProductFromJson(Map<String, dynamic> json) => Product(
       (json['sales_channels'] as List<dynamic>?)
           ?.map((e) => SalesChannel.fromJson(e as Map<String, dynamic>))
           .toList(),
-  createdAt: DateTime.parse(json['created_at'] as String),
-  updatedAt: DateTime.parse(json['updated_at'] as String),
+  createdAt:
+      json['created_at'] == null
+          ? null
+          : DateTime.parse(json['created_at'] as String),
+  updatedAt:
+      json['updated_at'] == null
+          ? null
+          : DateTime.parse(json['updated_at'] as String),
   deletedAt:
       json['deleted_at'] == null
           ? null
@@ -94,8 +100,8 @@ Map<String, dynamic> _$ProductToJson(Product instance) => <String, dynamic>{
   'collection': instance.collection,
   'categories': instance.categories,
   'sales_channels': instance.salesChannels,
-  'created_at': instance.createdAt.toIso8601String(),
-  'updated_at': instance.updatedAt.toIso8601String(),
+  'created_at': instance.createdAt?.toIso8601String(),
+  'updated_at': instance.updatedAt?.toIso8601String(),
   'deleted_at': instance.deletedAt?.toIso8601String(),
 };
 

@@ -18,7 +18,7 @@ class Product {
   final String id;
 
   /// Product title
-  final String title;
+  final String? title;
 
   /// Product subtitle
   final String? subtitle;
@@ -96,17 +96,17 @@ class Product {
   final List<SalesChannel>? salesChannels;
 
   /// When the product was created
-  final DateTime createdAt;
+  final DateTime? createdAt;
 
   /// When the product was last updated
-  final DateTime updatedAt;
+  final DateTime? updatedAt;
 
   /// When the product was deleted (if soft deleted)
   final DateTime? deletedAt;
 
   const Product({
     required this.id,
-    required this.title,
+    this.title,
     this.subtitle,
     this.description,
     this.handle,
@@ -132,8 +132,8 @@ class Product {
     this.collection,
     this.categories,
     this.salesChannels,
-    required this.createdAt,
-    required this.updatedAt,
+    this.createdAt,
+    this.updatedAt,
     this.deletedAt,
   });
 

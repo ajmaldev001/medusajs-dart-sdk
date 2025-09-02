@@ -5,12 +5,12 @@ import '../models/common.dart';
 /// Base class for all API resources
 abstract class BaseResource {
   final MedusaClient client;
-  
+
   const BaseResource(this.client);
-  
+
   /// Get the base path for this resource
   String get basePath;
-  
+
   /// Build complete URL path
   String buildPath([String? endpoint]) {
     if (endpoint == null || endpoint.isEmpty) {
@@ -18,7 +18,7 @@ abstract class BaseResource {
     }
     return '$basePath/$endpoint';
   }
-  
+
   /// Generic list method for resources
   Future<PaginatedResponse<T>> listGeneric<T>({
     Map<String, dynamic>? query,
@@ -33,9 +33,10 @@ abstract class BaseResource {
       headers: headers,
     );
 
-    final items = (response[dataKey] as List? ?? [])
-        .map((json) => fromJson(json as Map<String, dynamic>))
-        .toList();
+    final items =
+        (response[dataKey] as List? ?? [])
+            .map((json) => fromJson(json as Map<String, dynamic>))
+            .toList();
 
     return PaginatedResponse(
       data: items,
@@ -44,7 +45,7 @@ abstract class BaseResource {
       limit: response['limit'] ?? 20,
     );
   }
-  
+
   /// Generic retrieve method for resources
   Future<T?> retrieveGeneric<T>({
     required String id,
@@ -63,7 +64,7 @@ abstract class BaseResource {
     final data = response[dataKey];
     return data != null ? fromJson(data as Map<String, dynamic>) : null;
   }
-  
+
   /// Generic create method for resources
   Future<T?> createGeneric<T>({
     required Map<String, dynamic> body,
@@ -84,7 +85,7 @@ abstract class BaseResource {
     final data = response[dataKey];
     return data != null ? fromJson(data as Map<String, dynamic>) : null;
   }
-  
+
   /// Generic update method for resources
   Future<T?> updateGeneric<T>({
     required String id,
@@ -106,7 +107,7 @@ abstract class BaseResource {
     final data = response[dataKey];
     return data != null ? fromJson(data as Map<String, dynamic>) : null;
   }
-  
+
   /// Generic delete method for resources
   Future<Map<String, dynamic>> deleteGeneric({
     required String id,
@@ -124,7 +125,7 @@ abstract class BaseResource {
 /// Base class for store resources
 abstract class StoreResource extends BaseResource {
   const StoreResource(super.client);
-  
+
   @override
   String get basePath => '/store';
 }
@@ -132,7 +133,7 @@ abstract class StoreResource extends BaseResource {
 /// Base class for admin resources
 abstract class AdminResource extends BaseResource {
   const AdminResource(super.client);
-  
+
   @override
   String get basePath => '/admin';
 }

@@ -1,4 +1,5 @@
 import 'package:json_annotation/json_annotation.dart';
+import 'package:medusajs_dart_sdk/src/models/campaign.dart';
 
 part 'promotion.g.dart';
 
@@ -8,6 +9,16 @@ enum PromotionType {
   standard,
   @JsonValue('buyget')
   buyget,
+}
+
+/// Promotion status
+enum PromotionStatus {
+  @JsonValue('draft')
+  draft,
+  @JsonValue('active')
+  active,
+  @JsonValue('inactive')
+  inactive,
 }
 
 /// Application method for promotions
@@ -138,8 +149,11 @@ class Promotion {
   final String id;
   final String code;
   final String? campaignId;
+  final Campaign? campaign;
   final bool isAutomatic;
+  final bool isTaxInclusive;
   final PromotionType type;
+  final PromotionStatus status;
   final DateTime? startsAt;
   final DateTime? endsAt;
   final List<PromotionRule>? rules;
@@ -156,8 +170,11 @@ class Promotion {
     required this.id,
     required this.code,
     this.campaignId,
+    this.campaign,
     required this.isAutomatic,
+    required this.isTaxInclusive,
     required this.type,
+    required this.status,
     this.startsAt,
     this.endsAt,
     this.rules,
@@ -209,7 +226,9 @@ class CreatePromotionRequest {
   final String code;
   final String? campaignId;
   final bool? isAutomatic;
+  final bool? isTaxInclusive;
   final PromotionType type;
+  final PromotionStatus? status;
   final DateTime? startsAt;
   final DateTime? endsAt;
   final ApplicationMethod applicationMethod;
@@ -222,7 +241,9 @@ class CreatePromotionRequest {
     required this.code,
     this.campaignId,
     this.isAutomatic,
+    this.isTaxInclusive,
     required this.type,
+    this.status,
     this.startsAt,
     this.endsAt,
     required this.applicationMethod,
@@ -243,6 +264,8 @@ class CreatePromotionRequest {
 class UpdatePromotionRequest {
   final String? code;
   final bool? isAutomatic;
+  final bool? isTaxInclusive;
+  final PromotionStatus? status;
   final DateTime? startsAt;
   final DateTime? endsAt;
   final List<PromotionRule>? rules;
@@ -253,6 +276,8 @@ class UpdatePromotionRequest {
   const UpdatePromotionRequest({
     this.code,
     this.isAutomatic,
+    this.isTaxInclusive,
+    this.status,
     this.startsAt,
     this.endsAt,
     this.rules,

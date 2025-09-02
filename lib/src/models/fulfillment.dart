@@ -109,6 +109,9 @@ class ShippingOption {
   /// Provider ID
   final String? providerId;
 
+  /// Shipping option type ID (added in v2.10)
+  final String? typeId;
+
   /// Data for the shipping provider
   final Map<String, dynamic>? data;
 
@@ -131,6 +134,7 @@ class ShippingOption {
     this.serviceZoneId,
     this.shippingProfileId,
     this.providerId,
+    this.typeId,
     this.data,
     this.metadata,
     required this.createdAt,
@@ -180,4 +184,91 @@ class ShippingProfile {
   factory ShippingProfile.fromJson(Map<String, dynamic> json) =>
       _$ShippingProfileFromJson(json);
   Map<String, dynamic> toJson() => _$ShippingProfileToJson(this);
+}
+
+/// Represents a shipping option type (added in v2.10)
+@JsonSerializable(fieldRename: FieldRename.snake)
+class ShippingOptionType {
+  /// Unique identifier for the shipping option type
+  final String id;
+
+  /// Label for the shipping option type
+  final String label;
+
+  /// Description of the shipping option type
+  final String? description;
+
+  /// Code for the shipping option type
+  final String code;
+
+  /// When the shipping option type was created
+  final DateTime createdAt;
+
+  /// When the shipping option type was last updated
+  final DateTime updatedAt;
+
+  /// When the shipping option type was deleted (if soft deleted)
+  final DateTime? deletedAt;
+
+  const ShippingOptionType({
+    required this.id,
+    required this.label,
+    this.description,
+    required this.code,
+    required this.createdAt,
+    required this.updatedAt,
+    this.deletedAt,
+  });
+
+  factory ShippingOptionType.fromJson(Map<String, dynamic> json) =>
+      _$ShippingOptionTypeFromJson(json);
+  Map<String, dynamic> toJson() => _$ShippingOptionTypeToJson(this);
+}
+
+/// Request to create a shipping option type
+@JsonSerializable(fieldRename: FieldRename.snake)
+class CreateShippingOptionTypeRequest {
+  /// Label for the shipping option type
+  final String label;
+
+  /// Description of the shipping option type
+  final String? description;
+
+  /// Code for the shipping option type
+  final String code;
+
+  const CreateShippingOptionTypeRequest({
+    required this.label,
+    this.description,
+    required this.code,
+  });
+
+  factory CreateShippingOptionTypeRequest.fromJson(Map<String, dynamic> json) =>
+      _$CreateShippingOptionTypeRequestFromJson(json);
+  Map<String, dynamic> toJson() =>
+      _$CreateShippingOptionTypeRequestToJson(this);
+}
+
+/// Request to update a shipping option type
+@JsonSerializable(fieldRename: FieldRename.snake)
+class UpdateShippingOptionTypeRequest {
+  /// Label for the shipping option type
+  final String? label;
+
+  /// Description of the shipping option type
+  final String? description;
+
+  /// Code for the shipping option type
+  final String? code;
+
+  const UpdateShippingOptionTypeRequest({
+    this.label,
+    this.description,
+    this.code,
+  });
+
+  factory UpdateShippingOptionTypeRequest.fromJson(Map<String, dynamic> json) =>
+      _$UpdateShippingOptionTypeRequestFromJson(json);
+  Map<String, dynamic> toJson() =>
+      _$UpdateShippingOptionTypeRequestToJson(this);
 }

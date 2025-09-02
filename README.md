@@ -6,10 +6,12 @@ A comprehensive Dart SDK for [Medusa.js](https://medusajs.com), the open-source 
 
 ## Features
 
-- 🚀 **Complete API Coverage** - Full support for Medusa v2.8.3 APIs
+- 🚀 **Complete API Coverage** - Full support for Medusa v2.10.0 APIs
 - 🔐 **Authentication** - Built-in auth management with automatic token handling
 - 🛍️ **Store Operations** - Products, collections, carts, orders, and more
 - ⚙️ **Admin Operations** - Full admin API support for backend management
+- 📦 **Shipping Option Types** - New v2.10 shipping categorization support
+- 🗑️ **Deleted Records Query** - Query deleted records with `withDeleted()` flag
 - 📱 **Flutter Ready** - Works seamlessly with Flutter applications
 - 🔄 **Real-time Support** - WebSocket connections for live updates
 - 💾 **Caching** - Built-in caching with customizable strategies

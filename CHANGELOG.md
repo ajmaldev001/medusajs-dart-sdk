@@ -5,7 +5,27 @@ All notable changes to this project will be documented in this file.
 The format is based on [Keep a Changelog](https://keepachangelog.com/en/1.0.0/),
 and this project adheres to [Semantic Versioning](https://semver.org/spec/v2.0.0.html).
 
-## [2.8.3] - 2024-12-06
+## [2.10.0] - 2024-12-07
+
+### Added
+- **BREAKING**: Updated to Medusa.js v2.10.0 compatibility
+- Added support for Shipping Option Types management
+  - New `ShippingOptionType` model with label, description, and code
+  - Admin resource `AdminShippingOptionTypeResource` for CRUD operations
+  - Updated `ShippingOption` model to include optional `typeId` field
+- Added `withDeleted()` method to `QueryBuilder` for querying deleted records (v2.10 feature)
+- Enhanced fulfillment models with better type safety using `Map<String, dynamic>`
+
+### Fixed
+- Improved type consistency across models following Medusa v2.10 API changes
+- Updated shipping option calculations to support new type-based filtering
+
+### Notes
+- This version introduces breaking changes from Medusa.js v2.10.0
+- Shipping option types enable better categorization (e.g., Standard, Express)
+- Query with deleted records now requires explicit `withDeleted()` flag
+
+## [2.8.5] - 2024-12-06
 
 ### Added
 - Initial release of Medusa.js Dart SDK

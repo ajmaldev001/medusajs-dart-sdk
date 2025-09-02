@@ -176,7 +176,7 @@ class StoreCartResource extends StoreResource {
     ClientHeaders? headers,
   }) async {
     final body = {'code': discountCode};
-    
+
     final response = await client.fetch<Map<String, dynamic>>(
       '$resourcePath/$cartId/discounts/$discountCode',
       method: 'POST',

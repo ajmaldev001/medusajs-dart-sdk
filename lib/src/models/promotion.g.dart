@@ -99,8 +99,14 @@ Promotion _$PromotionFromJson(Map<String, dynamic> json) => Promotion(
   id: json['id'] as String,
   code: json['code'] as String,
   campaignId: json['campaign_id'] as String?,
+  campaign:
+      json['campaign'] == null
+          ? null
+          : Campaign.fromJson(json['campaign'] as Map<String, dynamic>),
   isAutomatic: json['is_automatic'] as bool,
+  isTaxInclusive: json['is_tax_inclusive'] as bool,
   type: $enumDecode(_$PromotionTypeEnumMap, json['type']),
+  status: $enumDecode(_$PromotionStatusEnumMap, json['status']),
   startsAt:
       json['starts_at'] == null
           ? null
@@ -142,8 +148,11 @@ Map<String, dynamic> _$PromotionToJson(Promotion instance) => <String, dynamic>{
   'id': instance.id,
   'code': instance.code,
   'campaign_id': instance.campaignId,
+  'campaign': instance.campaign,
   'is_automatic': instance.isAutomatic,
+  'is_tax_inclusive': instance.isTaxInclusive,
   'type': _$PromotionTypeEnumMap[instance.type]!,
+  'status': _$PromotionStatusEnumMap[instance.status]!,
   'starts_at': instance.startsAt?.toIso8601String(),
   'ends_at': instance.endsAt?.toIso8601String(),
   'rules': instance.rules,
@@ -162,6 +171,12 @@ const _$PromotionTypeEnumMap = {
   PromotionType.buyget: 'buyget',
 };
 
+const _$PromotionStatusEnumMap = {
+  PromotionStatus.draft: 'draft',
+  PromotionStatus.active: 'active',
+  PromotionStatus.inactive: 'inactive',
+};
+
 const _$ApplicationMethodEnumMap = {
   ApplicationMethod.automatic: 'automatic',
   ApplicationMethod.code: 'code',
@@ -173,7 +188,9 @@ CreatePromotionRequest _$CreatePromotionRequestFromJson(
   code: json['code'] as String,
   campaignId: json['campaign_id'] as String?,
   isAutomatic: json['is_automatic'] as bool?,
+  isTaxInclusive: json['is_tax_inclusive'] as bool?,
   type: $enumDecode(_$PromotionTypeEnumMap, json['type']),
+  status: $enumDecodeNullable(_$PromotionStatusEnumMap, json['status']),
   startsAt:
       json['starts_at'] == null
           ? null
@@ -207,7 +224,9 @@ Map<String, dynamic> _$CreatePromotionRequestToJson(
   'code': instance.code,
   'campaign_id': instance.campaignId,
   'is_automatic': instance.isAutomatic,
+  'is_tax_inclusive': instance.isTaxInclusive,
   'type': _$PromotionTypeEnumMap[instance.type]!,
+  'status': _$PromotionStatusEnumMap[instance.status],
   'starts_at': instance.startsAt?.toIso8601String(),
   'ends_at': instance.endsAt?.toIso8601String(),
   'application_method': _$ApplicationMethodEnumMap[instance.applicationMethod]!,
@@ -222,6 +241,8 @@ UpdatePromotionRequest _$UpdatePromotionRequestFromJson(
 ) => UpdatePromotionRequest(
   code: json['code'] as String?,
   isAutomatic: json['is_automatic'] as bool?,
+  isTaxInclusive: json['is_tax_inclusive'] as bool?,
+  status: $enumDecodeNullable(_$PromotionStatusEnumMap, json['status']),
   startsAt:
       json['starts_at'] == null
           ? null
@@ -250,6 +271,8 @@ Map<String, dynamic> _$UpdatePromotionRequestToJson(
 ) => <String, dynamic>{
   'code': instance.code,
   'is_automatic': instance.isAutomatic,
+  'is_tax_inclusive': instance.isTaxInclusive,
+  'status': _$PromotionStatusEnumMap[instance.status],
   'starts_at': instance.startsAt?.toIso8601String(),
   'ends_at': instance.endsAt?.toIso8601String(),
   'rules': instance.rules,

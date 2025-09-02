@@ -96,6 +96,12 @@ class QueryBuilder {
     return this;
   }
 
+  /// Include deleted records in the query (added in v2.10)
+  QueryBuilder withDeleted() {
+    _params['with_deleted'] = true;
+    return this;
+  }
+
   /// Clear all parameters
   QueryBuilder clear() {
     _params.clear();

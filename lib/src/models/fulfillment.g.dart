@@ -50,6 +50,7 @@ ShippingOption _$ShippingOptionFromJson(Map<String, dynamic> json) =>
       serviceZoneId: json['service_zone_id'] as String?,
       shippingProfileId: json['shipping_profile_id'] as String?,
       providerId: json['provider_id'] as String?,
+      typeId: json['type_id'] as String?,
       data: json['data'] as Map<String, dynamic>?,
       metadata: json['metadata'] as Map<String, dynamic>?,
       createdAt: DateTime.parse(json['created_at'] as String),
@@ -68,6 +69,7 @@ Map<String, dynamic> _$ShippingOptionToJson(ShippingOption instance) =>
       'service_zone_id': instance.serviceZoneId,
       'shipping_profile_id': instance.shippingProfileId,
       'provider_id': instance.providerId,
+      'type_id': instance.typeId,
       'data': instance.data,
       'metadata': instance.metadata,
       'created_at': instance.createdAt.toIso8601String(),
@@ -99,3 +101,60 @@ Map<String, dynamic> _$ShippingProfileToJson(ShippingProfile instance) =>
       'updated_at': instance.updatedAt.toIso8601String(),
       'deleted_at': instance.deletedAt?.toIso8601String(),
     };
+
+ShippingOptionType _$ShippingOptionTypeFromJson(Map<String, dynamic> json) =>
+    ShippingOptionType(
+      id: json['id'] as String,
+      label: json['label'] as String,
+      description: json['description'] as String?,
+      code: json['code'] as String,
+      createdAt: DateTime.parse(json['created_at'] as String),
+      updatedAt: DateTime.parse(json['updated_at'] as String),
+      deletedAt:
+          json['deleted_at'] == null
+              ? null
+              : DateTime.parse(json['deleted_at'] as String),
+    );
+
+Map<String, dynamic> _$ShippingOptionTypeToJson(ShippingOptionType instance) =>
+    <String, dynamic>{
+      'id': instance.id,
+      'label': instance.label,
+      'description': instance.description,
+      'code': instance.code,
+      'created_at': instance.createdAt.toIso8601String(),
+      'updated_at': instance.updatedAt.toIso8601String(),
+      'deleted_at': instance.deletedAt?.toIso8601String(),
+    };
+
+CreateShippingOptionTypeRequest _$CreateShippingOptionTypeRequestFromJson(
+  Map<String, dynamic> json,
+) => CreateShippingOptionTypeRequest(
+  label: json['label'] as String,
+  description: json['description'] as String?,
+  code: json['code'] as String,
+);
+
+Map<String, dynamic> _$CreateShippingOptionTypeRequestToJson(
+  CreateShippingOptionTypeRequest instance,
+) => <String, dynamic>{
+  'label': instance.label,
+  'description': instance.description,
+  'code': instance.code,
+};
+
+UpdateShippingOptionTypeRequest _$UpdateShippingOptionTypeRequestFromJson(
+  Map<String, dynamic> json,
+) => UpdateShippingOptionTypeRequest(
+  label: json['label'] as String?,
+  description: json['description'] as String?,
+  code: json['code'] as String?,
+);
+
+Map<String, dynamic> _$UpdateShippingOptionTypeRequestToJson(
+  UpdateShippingOptionTypeRequest instance,
+) => <String, dynamic>{
+  'label': instance.label,
+  'description': instance.description,
+  'code': instance.code,
+};

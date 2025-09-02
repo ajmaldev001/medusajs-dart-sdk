@@ -122,6 +122,9 @@ class MedusaAdmin {
   /// Shipping option management operations
   late final shippingOption = AdminShippingOptionResource(_client);
 
+  /// Shipping option type management operations (added in v2.10)
+  late final shippingOptionType = AdminShippingOptionTypeResource(_client);
+
   /// Shipping profile management operations
   late final shippingProfile = AdminShippingProfileResource(_client);
 
