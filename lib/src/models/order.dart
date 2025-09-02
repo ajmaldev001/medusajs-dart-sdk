@@ -4,7 +4,7 @@ import 'common.dart';
 part 'order.g.dart';
 
 /// Represents an order in the Medusa system
-@JsonSerializable()
+@JsonSerializable(fieldRename: FieldRename.snake)
 class Order {
   /// Unique identifier for the order
   final String id;

@@ -8,49 +8,49 @@ part of 'exchange.dart';
 
 ExchangeItem _$ExchangeItemFromJson(Map<String, dynamic> json) => ExchangeItem(
   id: json['id'] as String,
-  exchangeId: json['exchangeId'] as String,
-  orderItemId: json['orderItemId'] as String,
+  exchangeId: json['exchange_id'] as String,
+  orderItemId: json['order_item_id'] as String,
   quantity: (json['quantity'] as num).toInt(),
   note: json['note'] as String?,
   metadata: json['metadata'] as Map<String, dynamic>?,
-  createdAt: DateTime.parse(json['createdAt'] as String),
-  updatedAt: DateTime.parse(json['updatedAt'] as String),
+  createdAt: DateTime.parse(json['created_at'] as String),
+  updatedAt: DateTime.parse(json['updated_at'] as String),
 );
 
 Map<String, dynamic> _$ExchangeItemToJson(ExchangeItem instance) =>
     <String, dynamic>{
       'id': instance.id,
-      'exchangeId': instance.exchangeId,
-      'orderItemId': instance.orderItemId,
+      'exchange_id': instance.exchangeId,
+      'order_item_id': instance.orderItemId,
       'quantity': instance.quantity,
       'note': instance.note,
       'metadata': instance.metadata,
-      'createdAt': instance.createdAt.toIso8601String(),
-      'updatedAt': instance.updatedAt.toIso8601String(),
+      'created_at': instance.createdAt.toIso8601String(),
+      'updated_at': instance.updatedAt.toIso8601String(),
     };
 
 AdditionalExchangeItem _$AdditionalExchangeItemFromJson(
   Map<String, dynamic> json,
 ) => AdditionalExchangeItem(
   id: json['id'] as String,
-  exchangeId: json['exchangeId'] as String,
-  variantId: json['variantId'] as String,
+  exchangeId: json['exchange_id'] as String,
+  variantId: json['variant_id'] as String,
   quantity: (json['quantity'] as num).toInt(),
   metadata: json['metadata'] as Map<String, dynamic>?,
-  createdAt: DateTime.parse(json['createdAt'] as String),
-  updatedAt: DateTime.parse(json['updatedAt'] as String),
+  createdAt: DateTime.parse(json['created_at'] as String),
+  updatedAt: DateTime.parse(json['updated_at'] as String),
 );
 
 Map<String, dynamic> _$AdditionalExchangeItemToJson(
   AdditionalExchangeItem instance,
 ) => <String, dynamic>{
   'id': instance.id,
-  'exchangeId': instance.exchangeId,
-  'variantId': instance.variantId,
+  'exchange_id': instance.exchangeId,
+  'variant_id': instance.variantId,
   'quantity': instance.quantity,
   'metadata': instance.metadata,
-  'createdAt': instance.createdAt.toIso8601String(),
-  'updatedAt': instance.updatedAt.toIso8601String(),
+  'created_at': instance.createdAt.toIso8601String(),
+  'updated_at': instance.updatedAt.toIso8601String(),
 };
 
 Exchange _$ExchangeFromJson(Map<String, dynamic> json) => Exchange(
@@ -58,69 +58,69 @@ Exchange _$ExchangeFromJson(Map<String, dynamic> json) => Exchange(
   status: $enumDecode(_$ExchangeStatusEnumMap, json['status']),
   paymentStatus: $enumDecode(
     _$ExchangePaymentStatusEnumMap,
-    json['paymentStatus'],
+    json['payment_status'],
   ),
   fulfillmentStatus: $enumDecode(
     _$ExchangeFulfillmentStatusEnumMap,
-    json['fulfillmentStatus'],
+    json['fulfillment_status'],
   ),
-  orderId: json['orderId'] as String,
+  orderId: json['order_id'] as String,
   exchangeItems:
-      (json['exchangeItems'] as List<dynamic>?)
+      (json['exchange_items'] as List<dynamic>?)
           ?.map((e) => ExchangeItem.fromJson(e as Map<String, dynamic>))
           .toList(),
   additionalItems:
-      (json['additionalItems'] as List<dynamic>?)
+      (json['additional_items'] as List<dynamic>?)
           ?.map(
             (e) => AdditionalExchangeItem.fromJson(e as Map<String, dynamic>),
           )
           .toList(),
-  returnId: json['returnId'] as String?,
-  cartId: json['cartId'] as String?,
-  differenceDue: (json['differenceDue'] as num?)?.toInt(),
-  shippingAddressId: json['shippingAddressId'] as String?,
-  allowBackorder: json['allowBackorder'] as bool?,
+  returnId: json['return_id'] as String?,
+  cartId: json['cart_id'] as String?,
+  differenceDue: (json['difference_due'] as num?)?.toInt(),
+  shippingAddressId: json['shipping_address_id'] as String?,
+  allowBackorder: json['allow_backorder'] as bool?,
   completedAt:
-      json['completedAt'] == null
+      json['completed_at'] == null
           ? null
-          : DateTime.parse(json['completedAt'] as String),
+          : DateTime.parse(json['completed_at'] as String),
   canceledAt:
-      json['canceledAt'] == null
+      json['canceled_at'] == null
           ? null
-          : DateTime.parse(json['canceledAt'] as String),
+          : DateTime.parse(json['canceled_at'] as String),
   note: json['note'] as String?,
-  noNotification: json['noNotification'] as bool?,
+  noNotification: json['no_notification'] as bool?,
   metadata: json['metadata'] as Map<String, dynamic>?,
-  createdAt: DateTime.parse(json['createdAt'] as String),
-  updatedAt: DateTime.parse(json['updatedAt'] as String),
+  createdAt: DateTime.parse(json['created_at'] as String),
+  updatedAt: DateTime.parse(json['updated_at'] as String),
   deletedAt:
-      json['deletedAt'] == null
+      json['deleted_at'] == null
           ? null
-          : DateTime.parse(json['deletedAt'] as String),
+          : DateTime.parse(json['deleted_at'] as String),
 );
 
 Map<String, dynamic> _$ExchangeToJson(Exchange instance) => <String, dynamic>{
   'id': instance.id,
   'status': _$ExchangeStatusEnumMap[instance.status]!,
-  'paymentStatus': _$ExchangePaymentStatusEnumMap[instance.paymentStatus]!,
-  'fulfillmentStatus':
+  'payment_status': _$ExchangePaymentStatusEnumMap[instance.paymentStatus]!,
+  'fulfillment_status':
       _$ExchangeFulfillmentStatusEnumMap[instance.fulfillmentStatus]!,
-  'orderId': instance.orderId,
-  'exchangeItems': instance.exchangeItems,
-  'additionalItems': instance.additionalItems,
-  'returnId': instance.returnId,
-  'cartId': instance.cartId,
-  'differenceDue': instance.differenceDue,
-  'shippingAddressId': instance.shippingAddressId,
-  'allowBackorder': instance.allowBackorder,
-  'completedAt': instance.completedAt?.toIso8601String(),
-  'canceledAt': instance.canceledAt?.toIso8601String(),
+  'order_id': instance.orderId,
+  'exchange_items': instance.exchangeItems,
+  'additional_items': instance.additionalItems,
+  'return_id': instance.returnId,
+  'cart_id': instance.cartId,
+  'difference_due': instance.differenceDue,
+  'shipping_address_id': instance.shippingAddressId,
+  'allow_backorder': instance.allowBackorder,
+  'completed_at': instance.completedAt?.toIso8601String(),
+  'canceled_at': instance.canceledAt?.toIso8601String(),
   'note': instance.note,
-  'noNotification': instance.noNotification,
+  'no_notification': instance.noNotification,
   'metadata': instance.metadata,
-  'createdAt': instance.createdAt.toIso8601String(),
-  'updatedAt': instance.updatedAt.toIso8601String(),
-  'deletedAt': instance.deletedAt?.toIso8601String(),
+  'created_at': instance.createdAt.toIso8601String(),
+  'updated_at': instance.updatedAt.toIso8601String(),
+  'deleted_at': instance.deletedAt?.toIso8601String(),
 };
 
 const _$ExchangeStatusEnumMap = {
@@ -150,25 +150,25 @@ const _$ExchangeFulfillmentStatusEnumMap = {
 CreateExchangeRequest _$CreateExchangeRequestFromJson(
   Map<String, dynamic> json,
 ) => CreateExchangeRequest(
-  orderId: json['orderId'] as String,
+  orderId: json['order_id'] as String,
   exchangeItems:
-      (json['exchangeItems'] as List<dynamic>)
+      (json['exchange_items'] as List<dynamic>)
           .map(
             (e) =>
                 CreateExchangeItemRequest.fromJson(e as Map<String, dynamic>),
           )
           .toList(),
   additionalItems:
-      (json['additionalItems'] as List<dynamic>?)
+      (json['additional_items'] as List<dynamic>?)
           ?.map(
             (e) => CreateAdditionalExchangeItemRequest.fromJson(
               e as Map<String, dynamic>,
             ),
           )
           .toList(),
-  shippingAddressId: json['shippingAddressId'] as String?,
-  allowBackorder: json['allowBackorder'] as bool?,
-  noNotification: json['noNotification'] as bool?,
+  shippingAddressId: json['shipping_address_id'] as String?,
+  allowBackorder: json['allow_backorder'] as bool?,
+  noNotification: json['no_notification'] as bool?,
   note: json['note'] as String?,
   metadata: json['metadata'] as Map<String, dynamic>?,
 );
@@ -176,12 +176,12 @@ CreateExchangeRequest _$CreateExchangeRequestFromJson(
 Map<String, dynamic> _$CreateExchangeRequestToJson(
   CreateExchangeRequest instance,
 ) => <String, dynamic>{
-  'orderId': instance.orderId,
-  'exchangeItems': instance.exchangeItems,
-  'additionalItems': instance.additionalItems,
-  'shippingAddressId': instance.shippingAddressId,
-  'allowBackorder': instance.allowBackorder,
-  'noNotification': instance.noNotification,
+  'order_id': instance.orderId,
+  'exchange_items': instance.exchangeItems,
+  'additional_items': instance.additionalItems,
+  'shipping_address_id': instance.shippingAddressId,
+  'allow_backorder': instance.allowBackorder,
+  'no_notification': instance.noNotification,
   'note': instance.note,
   'metadata': instance.metadata,
 };
@@ -189,7 +189,7 @@ Map<String, dynamic> _$CreateExchangeRequestToJson(
 CreateExchangeItemRequest _$CreateExchangeItemRequestFromJson(
   Map<String, dynamic> json,
 ) => CreateExchangeItemRequest(
-  orderItemId: json['orderItemId'] as String,
+  orderItemId: json['order_item_id'] as String,
   quantity: (json['quantity'] as num).toInt(),
   note: json['note'] as String?,
   metadata: json['metadata'] as Map<String, dynamic>?,
@@ -198,7 +198,7 @@ CreateExchangeItemRequest _$CreateExchangeItemRequestFromJson(
 Map<String, dynamic> _$CreateExchangeItemRequestToJson(
   CreateExchangeItemRequest instance,
 ) => <String, dynamic>{
-  'orderItemId': instance.orderItemId,
+  'order_item_id': instance.orderItemId,
   'quantity': instance.quantity,
   'note': instance.note,
   'metadata': instance.metadata,
@@ -207,7 +207,7 @@ Map<String, dynamic> _$CreateExchangeItemRequestToJson(
 CreateAdditionalExchangeItemRequest
 _$CreateAdditionalExchangeItemRequestFromJson(Map<String, dynamic> json) =>
     CreateAdditionalExchangeItemRequest(
-      variantId: json['variantId'] as String,
+      variantId: json['variant_id'] as String,
       quantity: (json['quantity'] as num).toInt(),
       metadata: json['metadata'] as Map<String, dynamic>?,
     );
@@ -215,7 +215,7 @@ _$CreateAdditionalExchangeItemRequestFromJson(Map<String, dynamic> json) =>
 Map<String, dynamic> _$CreateAdditionalExchangeItemRequestToJson(
   CreateAdditionalExchangeItemRequest instance,
 ) => <String, dynamic>{
-  'variantId': instance.variantId,
+  'variant_id': instance.variantId,
   'quantity': instance.quantity,
   'metadata': instance.metadata,
 };
@@ -224,7 +224,7 @@ UpdateExchangeRequest _$UpdateExchangeRequestFromJson(
   Map<String, dynamic> json,
 ) => UpdateExchangeRequest(
   note: json['note'] as String?,
-  noNotification: json['noNotification'] as bool?,
+  noNotification: json['no_notification'] as bool?,
   metadata: json['metadata'] as Map<String, dynamic>?,
 );
 
@@ -232,17 +232,17 @@ Map<String, dynamic> _$UpdateExchangeRequestToJson(
   UpdateExchangeRequest instance,
 ) => <String, dynamic>{
   'note': instance.note,
-  'noNotification': instance.noNotification,
+  'no_notification': instance.noNotification,
   'metadata': instance.metadata,
 };
 
 CancelExchangeRequest _$CancelExchangeRequestFromJson(
   Map<String, dynamic> json,
-) => CancelExchangeRequest(noNotification: json['noNotification'] as bool?);
+) => CancelExchangeRequest(noNotification: json['no_notification'] as bool?);
 
 Map<String, dynamic> _$CancelExchangeRequestToJson(
   CancelExchangeRequest instance,
-) => <String, dynamic>{'noNotification': instance.noNotification};
+) => <String, dynamic>{'no_notification': instance.noNotification};
 
 ProcessExchangePaymentRequest _$ProcessExchangePaymentRequestFromJson(
   Map<String, dynamic> json,

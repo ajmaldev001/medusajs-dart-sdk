@@ -25,7 +25,7 @@ enum InviteStatus {
 }
 
 /// User model for Medusa v2
-@JsonSerializable()
+@JsonSerializable(fieldRename: FieldRename.snake)
 class User {
   final String id;
   final String email;
@@ -77,7 +77,7 @@ class User {
 }
 
 /// User invite model
-@JsonSerializable()
+@JsonSerializable(fieldRename: FieldRename.snake)
 class Invite {
   final String id;
   final String email;
@@ -129,7 +129,7 @@ class Invite {
 }
 
 /// Create user request
-@JsonSerializable()
+@JsonSerializable(fieldRename: FieldRename.snake)
 class CreateUserRequest {
   final String email;
   final String? firstName;
@@ -152,7 +152,7 @@ class CreateUserRequest {
 }
 
 /// Update user request
-@JsonSerializable()
+@JsonSerializable(fieldRename: FieldRename.snake)
 class UpdateUserRequest {
   final String? firstName;
   final String? lastName;
@@ -175,7 +175,7 @@ class UpdateUserRequest {
 }
 
 /// Create invite request
-@JsonSerializable()
+@JsonSerializable(fieldRename: FieldRename.snake)
 class CreateInviteRequest {
   final String email;
   final UserRole? role;
@@ -190,7 +190,7 @@ class CreateInviteRequest {
 }
 
 /// Accept invite request
-@JsonSerializable()
+@JsonSerializable(fieldRename: FieldRename.snake)
 class AcceptInviteRequest {
   final String token;
   final String? firstName;
@@ -211,7 +211,7 @@ class AcceptInviteRequest {
 }
 
 /// User response
-@JsonSerializable()
+@JsonSerializable(fieldRename: FieldRename.snake)
 class UserResponse {
   final User user;
 
@@ -224,7 +224,7 @@ class UserResponse {
 }
 
 /// Users response
-@JsonSerializable()
+@JsonSerializable(fieldRename: FieldRename.snake)
 class UsersResponse {
   final List<User> users;
   final int count;
@@ -245,7 +245,7 @@ class UsersResponse {
 }
 
 /// Invite response
-@JsonSerializable()
+@JsonSerializable(fieldRename: FieldRename.snake)
 class InviteResponse {
   final Invite invite;
 
@@ -258,7 +258,7 @@ class InviteResponse {
 }
 
 /// Invites response
-@JsonSerializable()
+@JsonSerializable(fieldRename: FieldRename.snake)
 class InvitesResponse {
   final List<Invite> invites;
   final int count;

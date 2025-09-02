@@ -31,7 +31,7 @@ enum OrderEditChangeType {
 }
 
 /// Order edit change model
-@JsonSerializable()
+@JsonSerializable(fieldRename: FieldRename.snake)
 class OrderEditChange {
   final String id;
   final String orderEditId;
@@ -75,7 +75,7 @@ class OrderEditChange {
 }
 
 /// Order edit model for Medusa v2
-@JsonSerializable()
+@JsonSerializable(fieldRename: FieldRename.snake)
 class OrderEdit {
   final String id;
   final String orderId;
@@ -195,7 +195,7 @@ class OrderEdit {
 }
 
 /// Create order edit request
-@JsonSerializable()
+@JsonSerializable(fieldRename: FieldRename.snake)
 class CreateOrderEditRequest {
   final String orderId;
   final String? internalNote;
@@ -214,7 +214,7 @@ class CreateOrderEditRequest {
 }
 
 /// Update order edit request
-@JsonSerializable()
+@JsonSerializable(fieldRename: FieldRename.snake)
 class UpdateOrderEditRequest {
   final String? internalNote;
   final Map<String, dynamic>? metadata;
@@ -228,7 +228,7 @@ class UpdateOrderEditRequest {
 }
 
 /// Add line item to order edit request
-@JsonSerializable()
+@JsonSerializable(fieldRename: FieldRename.snake)
 class AddOrderEditLineItemRequest {
   final String variantId;
   final int quantity;
@@ -247,7 +247,7 @@ class AddOrderEditLineItemRequest {
 }
 
 /// Update order edit line item request
-@JsonSerializable()
+@JsonSerializable(fieldRename: FieldRename.snake)
 class UpdateOrderEditLineItemRequest {
   final int quantity;
   final Map<String, dynamic>? metadata;
@@ -261,7 +261,7 @@ class UpdateOrderEditLineItemRequest {
 }
 
 /// Request order edit confirmation request
-@JsonSerializable()
+@JsonSerializable(fieldRename: FieldRename.snake)
 class RequestOrderEditConfirmationRequest {
   final Map<String, dynamic>? metadata;
 
@@ -276,7 +276,7 @@ class RequestOrderEditConfirmationRequest {
 }
 
 /// Confirm order edit request
-@JsonSerializable()
+@JsonSerializable(fieldRename: FieldRename.snake)
 class ConfirmOrderEditRequest {
   final Map<String, dynamic>? metadata;
 
@@ -289,7 +289,7 @@ class ConfirmOrderEditRequest {
 }
 
 /// Decline order edit request
-@JsonSerializable()
+@JsonSerializable(fieldRename: FieldRename.snake)
 class DeclineOrderEditRequest {
   final String? reason;
   final Map<String, dynamic>? metadata;
@@ -303,7 +303,7 @@ class DeclineOrderEditRequest {
 }
 
 /// Cancel order edit request
-@JsonSerializable()
+@JsonSerializable(fieldRename: FieldRename.snake)
 class CancelOrderEditRequest {
   final Map<String, dynamic>? metadata;
 
@@ -316,7 +316,7 @@ class CancelOrderEditRequest {
 }
 
 /// Order edit response
-@JsonSerializable()
+@JsonSerializable(fieldRename: FieldRename.snake)
 class OrderEditResponse {
   final OrderEdit orderEdit;
 
@@ -329,7 +329,7 @@ class OrderEditResponse {
 }
 
 /// Order edits response
-@JsonSerializable()
+@JsonSerializable(fieldRename: FieldRename.snake)
 class OrderEditsResponse {
   final List<OrderEdit> orderEdits;
   final int count;

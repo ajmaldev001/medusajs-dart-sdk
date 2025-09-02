@@ -3,7 +3,7 @@ import 'package:json_annotation/json_annotation.dart';
 part 'inventory.g.dart';
 
 /// Represents an inventory item in the Medusa system
-@JsonSerializable()
+@JsonSerializable(fieldRename: FieldRename.snake)
 class InventoryItem {
   /// Unique identifier for the inventory item
   final String id;
@@ -99,7 +99,7 @@ class InventoryItem {
 }
 
 /// Represents inventory level for a location
-@JsonSerializable()
+@JsonSerializable(fieldRename: FieldRename.snake)
 class InventoryLevel {
   /// Unique identifier for the inventory level
   final String id;
@@ -167,7 +167,7 @@ class InventoryLevel {
 }
 
 /// Represents a reservation of inventory
-@JsonSerializable()
+@JsonSerializable(fieldRename: FieldRename.snake)
 class Reservation {
   /// Unique identifier for the reservation
   final String id;

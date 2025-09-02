@@ -13,7 +13,7 @@ enum NotificationStatus {
 }
 
 /// Notification provider model
-@JsonSerializable()
+@JsonSerializable(fieldRename: FieldRename.snake)
 class NotificationProvider {
   final String id;
   final bool isInstalled;
@@ -27,7 +27,7 @@ class NotificationProvider {
 }
 
 /// Notification model for Medusa v2
-@JsonSerializable()
+@JsonSerializable(fieldRename: FieldRename.snake)
 class Notification {
   final String id;
   final String? to;
@@ -107,7 +107,7 @@ class Notification {
 }
 
 /// Send notification request
-@JsonSerializable()
+@JsonSerializable(fieldRename: FieldRename.snake)
 class SendNotificationRequest {
   final String to;
   final String channel;
@@ -140,7 +140,7 @@ class SendNotificationRequest {
 }
 
 /// Resend notification request
-@JsonSerializable()
+@JsonSerializable(fieldRename: FieldRename.snake)
 class ResendNotificationRequest {
   final String? to;
   final Map<String, dynamic>? data;
@@ -154,7 +154,7 @@ class ResendNotificationRequest {
 }
 
 /// Notification response
-@JsonSerializable()
+@JsonSerializable(fieldRename: FieldRename.snake)
 class NotificationResponse {
   final Notification notification;
 
@@ -167,7 +167,7 @@ class NotificationResponse {
 }
 
 /// Notifications response
-@JsonSerializable()
+@JsonSerializable(fieldRename: FieldRename.snake)
 class NotificationsResponse {
   final List<Notification> notifications;
   final int count;
@@ -188,7 +188,7 @@ class NotificationsResponse {
 }
 
 /// Notification providers response
-@JsonSerializable()
+@JsonSerializable(fieldRename: FieldRename.snake)
 class NotificationProvidersResponse {
   final List<NotificationProvider> notificationProviders;
 

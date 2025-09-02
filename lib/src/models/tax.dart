@@ -19,7 +19,7 @@ enum TaxRateType {
 }
 
 /// Tax provider model
-@JsonSerializable()
+@JsonSerializable(fieldRename: FieldRename.snake)
 class TaxProvider {
   final String id;
   final bool isInstalled;
@@ -33,7 +33,7 @@ class TaxProvider {
 }
 
 /// Tax region model
-@JsonSerializable()
+@JsonSerializable(fieldRename: FieldRename.snake)
 class TaxRegion {
   final String id;
   final String? countryCode;
@@ -84,7 +84,7 @@ class TaxRegion {
 }
 
 /// Tax rate model
-@JsonSerializable()
+@JsonSerializable(fieldRename: FieldRename.snake)
 class TaxRate {
   final String id;
   final double? rate;
@@ -144,7 +144,7 @@ class TaxRate {
 }
 
 /// Tax line model
-@JsonSerializable()
+@JsonSerializable(fieldRename: FieldRename.snake)
 class TaxLine {
   final String id;
   final double rate;
@@ -174,7 +174,7 @@ class TaxLine {
 }
 
 /// Create tax region request
-@JsonSerializable()
+@JsonSerializable(fieldRename: FieldRename.snake)
 class CreateTaxRegionRequest {
   final String? countryCode;
   final String? provinceCode;
@@ -199,7 +199,7 @@ class CreateTaxRegionRequest {
 }
 
 /// Update tax region request
-@JsonSerializable()
+@JsonSerializable(fieldRename: FieldRename.snake)
 class UpdateTaxRegionRequest {
   final String? providerId;
   final double? defaultTaxRate;
@@ -218,7 +218,7 @@ class UpdateTaxRegionRequest {
 }
 
 /// Create tax rate request
-@JsonSerializable()
+@JsonSerializable(fieldRename: FieldRename.snake)
 class CreateTaxRateRequest {
   final double? rate;
   final String? code;
@@ -247,7 +247,7 @@ class CreateTaxRateRequest {
 }
 
 /// Update tax rate request
-@JsonSerializable()
+@JsonSerializable(fieldRename: FieldRename.snake)
 class UpdateTaxRateRequest {
   final double? rate;
   final String? code;
@@ -272,7 +272,7 @@ class UpdateTaxRateRequest {
 }
 
 /// Tax region response
-@JsonSerializable()
+@JsonSerializable(fieldRename: FieldRename.snake)
 class TaxRegionResponse {
   final TaxRegion taxRegion;
 
@@ -285,7 +285,7 @@ class TaxRegionResponse {
 }
 
 /// Tax regions response
-@JsonSerializable()
+@JsonSerializable(fieldRename: FieldRename.snake)
 class TaxRegionsResponse {
   final List<TaxRegion> taxRegions;
   final int count;
@@ -306,7 +306,7 @@ class TaxRegionsResponse {
 }
 
 /// Tax rate response
-@JsonSerializable()
+@JsonSerializable(fieldRename: FieldRename.snake)
 class TaxRateResponse {
   final TaxRate taxRate;
 
@@ -319,7 +319,7 @@ class TaxRateResponse {
 }
 
 /// Tax rates response
-@JsonSerializable()
+@JsonSerializable(fieldRename: FieldRename.snake)
 class TaxRatesResponse {
   final List<TaxRate> taxRates;
   final int count;
@@ -340,7 +340,7 @@ class TaxRatesResponse {
 }
 
 /// Tax providers response
-@JsonSerializable()
+@JsonSerializable(fieldRename: FieldRename.snake)
 class TaxProvidersResponse {
   final List<TaxProvider> taxProviders;
 

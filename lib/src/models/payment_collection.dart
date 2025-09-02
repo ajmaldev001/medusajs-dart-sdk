@@ -41,7 +41,7 @@ enum PaymentSessionStatus {
 }
 
 /// Payment session model
-@JsonSerializable()
+@JsonSerializable(fieldRename: FieldRename.snake)
 class PaymentSession {
   final String id;
   final String paymentCollectionId;
@@ -98,7 +98,7 @@ class PaymentSession {
 }
 
 /// Payment model
-@JsonSerializable()
+@JsonSerializable(fieldRename: FieldRename.snake)
 class Payment {
   final String id;
   final int amount;
@@ -150,7 +150,7 @@ class Payment {
 }
 
 /// Payment collection model for Medusa v2
-@JsonSerializable()
+@JsonSerializable(fieldRename: FieldRename.snake)
 class PaymentCollection {
   final String id;
   final PaymentCollectionType type;
@@ -246,7 +246,7 @@ class PaymentCollection {
 }
 
 /// Create payment collection request
-@JsonSerializable()
+@JsonSerializable(fieldRename: FieldRename.snake)
 class CreatePaymentCollectionRequest {
   final PaymentCollectionType type;
   final String? description;
@@ -271,7 +271,7 @@ class CreatePaymentCollectionRequest {
 }
 
 /// Update payment collection request
-@JsonSerializable()
+@JsonSerializable(fieldRename: FieldRename.snake)
 class UpdatePaymentCollectionRequest {
   final String? description;
   final Map<String, dynamic>? metadata;
@@ -285,7 +285,7 @@ class UpdatePaymentCollectionRequest {
 }
 
 /// Set payment sessions request
-@JsonSerializable()
+@JsonSerializable(fieldRename: FieldRename.snake)
 class SetPaymentSessionsRequest {
   final List<String> providerIds;
 
@@ -298,7 +298,7 @@ class SetPaymentSessionsRequest {
 }
 
 /// Authorize payment session request
-@JsonSerializable()
+@JsonSerializable(fieldRename: FieldRename.snake)
 class AuthorizePaymentSessionRequest {
   final String sessionId;
   final Map<String, dynamic>? context;
@@ -312,7 +312,7 @@ class AuthorizePaymentSessionRequest {
 }
 
 /// Payment collection response
-@JsonSerializable()
+@JsonSerializable(fieldRename: FieldRename.snake)
 class PaymentCollectionResponse {
   final PaymentCollection paymentCollection;
 
@@ -325,7 +325,7 @@ class PaymentCollectionResponse {
 }
 
 /// Payment collections response
-@JsonSerializable()
+@JsonSerializable(fieldRename: FieldRename.snake)
 class PaymentCollectionsResponse {
   final List<PaymentCollection> paymentCollections;
   final int count;

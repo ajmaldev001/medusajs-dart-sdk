@@ -12,7 +12,7 @@ import 'category.dart';
 part 'product.g.dart';
 
 /// Represents a product in the Medusa system
-@JsonSerializable()
+@JsonSerializable(fieldRename: FieldRename.snake)
 class Product {
   /// Unique identifier for the product
   final String id;
@@ -33,7 +33,7 @@ class Product {
   final bool isGiftcard;
 
   /// Product status
-  final ProductStatus status;
+  final ProductStatus? status;
 
   /// Product thumbnail URL
   final String? thumbnail;
@@ -111,7 +111,7 @@ class Product {
     this.description,
     this.handle,
     this.isGiftcard = false,
-    this.status = ProductStatus.draft,
+    this.status,
     this.thumbnail,
     this.weight,
     this.length,
@@ -145,7 +145,7 @@ class Product {
   bool get isPublished => status == ProductStatus.published;
 
   /// Check if product is draft
-  bool get isDraft => status == ProductStatus.draft;
+  bool get isDraft => status == ProductStatus.draft || status == null;
 
   /// Check if product is proposed
   bool get isProposed => status == ProductStatus.proposed;

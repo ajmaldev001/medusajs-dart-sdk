@@ -3,7 +3,7 @@ import 'package:json_annotation/json_annotation.dart';
 part 'discount.g.dart';
 
 /// Represents a discount in the Medusa system
-@JsonSerializable()
+@JsonSerializable(fieldRename: FieldRename.snake)
 class Discount {
   /// Unique identifier for the discount
   final String id;

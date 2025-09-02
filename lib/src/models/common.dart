@@ -3,7 +3,10 @@ import 'package:json_annotation/json_annotation.dart';
 part 'common.g.dart';
 
 /// Paginated response wrapper for API responses
-@JsonSerializable(genericArgumentFactories: true)
+@JsonSerializable(
+  genericArgumentFactories: true,
+  fieldRename: FieldRename.snake,
+)
 class PaginatedResponse<T> {
   /// The data items for this page
   final List<T> data;
@@ -40,10 +43,29 @@ class PaginatedResponse<T> {
 
   /// Get the total number of pages
   int get totalPages => (count / limit).ceil();
+
+  // Convenience getters for common resource types
+  /// Convenience getter for products (same as data)
+  List<T> get products => data;
+
+  /// Convenience getter for orders (same as data)
+  List<T> get orders => data;
+
+  /// Convenience getter for customers (same as data)
+  List<T> get customers => data;
+
+  /// Convenience getter for collections (same as data)
+  List<T> get collections => data;
+
+  /// Convenience getter for categories (same as data)
+  List<T> get categories => data;
+
+  /// Convenience getter for items (same as data)
+  List<T> get items => data;
 }
 
 /// Response wrapper for delete operations
-@JsonSerializable()
+@JsonSerializable(fieldRename: FieldRename.snake)
 class DeleteResponse {
   /// ID of the deleted resource
   final String id;
@@ -66,7 +88,10 @@ class DeleteResponse {
 }
 
 /// Response wrapper for batch operations
-@JsonSerializable(genericArgumentFactories: true)
+@JsonSerializable(
+  genericArgumentFactories: true,
+  fieldRename: FieldRename.snake,
+)
 class BatchResponse<T> {
   /// The created items
   final List<T> created;

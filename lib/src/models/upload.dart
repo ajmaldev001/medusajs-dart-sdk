@@ -27,7 +27,7 @@ enum UploadStatus {
 }
 
 /// File dimensions
-@JsonSerializable()
+@JsonSerializable(fieldRename: FieldRename.snake)
 class FileDimensions {
   final int width;
   final int height;
@@ -53,7 +53,7 @@ class FileDimensions {
 }
 
 /// Upload model for Medusa v2
-@JsonSerializable()
+@JsonSerializable(fieldRename: FieldRename.snake)
 class Upload {
   final String id;
   final String url;
@@ -132,7 +132,7 @@ class Upload {
 }
 
 /// Create upload request
-@JsonSerializable()
+@JsonSerializable(fieldRename: FieldRename.snake)
 class CreateUploadRequest {
   final String filename;
   final String? originalName;
@@ -159,7 +159,7 @@ class CreateUploadRequest {
 }
 
 /// Update upload request
-@JsonSerializable()
+@JsonSerializable(fieldRename: FieldRename.snake)
 class UpdateUploadRequest {
   final String? alt;
   final String? description;
@@ -174,7 +174,7 @@ class UpdateUploadRequest {
 }
 
 /// Upload URL request
-@JsonSerializable()
+@JsonSerializable(fieldRename: FieldRename.snake)
 class GetUploadUrlRequest {
   final String filename;
   final String mimeType;
@@ -188,7 +188,7 @@ class GetUploadUrlRequest {
 }
 
 /// Upload URL response
-@JsonSerializable()
+@JsonSerializable(fieldRename: FieldRename.snake)
 class UploadUrlResponse {
   final String url;
   final Map<String, dynamic>? fields;
@@ -202,7 +202,7 @@ class UploadUrlResponse {
 }
 
 /// Upload response
-@JsonSerializable()
+@JsonSerializable(fieldRename: FieldRename.snake)
 class UploadResponse {
   final Upload upload;
 
@@ -215,7 +215,7 @@ class UploadResponse {
 }
 
 /// Uploads response
-@JsonSerializable()
+@JsonSerializable(fieldRename: FieldRename.snake)
 class UploadsResponse {
   final List<Upload> uploads;
   final int count;

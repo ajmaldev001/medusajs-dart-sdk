@@ -11,17 +11,17 @@ Collection _$CollectionFromJson(Map<String, dynamic> json) => Collection(
   title: json['title'] as String,
   handle: json['handle'] as String?,
   createdAt:
-      json['createdAt'] == null
+      json['created_at'] == null
           ? null
-          : DateTime.parse(json['createdAt'] as String),
+          : DateTime.parse(json['created_at'] as String),
   updatedAt:
-      json['updatedAt'] == null
+      json['updated_at'] == null
           ? null
-          : DateTime.parse(json['updatedAt'] as String),
+          : DateTime.parse(json['updated_at'] as String),
   deletedAt:
-      json['deletedAt'] == null
+      json['deleted_at'] == null
           ? null
-          : DateTime.parse(json['deletedAt'] as String),
+          : DateTime.parse(json['deleted_at'] as String),
   metadata: json['metadata'] as Map<String, dynamic>?,
 );
 
@@ -30,8 +30,8 @@ Map<String, dynamic> _$CollectionToJson(Collection instance) =>
       'id': instance.id,
       'title': instance.title,
       'handle': instance.handle,
-      'createdAt': instance.createdAt?.toIso8601String(),
-      'updatedAt': instance.updatedAt?.toIso8601String(),
-      'deletedAt': instance.deletedAt?.toIso8601String(),
+      'created_at': instance.createdAt?.toIso8601String(),
+      'updated_at': instance.updatedAt?.toIso8601String(),
+      'deleted_at': instance.deletedAt?.toIso8601String(),
       'metadata': instance.metadata,
     };

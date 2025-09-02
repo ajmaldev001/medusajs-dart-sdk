@@ -3,7 +3,7 @@ import 'package:json_annotation/json_annotation.dart';
 part 'sales_channel.g.dart';
 
 /// Represents a sales channel
-@JsonSerializable()
+@JsonSerializable(fieldRename: FieldRename.snake)
 class SalesChannel {
   /// Unique identifier for the sales channel
   final String id;
@@ -49,7 +49,7 @@ class SalesChannel {
 }
 
 /// Request to create a sales channel
-@JsonSerializable()
+@JsonSerializable(fieldRename: FieldRename.snake)
 class CreateSalesChannelRequest {
   /// Sales channel name
   final String name;
@@ -76,7 +76,7 @@ class CreateSalesChannelRequest {
 }
 
 /// Request to update a sales channel
-@JsonSerializable()
+@JsonSerializable(fieldRename: FieldRename.snake)
 class UpdateSalesChannelRequest {
   /// Sales channel name
   final String? name;

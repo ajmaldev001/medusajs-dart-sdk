@@ -10,14 +10,14 @@ SalesChannel _$SalesChannelFromJson(Map<String, dynamic> json) => SalesChannel(
   id: json['id'] as String,
   name: json['name'] as String,
   description: json['description'] as String?,
-  isDisabled: json['isDisabled'] as bool? ?? false,
+  isDisabled: json['is_disabled'] as bool? ?? false,
   metadata: json['metadata'] as Map<String, dynamic>?,
-  createdAt: DateTime.parse(json['createdAt'] as String),
-  updatedAt: DateTime.parse(json['updatedAt'] as String),
+  createdAt: DateTime.parse(json['created_at'] as String),
+  updatedAt: DateTime.parse(json['updated_at'] as String),
   deletedAt:
-      json['deletedAt'] == null
+      json['deleted_at'] == null
           ? null
-          : DateTime.parse(json['deletedAt'] as String),
+          : DateTime.parse(json['deleted_at'] as String),
 );
 
 Map<String, dynamic> _$SalesChannelToJson(SalesChannel instance) =>
@@ -25,11 +25,11 @@ Map<String, dynamic> _$SalesChannelToJson(SalesChannel instance) =>
       'id': instance.id,
       'name': instance.name,
       'description': instance.description,
-      'isDisabled': instance.isDisabled,
+      'is_disabled': instance.isDisabled,
       'metadata': instance.metadata,
-      'createdAt': instance.createdAt.toIso8601String(),
-      'updatedAt': instance.updatedAt.toIso8601String(),
-      'deletedAt': instance.deletedAt?.toIso8601String(),
+      'created_at': instance.createdAt.toIso8601String(),
+      'updated_at': instance.updatedAt.toIso8601String(),
+      'deleted_at': instance.deletedAt?.toIso8601String(),
     };
 
 CreateSalesChannelRequest _$CreateSalesChannelRequestFromJson(
@@ -37,7 +37,7 @@ CreateSalesChannelRequest _$CreateSalesChannelRequestFromJson(
 ) => CreateSalesChannelRequest(
   name: json['name'] as String,
   description: json['description'] as String?,
-  isDisabled: json['isDisabled'] as bool?,
+  isDisabled: json['is_disabled'] as bool?,
   metadata: json['metadata'] as Map<String, dynamic>?,
 );
 
@@ -46,7 +46,7 @@ Map<String, dynamic> _$CreateSalesChannelRequestToJson(
 ) => <String, dynamic>{
   'name': instance.name,
   'description': instance.description,
-  'isDisabled': instance.isDisabled,
+  'is_disabled': instance.isDisabled,
   'metadata': instance.metadata,
 };
 
@@ -55,7 +55,7 @@ UpdateSalesChannelRequest _$UpdateSalesChannelRequestFromJson(
 ) => UpdateSalesChannelRequest(
   name: json['name'] as String?,
   description: json['description'] as String?,
-  isDisabled: json['isDisabled'] as bool?,
+  isDisabled: json['is_disabled'] as bool?,
   metadata: json['metadata'] as Map<String, dynamic>?,
 );
 
@@ -64,6 +64,6 @@ Map<String, dynamic> _$UpdateSalesChannelRequestToJson(
 ) => <String, dynamic>{
   'name': instance.name,
   'description': instance.description,
-  'isDisabled': instance.isDisabled,
+  'is_disabled': instance.isDisabled,
   'metadata': instance.metadata,
 };

@@ -12,18 +12,18 @@ ApiKey _$ApiKeyFromJson(Map<String, dynamic> json) => ApiKey(
   title: json['title'] as String,
   type: $enumDecode(_$ApiKeyTypeEnumMap, json['type']),
   lastUsedAt:
-      json['lastUsedAt'] == null
+      json['last_used_at'] == null
           ? null
-          : DateTime.parse(json['lastUsedAt'] as String),
+          : DateTime.parse(json['last_used_at'] as String),
   revoked: json['revoked'] as bool? ?? false,
-  createdAt: DateTime.parse(json['createdAt'] as String),
-  updatedAt: DateTime.parse(json['updatedAt'] as String),
+  createdAt: DateTime.parse(json['created_at'] as String),
+  updatedAt: DateTime.parse(json['updated_at'] as String),
   revokedAt:
-      json['revokedAt'] == null
+      json['revoked_at'] == null
           ? null
-          : DateTime.parse(json['revokedAt'] as String),
-  createdBy: json['createdBy'] as String?,
-  revokedBy: json['revokedBy'] as String?,
+          : DateTime.parse(json['revoked_at'] as String),
+  createdBy: json['created_by'] as String?,
+  revokedBy: json['revoked_by'] as String?,
 );
 
 Map<String, dynamic> _$ApiKeyToJson(ApiKey instance) => <String, dynamic>{
@@ -31,13 +31,13 @@ Map<String, dynamic> _$ApiKeyToJson(ApiKey instance) => <String, dynamic>{
   'token': instance.token,
   'title': instance.title,
   'type': _$ApiKeyTypeEnumMap[instance.type]!,
-  'lastUsedAt': instance.lastUsedAt?.toIso8601String(),
+  'last_used_at': instance.lastUsedAt?.toIso8601String(),
   'revoked': instance.revoked,
-  'createdAt': instance.createdAt.toIso8601String(),
-  'updatedAt': instance.updatedAt.toIso8601String(),
-  'revokedAt': instance.revokedAt?.toIso8601String(),
-  'createdBy': instance.createdBy,
-  'revokedBy': instance.revokedBy,
+  'created_at': instance.createdAt.toIso8601String(),
+  'updated_at': instance.updatedAt.toIso8601String(),
+  'revoked_at': instance.revokedAt?.toIso8601String(),
+  'created_by': instance.createdBy,
+  'revoked_by': instance.revokedBy,
 };
 
 const _$ApiKeyTypeEnumMap = {

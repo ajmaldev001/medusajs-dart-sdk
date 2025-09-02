@@ -3,7 +3,7 @@ import 'package:json_annotation/json_annotation.dart';
 part 'address.g.dart';
 
 /// Represents an address in the Medusa system
-@JsonSerializable()
+@JsonSerializable(fieldRename: FieldRename.snake)
 class Address {
   /// Unique identifier for the address
   final String id;

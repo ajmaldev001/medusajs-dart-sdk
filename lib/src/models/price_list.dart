@@ -19,7 +19,7 @@ enum PriceListStatus {
 }
 
 /// Money amount for price list entries
-@JsonSerializable()
+@JsonSerializable(fieldRename: FieldRename.snake)
 class MoneyAmount {
   final String id;
   final String currencyCode;
@@ -54,7 +54,7 @@ class MoneyAmount {
 }
 
 /// Customer group for price list targeting
-@JsonSerializable()
+@JsonSerializable(fieldRename: FieldRename.snake)
 class CustomerGroup {
   final String id;
   final String name;
@@ -79,7 +79,7 @@ class CustomerGroup {
 }
 
 /// Price list model for Medusa v2
-@JsonSerializable()
+@JsonSerializable(fieldRename: FieldRename.snake)
 class PriceList {
   final String id;
   final String name;
@@ -141,7 +141,7 @@ class PriceList {
 }
 
 /// Create price list request
-@JsonSerializable()
+@JsonSerializable(fieldRename: FieldRename.snake)
 class CreatePriceListRequest {
   final String name;
   final String? description;
@@ -170,7 +170,7 @@ class CreatePriceListRequest {
 }
 
 /// Update price list request
-@JsonSerializable()
+@JsonSerializable(fieldRename: FieldRename.snake)
 class UpdatePriceListRequest {
   final String? name;
   final String? description;
@@ -197,7 +197,7 @@ class UpdatePriceListRequest {
 }
 
 /// Price list response
-@JsonSerializable()
+@JsonSerializable(fieldRename: FieldRename.snake)
 class PriceListResponse {
   final PriceList priceList;
 
@@ -210,7 +210,7 @@ class PriceListResponse {
 }
 
 /// Price lists response
-@JsonSerializable()
+@JsonSerializable(fieldRename: FieldRename.snake)
 class PriceListsResponse {
   final List<PriceList> priceLists;
   final int count;

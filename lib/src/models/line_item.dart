@@ -3,7 +3,7 @@ import 'package:json_annotation/json_annotation.dart';
 part 'line_item.g.dart';
 
 /// Represents a line item in a cart or order
-@JsonSerializable()
+@JsonSerializable(fieldRename: FieldRename.snake)
 class LineItem {
   /// Unique identifier for the line item
   final String id;

@@ -4,7 +4,7 @@ import 'address.dart';
 part 'stock_location.g.dart';
 
 /// Represents a stock location
-@JsonSerializable()
+@JsonSerializable(fieldRename: FieldRename.snake)
 class StockLocation {
   /// Unique identifier for the stock location
   final String id;
@@ -43,7 +43,7 @@ class StockLocation {
 }
 
 /// Request to create a stock location
-@JsonSerializable()
+@JsonSerializable(fieldRename: FieldRename.snake)
 class CreateStockLocationRequest {
   /// Stock location name
   final String name;
@@ -66,7 +66,7 @@ class CreateStockLocationRequest {
 }
 
 /// Request to update a stock location
-@JsonSerializable()
+@JsonSerializable(fieldRename: FieldRename.snake)
 class UpdateStockLocationRequest {
   /// Stock location name
   final String? name;

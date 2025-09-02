@@ -11,17 +11,19 @@ GiftCard _$GiftCardFromJson(Map<String, dynamic> json) => GiftCard(
   code: json['code'] as String,
   value: (json['value'] as num).toInt(),
   balance: (json['balance'] as num).toInt(),
-  regionId: json['regionId'] as String?,
-  orderId: json['orderId'] as String?,
-  isDisabled: json['isDisabled'] as bool? ?? false,
+  regionId: json['region_id'] as String?,
+  orderId: json['order_id'] as String?,
+  isDisabled: json['is_disabled'] as bool? ?? false,
   endsAt:
-      json['endsAt'] == null ? null : DateTime.parse(json['endsAt'] as String),
-  createdAt: DateTime.parse(json['createdAt'] as String),
-  updatedAt: DateTime.parse(json['updatedAt'] as String),
-  deletedAt:
-      json['deletedAt'] == null
+      json['ends_at'] == null
           ? null
-          : DateTime.parse(json['deletedAt'] as String),
+          : DateTime.parse(json['ends_at'] as String),
+  createdAt: DateTime.parse(json['created_at'] as String),
+  updatedAt: DateTime.parse(json['updated_at'] as String),
+  deletedAt:
+      json['deleted_at'] == null
+          ? null
+          : DateTime.parse(json['deleted_at'] as String),
   metadata: json['metadata'] as Map<String, dynamic>?,
 );
 
@@ -30,12 +32,12 @@ Map<String, dynamic> _$GiftCardToJson(GiftCard instance) => <String, dynamic>{
   'code': instance.code,
   'value': instance.value,
   'balance': instance.balance,
-  'regionId': instance.regionId,
-  'orderId': instance.orderId,
-  'isDisabled': instance.isDisabled,
-  'endsAt': instance.endsAt?.toIso8601String(),
-  'createdAt': instance.createdAt.toIso8601String(),
-  'updatedAt': instance.updatedAt.toIso8601String(),
-  'deletedAt': instance.deletedAt?.toIso8601String(),
+  'region_id': instance.regionId,
+  'order_id': instance.orderId,
+  'is_disabled': instance.isDisabled,
+  'ends_at': instance.endsAt?.toIso8601String(),
+  'created_at': instance.createdAt.toIso8601String(),
+  'updated_at': instance.updatedAt.toIso8601String(),
+  'deleted_at': instance.deletedAt?.toIso8601String(),
   'metadata': instance.metadata,
 };

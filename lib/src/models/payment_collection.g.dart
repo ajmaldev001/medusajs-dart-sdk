@@ -9,33 +9,33 @@ part of 'payment_collection.dart';
 PaymentSession _$PaymentSessionFromJson(Map<String, dynamic> json) =>
     PaymentSession(
       id: json['id'] as String,
-      paymentCollectionId: json['paymentCollectionId'] as String,
-      providerId: json['providerId'] as String,
-      currencyCode: json['currencyCode'] as String,
+      paymentCollectionId: json['payment_collection_id'] as String,
+      providerId: json['provider_id'] as String,
+      currencyCode: json['currency_code'] as String,
       amount: (json['amount'] as num).toInt(),
       status: $enumDecode(_$PaymentSessionStatusEnumMap, json['status']),
       data: json['data'] as Map<String, dynamic>?,
-      isSelected: json['isSelected'] as bool,
-      isInitiated: json['isInitiated'] as bool,
+      isSelected: json['is_selected'] as bool,
+      isInitiated: json['is_initiated'] as bool,
       metadata: json['metadata'] as Map<String, dynamic>?,
-      createdAt: DateTime.parse(json['createdAt'] as String),
-      updatedAt: DateTime.parse(json['updatedAt'] as String),
+      createdAt: DateTime.parse(json['created_at'] as String),
+      updatedAt: DateTime.parse(json['updated_at'] as String),
     );
 
 Map<String, dynamic> _$PaymentSessionToJson(PaymentSession instance) =>
     <String, dynamic>{
       'id': instance.id,
-      'paymentCollectionId': instance.paymentCollectionId,
-      'providerId': instance.providerId,
-      'currencyCode': instance.currencyCode,
+      'payment_collection_id': instance.paymentCollectionId,
+      'provider_id': instance.providerId,
+      'currency_code': instance.currencyCode,
       'amount': instance.amount,
       'status': _$PaymentSessionStatusEnumMap[instance.status]!,
       'data': instance.data,
-      'isSelected': instance.isSelected,
-      'isInitiated': instance.isInitiated,
+      'is_selected': instance.isSelected,
+      'is_initiated': instance.isInitiated,
       'metadata': instance.metadata,
-      'createdAt': instance.createdAt.toIso8601String(),
-      'updatedAt': instance.updatedAt.toIso8601String(),
+      'created_at': instance.createdAt.toIso8601String(),
+      'updated_at': instance.updatedAt.toIso8601String(),
     };
 
 const _$PaymentSessionStatusEnumMap = {
@@ -49,41 +49,41 @@ const _$PaymentSessionStatusEnumMap = {
 Payment _$PaymentFromJson(Map<String, dynamic> json) => Payment(
   id: json['id'] as String,
   amount: (json['amount'] as num).toInt(),
-  currencyCode: json['currencyCode'] as String,
-  providerId: json['providerId'] as String,
-  cartId: json['cartId'] as String?,
-  orderId: json['orderId'] as String?,
-  orderEditId: json['orderEditId'] as String?,
-  customerId: json['customerId'] as String?,
+  currencyCode: json['currency_code'] as String,
+  providerId: json['provider_id'] as String,
+  cartId: json['cart_id'] as String?,
+  orderId: json['order_id'] as String?,
+  orderEditId: json['order_edit_id'] as String?,
+  customerId: json['customer_id'] as String?,
   data: json['data'] as Map<String, dynamic>?,
   capturedAt:
-      json['capturedAt'] == null
+      json['captured_at'] == null
           ? null
-          : DateTime.parse(json['capturedAt'] as String),
+          : DateTime.parse(json['captured_at'] as String),
   canceledAt:
-      json['canceledAt'] == null
+      json['canceled_at'] == null
           ? null
-          : DateTime.parse(json['canceledAt'] as String),
+          : DateTime.parse(json['canceled_at'] as String),
   metadata: json['metadata'] as Map<String, dynamic>?,
-  createdAt: DateTime.parse(json['createdAt'] as String),
-  updatedAt: DateTime.parse(json['updatedAt'] as String),
+  createdAt: DateTime.parse(json['created_at'] as String),
+  updatedAt: DateTime.parse(json['updated_at'] as String),
 );
 
 Map<String, dynamic> _$PaymentToJson(Payment instance) => <String, dynamic>{
   'id': instance.id,
   'amount': instance.amount,
-  'currencyCode': instance.currencyCode,
-  'providerId': instance.providerId,
-  'cartId': instance.cartId,
-  'orderId': instance.orderId,
-  'orderEditId': instance.orderEditId,
-  'customerId': instance.customerId,
+  'currency_code': instance.currencyCode,
+  'provider_id': instance.providerId,
+  'cart_id': instance.cartId,
+  'order_id': instance.orderId,
+  'order_edit_id': instance.orderEditId,
+  'customer_id': instance.customerId,
   'data': instance.data,
-  'capturedAt': instance.capturedAt?.toIso8601String(),
-  'canceledAt': instance.canceledAt?.toIso8601String(),
+  'captured_at': instance.capturedAt?.toIso8601String(),
+  'canceled_at': instance.canceledAt?.toIso8601String(),
   'metadata': instance.metadata,
-  'createdAt': instance.createdAt.toIso8601String(),
-  'updatedAt': instance.updatedAt.toIso8601String(),
+  'created_at': instance.createdAt.toIso8601String(),
+  'updated_at': instance.updatedAt.toIso8601String(),
 };
 
 PaymentCollection _$PaymentCollectionFromJson(Map<String, dynamic> json) =>
@@ -93,11 +93,11 @@ PaymentCollection _$PaymentCollectionFromJson(Map<String, dynamic> json) =>
       status: $enumDecode(_$PaymentCollectionStatusEnumMap, json['status']),
       description: json['description'] as String?,
       amount: (json['amount'] as num).toInt(),
-      authorizedAmount: (json['authorizedAmount'] as num).toInt(),
-      regionId: json['regionId'] as String,
-      currencyCode: json['currencyCode'] as String,
+      authorizedAmount: (json['authorized_amount'] as num).toInt(),
+      regionId: json['region_id'] as String,
+      currencyCode: json['currency_code'] as String,
       paymentSessions:
-          (json['paymentSessions'] as List<dynamic>?)
+          (json['payment_sessions'] as List<dynamic>?)
               ?.map((e) => PaymentSession.fromJson(e as Map<String, dynamic>))
               .toList(),
       payments:
@@ -105,12 +105,12 @@ PaymentCollection _$PaymentCollectionFromJson(Map<String, dynamic> json) =>
               ?.map((e) => Payment.fromJson(e as Map<String, dynamic>))
               .toList(),
       metadata: json['metadata'] as Map<String, dynamic>?,
-      createdAt: DateTime.parse(json['createdAt'] as String),
-      updatedAt: DateTime.parse(json['updatedAt'] as String),
+      createdAt: DateTime.parse(json['created_at'] as String),
+      updatedAt: DateTime.parse(json['updated_at'] as String),
       deletedAt:
-          json['deletedAt'] == null
+          json['deleted_at'] == null
               ? null
-              : DateTime.parse(json['deletedAt'] as String),
+              : DateTime.parse(json['deleted_at'] as String),
     );
 
 Map<String, dynamic> _$PaymentCollectionToJson(PaymentCollection instance) =>
@@ -120,15 +120,15 @@ Map<String, dynamic> _$PaymentCollectionToJson(PaymentCollection instance) =>
       'status': _$PaymentCollectionStatusEnumMap[instance.status]!,
       'description': instance.description,
       'amount': instance.amount,
-      'authorizedAmount': instance.authorizedAmount,
-      'regionId': instance.regionId,
-      'currencyCode': instance.currencyCode,
-      'paymentSessions': instance.paymentSessions,
+      'authorized_amount': instance.authorizedAmount,
+      'region_id': instance.regionId,
+      'currency_code': instance.currencyCode,
+      'payment_sessions': instance.paymentSessions,
       'payments': instance.payments,
       'metadata': instance.metadata,
-      'createdAt': instance.createdAt.toIso8601String(),
-      'updatedAt': instance.updatedAt.toIso8601String(),
-      'deletedAt': instance.deletedAt?.toIso8601String(),
+      'created_at': instance.createdAt.toIso8601String(),
+      'updated_at': instance.updatedAt.toIso8601String(),
+      'deleted_at': instance.deletedAt?.toIso8601String(),
     };
 
 const _$PaymentCollectionTypeEnumMap = {
@@ -151,8 +151,8 @@ CreatePaymentCollectionRequest _$CreatePaymentCollectionRequestFromJson(
   type: $enumDecode(_$PaymentCollectionTypeEnumMap, json['type']),
   description: json['description'] as String?,
   amount: (json['amount'] as num).toInt(),
-  regionId: json['regionId'] as String,
-  currencyCode: json['currencyCode'] as String,
+  regionId: json['region_id'] as String,
+  currencyCode: json['currency_code'] as String,
   metadata: json['metadata'] as Map<String, dynamic>?,
 );
 
@@ -162,8 +162,8 @@ Map<String, dynamic> _$CreatePaymentCollectionRequestToJson(
   'type': _$PaymentCollectionTypeEnumMap[instance.type]!,
   'description': instance.description,
   'amount': instance.amount,
-  'regionId': instance.regionId,
-  'currencyCode': instance.currencyCode,
+  'region_id': instance.regionId,
+  'currency_code': instance.currencyCode,
   'metadata': instance.metadata,
 };
 
@@ -185,24 +185,24 @@ SetPaymentSessionsRequest _$SetPaymentSessionsRequestFromJson(
   Map<String, dynamic> json,
 ) => SetPaymentSessionsRequest(
   providerIds:
-      (json['providerIds'] as List<dynamic>).map((e) => e as String).toList(),
+      (json['provider_ids'] as List<dynamic>).map((e) => e as String).toList(),
 );
 
 Map<String, dynamic> _$SetPaymentSessionsRequestToJson(
   SetPaymentSessionsRequest instance,
-) => <String, dynamic>{'providerIds': instance.providerIds};
+) => <String, dynamic>{'provider_ids': instance.providerIds};
 
 AuthorizePaymentSessionRequest _$AuthorizePaymentSessionRequestFromJson(
   Map<String, dynamic> json,
 ) => AuthorizePaymentSessionRequest(
-  sessionId: json['sessionId'] as String,
+  sessionId: json['session_id'] as String,
   context: json['context'] as Map<String, dynamic>?,
 );
 
 Map<String, dynamic> _$AuthorizePaymentSessionRequestToJson(
   AuthorizePaymentSessionRequest instance,
 ) => <String, dynamic>{
-  'sessionId': instance.sessionId,
+  'session_id': instance.sessionId,
   'context': instance.context,
 };
 
@@ -210,19 +210,19 @@ PaymentCollectionResponse _$PaymentCollectionResponseFromJson(
   Map<String, dynamic> json,
 ) => PaymentCollectionResponse(
   paymentCollection: PaymentCollection.fromJson(
-    json['paymentCollection'] as Map<String, dynamic>,
+    json['payment_collection'] as Map<String, dynamic>,
   ),
 );
 
 Map<String, dynamic> _$PaymentCollectionResponseToJson(
   PaymentCollectionResponse instance,
-) => <String, dynamic>{'paymentCollection': instance.paymentCollection};
+) => <String, dynamic>{'payment_collection': instance.paymentCollection};
 
 PaymentCollectionsResponse _$PaymentCollectionsResponseFromJson(
   Map<String, dynamic> json,
 ) => PaymentCollectionsResponse(
   paymentCollections:
-      (json['paymentCollections'] as List<dynamic>)
+      (json['payment_collections'] as List<dynamic>)
           .map((e) => PaymentCollection.fromJson(e as Map<String, dynamic>))
           .toList(),
   count: (json['count'] as num).toInt(),
@@ -233,7 +233,7 @@ PaymentCollectionsResponse _$PaymentCollectionsResponseFromJson(
 Map<String, dynamic> _$PaymentCollectionsResponseToJson(
   PaymentCollectionsResponse instance,
 ) => <String, dynamic>{
-  'paymentCollections': instance.paymentCollections,
+  'payment_collections': instance.paymentCollections,
   'count': instance.count,
   'offset': instance.offset,
   'limit': instance.limit,

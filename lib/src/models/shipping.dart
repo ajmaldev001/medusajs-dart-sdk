@@ -3,7 +3,7 @@ import 'package:json_annotation/json_annotation.dart';
 part 'shipping.g.dart';
 
 /// Represents a shipping option in the Medusa system
-@JsonSerializable()
+@JsonSerializable(fieldRename: FieldRename.snake)
 class ShippingOption {
   /// Unique identifier for the shipping option
   final String id;
@@ -87,7 +87,7 @@ class ShippingOption {
 }
 
 /// Represents a shipping option requirement
-@JsonSerializable()
+@JsonSerializable(fieldRename: FieldRename.snake)
 class ShippingOptionRequirement {
   /// Unique identifier for the requirement
   final String id;
@@ -132,7 +132,7 @@ class ShippingOptionRequirement {
 }
 
 /// Represents a shipping method (selected shipping option)
-@JsonSerializable()
+@JsonSerializable(fieldRename: FieldRename.snake)
 class ShippingMethod {
   /// Unique identifier for the shipping method
   final String id;

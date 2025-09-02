@@ -5,6 +5,7 @@ export 'customer.dart';
 export 'order.dart';
 export 'cart.dart';
 export 'product.dart';
+export 'product_variant_option_value.dart';
 export 'region.dart';
 export 'collection.dart';
 export 'category.dart';

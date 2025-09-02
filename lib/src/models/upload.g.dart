@@ -19,8 +19,8 @@ Upload _$UploadFromJson(Map<String, dynamic> json) => Upload(
   id: json['id'] as String,
   url: json['url'] as String,
   filename: json['filename'] as String,
-  originalName: json['originalName'] as String?,
-  mimeType: json['mimeType'] as String,
+  originalName: json['original_name'] as String?,
+  mimeType: json['mime_type'] as String,
   size: (json['size'] as num).toInt(),
   type: $enumDecode(_$UploadTypeEnumMap, json['type']),
   status: $enumDecode(_$UploadStatusEnumMap, json['status']),
@@ -31,20 +31,20 @@ Upload _$UploadFromJson(Map<String, dynamic> json) => Upload(
   alt: json['alt'] as String?,
   description: json['description'] as String?,
   metadata: json['metadata'] as Map<String, dynamic>?,
-  createdAt: DateTime.parse(json['createdAt'] as String),
-  updatedAt: DateTime.parse(json['updatedAt'] as String),
+  createdAt: DateTime.parse(json['created_at'] as String),
+  updatedAt: DateTime.parse(json['updated_at'] as String),
   deletedAt:
-      json['deletedAt'] == null
+      json['deleted_at'] == null
           ? null
-          : DateTime.parse(json['deletedAt'] as String),
+          : DateTime.parse(json['deleted_at'] as String),
 );
 
 Map<String, dynamic> _$UploadToJson(Upload instance) => <String, dynamic>{
   'id': instance.id,
   'url': instance.url,
   'filename': instance.filename,
-  'originalName': instance.originalName,
-  'mimeType': instance.mimeType,
+  'original_name': instance.originalName,
+  'mime_type': instance.mimeType,
   'size': instance.size,
   'type': _$UploadTypeEnumMap[instance.type]!,
   'status': _$UploadStatusEnumMap[instance.status]!,
@@ -52,9 +52,9 @@ Map<String, dynamic> _$UploadToJson(Upload instance) => <String, dynamic>{
   'alt': instance.alt,
   'description': instance.description,
   'metadata': instance.metadata,
-  'createdAt': instance.createdAt.toIso8601String(),
-  'updatedAt': instance.updatedAt.toIso8601String(),
-  'deletedAt': instance.deletedAt?.toIso8601String(),
+  'created_at': instance.createdAt.toIso8601String(),
+  'updated_at': instance.updatedAt.toIso8601String(),
+  'deleted_at': instance.deletedAt?.toIso8601String(),
 };
 
 const _$UploadTypeEnumMap = {
@@ -74,8 +74,8 @@ const _$UploadStatusEnumMap = {
 CreateUploadRequest _$CreateUploadRequestFromJson(Map<String, dynamic> json) =>
     CreateUploadRequest(
       filename: json['filename'] as String,
-      originalName: json['originalName'] as String?,
-      mimeType: json['mimeType'] as String,
+      originalName: json['original_name'] as String?,
+      mimeType: json['mime_type'] as String,
       size: (json['size'] as num).toInt(),
       alt: json['alt'] as String?,
       description: json['description'] as String?,
@@ -86,8 +86,8 @@ Map<String, dynamic> _$CreateUploadRequestToJson(
   CreateUploadRequest instance,
 ) => <String, dynamic>{
   'filename': instance.filename,
-  'originalName': instance.originalName,
-  'mimeType': instance.mimeType,
+  'original_name': instance.originalName,
+  'mime_type': instance.mimeType,
   'size': instance.size,
   'alt': instance.alt,
   'description': instance.description,
@@ -112,14 +112,14 @@ Map<String, dynamic> _$UpdateUploadRequestToJson(
 GetUploadUrlRequest _$GetUploadUrlRequestFromJson(Map<String, dynamic> json) =>
     GetUploadUrlRequest(
       filename: json['filename'] as String,
-      mimeType: json['mimeType'] as String,
+      mimeType: json['mime_type'] as String,
     );
 
 Map<String, dynamic> _$GetUploadUrlRequestToJson(
   GetUploadUrlRequest instance,
 ) => <String, dynamic>{
   'filename': instance.filename,
-  'mimeType': instance.mimeType,
+  'mime_type': instance.mimeType,
 };
 
 UploadUrlResponse _$UploadUrlResponseFromJson(Map<String, dynamic> json) =>

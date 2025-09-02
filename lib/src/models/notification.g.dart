@@ -10,19 +10,19 @@ NotificationProvider _$NotificationProviderFromJson(
   Map<String, dynamic> json,
 ) => NotificationProvider(
   id: json['id'] as String,
-  isInstalled: json['isInstalled'] as bool,
+  isInstalled: json['is_installed'] as bool,
 );
 
 Map<String, dynamic> _$NotificationProviderToJson(
   NotificationProvider instance,
-) => <String, dynamic>{'id': instance.id, 'isInstalled': instance.isInstalled};
+) => <String, dynamic>{'id': instance.id, 'is_installed': instance.isInstalled};
 
 Notification _$NotificationFromJson(Map<String, dynamic> json) => Notification(
   id: json['id'] as String,
   to: json['to'] as String?,
   channel: json['channel'] as String?,
   template: json['template'] as String?,
-  providerId: json['providerId'] as String?,
+  providerId: json['provider_id'] as String?,
   provider:
       json['provider'] == null
           ? null
@@ -30,23 +30,23 @@ Notification _$NotificationFromJson(Map<String, dynamic> json) => Notification(
             json['provider'] as Map<String, dynamic>,
           ),
   data: json['data'] as Map<String, dynamic>?,
-  parentId: json['parentId'] as String?,
-  parentNotificationId: json['parentNotificationId'] as String?,
+  parentId: json['parent_id'] as String?,
+  parentNotificationId: json['parent_notification_id'] as String?,
   status: $enumDecode(_$NotificationStatusEnumMap, json['status']),
-  resourceType: json['resourceType'] as String?,
-  resourceId: json['resourceId'] as String?,
-  customerId: json['customerId'] as String?,
-  eventName: json['eventName'] as String?,
+  resourceType: json['resource_type'] as String?,
+  resourceId: json['resource_id'] as String?,
+  customerId: json['customer_id'] as String?,
+  eventName: json['event_name'] as String?,
   attempts:
       (json['attempts'] as List<dynamic>?)?.map((e) => e as String).toList(),
   nextRetry:
-      json['nextRetry'] == null
+      json['next_retry'] == null
           ? null
-          : DateTime.parse(json['nextRetry'] as String),
-  externalId: json['externalId'] as String?,
+          : DateTime.parse(json['next_retry'] as String),
+  externalId: json['external_id'] as String?,
   metadata: json['metadata'] as Map<String, dynamic>?,
-  createdAt: DateTime.parse(json['createdAt'] as String),
-  updatedAt: DateTime.parse(json['updatedAt'] as String),
+  createdAt: DateTime.parse(json['created_at'] as String),
+  updatedAt: DateTime.parse(json['updated_at'] as String),
 );
 
 Map<String, dynamic> _$NotificationToJson(Notification instance) =>
@@ -55,22 +55,22 @@ Map<String, dynamic> _$NotificationToJson(Notification instance) =>
       'to': instance.to,
       'channel': instance.channel,
       'template': instance.template,
-      'providerId': instance.providerId,
+      'provider_id': instance.providerId,
       'provider': instance.provider,
       'data': instance.data,
-      'parentId': instance.parentId,
-      'parentNotificationId': instance.parentNotificationId,
+      'parent_id': instance.parentId,
+      'parent_notification_id': instance.parentNotificationId,
       'status': _$NotificationStatusEnumMap[instance.status]!,
-      'resourceType': instance.resourceType,
-      'resourceId': instance.resourceId,
-      'customerId': instance.customerId,
-      'eventName': instance.eventName,
+      'resource_type': instance.resourceType,
+      'resource_id': instance.resourceId,
+      'customer_id': instance.customerId,
+      'event_name': instance.eventName,
       'attempts': instance.attempts,
-      'nextRetry': instance.nextRetry?.toIso8601String(),
-      'externalId': instance.externalId,
+      'next_retry': instance.nextRetry?.toIso8601String(),
+      'external_id': instance.externalId,
       'metadata': instance.metadata,
-      'createdAt': instance.createdAt.toIso8601String(),
-      'updatedAt': instance.updatedAt.toIso8601String(),
+      'created_at': instance.createdAt.toIso8601String(),
+      'updated_at': instance.updatedAt.toIso8601String(),
     };
 
 const _$NotificationStatusEnumMap = {
@@ -85,12 +85,12 @@ SendNotificationRequest _$SendNotificationRequestFromJson(
   to: json['to'] as String,
   channel: json['channel'] as String,
   template: json['template'] as String,
-  providerId: json['providerId'] as String?,
+  providerId: json['provider_id'] as String?,
   data: json['data'] as Map<String, dynamic>?,
-  resourceType: json['resourceType'] as String?,
-  resourceId: json['resourceId'] as String?,
-  customerId: json['customerId'] as String?,
-  eventName: json['eventName'] as String?,
+  resourceType: json['resource_type'] as String?,
+  resourceId: json['resource_id'] as String?,
+  customerId: json['customer_id'] as String?,
+  eventName: json['event_name'] as String?,
   metadata: json['metadata'] as Map<String, dynamic>?,
 );
 
@@ -100,12 +100,12 @@ Map<String, dynamic> _$SendNotificationRequestToJson(
   'to': instance.to,
   'channel': instance.channel,
   'template': instance.template,
-  'providerId': instance.providerId,
+  'provider_id': instance.providerId,
   'data': instance.data,
-  'resourceType': instance.resourceType,
-  'resourceId': instance.resourceId,
-  'customerId': instance.customerId,
-  'eventName': instance.eventName,
+  'resource_type': instance.resourceType,
+  'resource_id': instance.resourceId,
+  'customer_id': instance.customerId,
+  'event_name': instance.eventName,
   'metadata': instance.metadata,
 };
 
@@ -157,11 +157,13 @@ NotificationProvidersResponse _$NotificationProvidersResponseFromJson(
   Map<String, dynamic> json,
 ) => NotificationProvidersResponse(
   notificationProviders:
-      (json['notificationProviders'] as List<dynamic>)
+      (json['notification_providers'] as List<dynamic>)
           .map((e) => NotificationProvider.fromJson(e as Map<String, dynamic>))
           .toList(),
 );
 
 Map<String, dynamic> _$NotificationProvidersResponseToJson(
   NotificationProvidersResponse instance,
-) => <String, dynamic>{'notificationProviders': instance.notificationProviders};
+) => <String, dynamic>{
+  'notification_providers': instance.notificationProviders,
+};

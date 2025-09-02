@@ -69,7 +69,7 @@ enum RuleAttribute {
 }
 
 /// Promotion rule model
-@JsonSerializable()
+@JsonSerializable(fieldRename: FieldRename.snake)
 class PromotionRule {
   final String id;
   final String? description;
@@ -102,7 +102,7 @@ class PromotionRule {
 }
 
 /// Campaign budget for promotions
-@JsonSerializable()
+@JsonSerializable(fieldRename: FieldRename.snake)
 class CampaignBudget {
   final String id;
   final String type;
@@ -133,7 +133,7 @@ class CampaignBudget {
 }
 
 /// Promotion model for Medusa v2
-@JsonSerializable()
+@JsonSerializable(fieldRename: FieldRename.snake)
 class Promotion {
   final String id;
   final String code;
@@ -204,7 +204,7 @@ class Promotion {
 }
 
 /// Create promotion request
-@JsonSerializable()
+@JsonSerializable(fieldRename: FieldRename.snake)
 class CreatePromotionRequest {
   final String code;
   final String? campaignId;
@@ -239,7 +239,7 @@ class CreatePromotionRequest {
 }
 
 /// Update promotion request
-@JsonSerializable()
+@JsonSerializable(fieldRename: FieldRename.snake)
 class UpdatePromotionRequest {
   final String? code;
   final bool? isAutomatic;
@@ -268,7 +268,7 @@ class UpdatePromotionRequest {
 }
 
 /// Promotion response
-@JsonSerializable()
+@JsonSerializable(fieldRename: FieldRename.snake)
 class PromotionResponse {
   final Promotion promotion;
 
@@ -281,7 +281,7 @@ class PromotionResponse {
 }
 
 /// Promotions response
-@JsonSerializable()
+@JsonSerializable(fieldRename: FieldRename.snake)
 class PromotionsResponse {
   final List<Promotion> promotions;
   final int count;

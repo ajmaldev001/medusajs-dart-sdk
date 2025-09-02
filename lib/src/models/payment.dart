@@ -3,7 +3,7 @@ import 'package:json_annotation/json_annotation.dart';
 part 'payment.g.dart';
 
 /// Represents payment information
-@JsonSerializable()
+@JsonSerializable(fieldRename: FieldRename.snake)
 class Payment {
   /// Unique identifier for the payment
   final String id;

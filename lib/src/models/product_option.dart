@@ -3,7 +3,7 @@ import 'package:json_annotation/json_annotation.dart';
 part 'product_option.g.dart';
 
 /// Represents a product option (like Color, Size)
-@JsonSerializable()
+@JsonSerializable(fieldRename: FieldRename.snake)
 class ProductOption {
   /// Unique identifier for the option
   final String id;
@@ -46,7 +46,7 @@ class ProductOption {
 }
 
 /// Represents a product option value (like "Red", "Large")
-@JsonSerializable()
+@JsonSerializable(fieldRename: FieldRename.snake)
 class ProductOptionValue {
   /// Unique identifier for the option value
   final String id;

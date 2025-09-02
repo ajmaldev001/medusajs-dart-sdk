@@ -3,7 +3,7 @@ import 'package:json_annotation/json_annotation.dart';
 part 'product_tag.g.dart';
 
 /// Represents a product tag
-@JsonSerializable()
+@JsonSerializable(fieldRename: FieldRename.snake)
 class ProductTag {
   /// Unique identifier for the tag
   final String id;
@@ -38,7 +38,7 @@ class ProductTag {
 }
 
 /// Request to create a product tag
-@JsonSerializable()
+@JsonSerializable(fieldRename: FieldRename.snake)
 class CreateProductTagRequest {
   /// Tag value
   final String value;
@@ -54,7 +54,7 @@ class CreateProductTagRequest {
 }
 
 /// Request to update a product tag
-@JsonSerializable()
+@JsonSerializable(fieldRename: FieldRename.snake)
 class UpdateProductTagRequest {
   /// Tag value
   final String? value;

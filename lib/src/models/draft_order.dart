@@ -11,7 +11,7 @@ enum DraftOrderStatus {
 }
 
 /// Draft order model for Medusa v2
-@JsonSerializable()
+@JsonSerializable(fieldRename: FieldRename.snake)
 class DraftOrder {
   final String id;
   final DraftOrderStatus status;
@@ -90,7 +90,7 @@ class DraftOrder {
 }
 
 /// Create draft order request
-@JsonSerializable()
+@JsonSerializable(fieldRename: FieldRename.snake)
 class CreateDraftOrderRequest {
   final String email;
   final String? regionId;
@@ -123,7 +123,7 @@ class CreateDraftOrderRequest {
 }
 
 /// Create draft order item request
-@JsonSerializable()
+@JsonSerializable(fieldRename: FieldRename.snake)
 class CreateDraftOrderItemRequest {
   final String variantId;
   final int quantity;
@@ -146,7 +146,7 @@ class CreateDraftOrderItemRequest {
 }
 
 /// Create draft order discount request
-@JsonSerializable()
+@JsonSerializable(fieldRename: FieldRename.snake)
 class CreateDraftOrderDiscountRequest {
   final String code;
 
@@ -160,7 +160,7 @@ class CreateDraftOrderDiscountRequest {
 }
 
 /// Update draft order request
-@JsonSerializable()
+@JsonSerializable(fieldRename: FieldRename.snake)
 class UpdateDraftOrderRequest {
   final String? regionId;
   final String? customerId;
@@ -187,7 +187,7 @@ class UpdateDraftOrderRequest {
 }
 
 /// Complete draft order request
-@JsonSerializable()
+@JsonSerializable(fieldRename: FieldRename.snake)
 class CompleteDraftOrderRequest {
   final bool? noNotificationOrder;
 
@@ -200,7 +200,7 @@ class CompleteDraftOrderRequest {
 }
 
 /// Register payment request
-@JsonSerializable()
+@JsonSerializable(fieldRename: FieldRename.snake)
 class RegisterPaymentRequest {
   final int amount;
 
@@ -213,7 +213,7 @@ class RegisterPaymentRequest {
 }
 
 /// Draft order response
-@JsonSerializable()
+@JsonSerializable(fieldRename: FieldRename.snake)
 class DraftOrderResponse {
   final DraftOrder draftOrder;
 
@@ -226,7 +226,7 @@ class DraftOrderResponse {
 }
 
 /// Draft orders response
-@JsonSerializable()
+@JsonSerializable(fieldRename: FieldRename.snake)
 class DraftOrdersResponse {
   final List<DraftOrder> draftOrders;
   final int count;

@@ -8,123 +8,123 @@ part of 'claim.dart';
 
 ClaimItem _$ClaimItemFromJson(Map<String, dynamic> json) => ClaimItem(
   id: json['id'] as String,
-  itemId: json['itemId'] as String,
-  variantId: json['variantId'] as String,
-  claimOrderId: json['claimOrderId'] as String,
+  itemId: json['item_id'] as String,
+  variantId: json['variant_id'] as String,
+  claimOrderId: json['claim_order_id'] as String,
   quantity: (json['quantity'] as num).toInt(),
   reason: json['reason'] as String?,
   note: json['note'] as String?,
   images: (json['images'] as List<dynamic>?)?.map((e) => e as String).toList(),
   metadata: json['metadata'] as Map<String, dynamic>?,
-  createdAt: DateTime.parse(json['createdAt'] as String),
-  updatedAt: DateTime.parse(json['updatedAt'] as String),
+  createdAt: DateTime.parse(json['created_at'] as String),
+  updatedAt: DateTime.parse(json['updated_at'] as String),
   deletedAt:
-      json['deletedAt'] == null
+      json['deleted_at'] == null
           ? null
-          : DateTime.parse(json['deletedAt'] as String),
+          : DateTime.parse(json['deleted_at'] as String),
 );
 
 Map<String, dynamic> _$ClaimItemToJson(ClaimItem instance) => <String, dynamic>{
   'id': instance.id,
-  'itemId': instance.itemId,
-  'variantId': instance.variantId,
-  'claimOrderId': instance.claimOrderId,
+  'item_id': instance.itemId,
+  'variant_id': instance.variantId,
+  'claim_order_id': instance.claimOrderId,
   'quantity': instance.quantity,
   'reason': instance.reason,
   'note': instance.note,
   'images': instance.images,
   'metadata': instance.metadata,
-  'createdAt': instance.createdAt.toIso8601String(),
-  'updatedAt': instance.updatedAt.toIso8601String(),
-  'deletedAt': instance.deletedAt?.toIso8601String(),
+  'created_at': instance.createdAt.toIso8601String(),
+  'updated_at': instance.updatedAt.toIso8601String(),
+  'deleted_at': instance.deletedAt?.toIso8601String(),
 };
 
 AdditionalClaimItem _$AdditionalClaimItemFromJson(Map<String, dynamic> json) =>
     AdditionalClaimItem(
       id: json['id'] as String,
-      variantId: json['variantId'] as String,
-      claimOrderId: json['claimOrderId'] as String,
+      variantId: json['variant_id'] as String,
+      claimOrderId: json['claim_order_id'] as String,
       quantity: (json['quantity'] as num).toInt(),
       metadata: json['metadata'] as Map<String, dynamic>?,
-      createdAt: DateTime.parse(json['createdAt'] as String),
-      updatedAt: DateTime.parse(json['updatedAt'] as String),
+      createdAt: DateTime.parse(json['created_at'] as String),
+      updatedAt: DateTime.parse(json['updated_at'] as String),
       deletedAt:
-          json['deletedAt'] == null
+          json['deleted_at'] == null
               ? null
-              : DateTime.parse(json['deletedAt'] as String),
+              : DateTime.parse(json['deleted_at'] as String),
     );
 
 Map<String, dynamic> _$AdditionalClaimItemToJson(
   AdditionalClaimItem instance,
 ) => <String, dynamic>{
   'id': instance.id,
-  'variantId': instance.variantId,
-  'claimOrderId': instance.claimOrderId,
+  'variant_id': instance.variantId,
+  'claim_order_id': instance.claimOrderId,
   'quantity': instance.quantity,
   'metadata': instance.metadata,
-  'createdAt': instance.createdAt.toIso8601String(),
-  'updatedAt': instance.updatedAt.toIso8601String(),
-  'deletedAt': instance.deletedAt?.toIso8601String(),
+  'created_at': instance.createdAt.toIso8601String(),
+  'updated_at': instance.updatedAt.toIso8601String(),
+  'deleted_at': instance.deletedAt?.toIso8601String(),
 };
 
 ClaimOrder _$ClaimOrderFromJson(Map<String, dynamic> json) => ClaimOrder(
   id: json['id'] as String,
   paymentStatus: $enumDecode(
     _$ClaimPaymentStatusEnumMap,
-    json['paymentStatus'],
+    json['payment_status'],
   ),
   fulfillmentStatus: $enumDecode(
     _$ClaimFulfillmentStatusEnumMap,
-    json['fulfillmentStatus'],
+    json['fulfillment_status'],
   ),
   type: $enumDecode(_$ClaimTypeEnumMap, json['type']),
-  orderId: json['orderId'] as String,
-  shippingAddressId: json['shippingAddressId'] as String?,
+  orderId: json['order_id'] as String,
+  shippingAddressId: json['shipping_address_id'] as String?,
   claimItems:
-      (json['claimItems'] as List<dynamic>?)
+      (json['claim_items'] as List<dynamic>?)
           ?.map((e) => ClaimItem.fromJson(e as Map<String, dynamic>))
           .toList(),
   additionalItems:
-      (json['additionalItems'] as List<dynamic>?)
+      (json['additional_items'] as List<dynamic>?)
           ?.map((e) => AdditionalClaimItem.fromJson(e as Map<String, dynamic>))
           .toList(),
-  returnOrderId: json['returnOrderId'] as String?,
-  refundAmount: (json['refundAmount'] as num?)?.toInt(),
+  returnOrderId: json['return_order_id'] as String?,
+  refundAmount: (json['refund_amount'] as num?)?.toInt(),
   canceledAt:
-      json['canceledAt'] == null
+      json['canceled_at'] == null
           ? null
-          : DateTime.parse(json['canceledAt'] as String),
+          : DateTime.parse(json['canceled_at'] as String),
   note: json['note'] as String?,
-  noNotification: json['noNotification'] as bool?,
+  noNotification: json['no_notification'] as bool?,
   metadata: json['metadata'] as Map<String, dynamic>?,
-  createdAt: DateTime.parse(json['createdAt'] as String),
-  updatedAt: DateTime.parse(json['updatedAt'] as String),
+  createdAt: DateTime.parse(json['created_at'] as String),
+  updatedAt: DateTime.parse(json['updated_at'] as String),
   deletedAt:
-      json['deletedAt'] == null
+      json['deleted_at'] == null
           ? null
-          : DateTime.parse(json['deletedAt'] as String),
+          : DateTime.parse(json['deleted_at'] as String),
 );
 
 Map<String, dynamic> _$ClaimOrderToJson(ClaimOrder instance) =>
     <String, dynamic>{
       'id': instance.id,
-      'paymentStatus': _$ClaimPaymentStatusEnumMap[instance.paymentStatus]!,
-      'fulfillmentStatus':
+      'payment_status': _$ClaimPaymentStatusEnumMap[instance.paymentStatus]!,
+      'fulfillment_status':
           _$ClaimFulfillmentStatusEnumMap[instance.fulfillmentStatus]!,
       'type': _$ClaimTypeEnumMap[instance.type]!,
-      'orderId': instance.orderId,
-      'shippingAddressId': instance.shippingAddressId,
-      'claimItems': instance.claimItems,
-      'additionalItems': instance.additionalItems,
-      'returnOrderId': instance.returnOrderId,
-      'refundAmount': instance.refundAmount,
-      'canceledAt': instance.canceledAt?.toIso8601String(),
+      'order_id': instance.orderId,
+      'shipping_address_id': instance.shippingAddressId,
+      'claim_items': instance.claimItems,
+      'additional_items': instance.additionalItems,
+      'return_order_id': instance.returnOrderId,
+      'refund_amount': instance.refundAmount,
+      'canceled_at': instance.canceledAt?.toIso8601String(),
       'note': instance.note,
-      'noNotification': instance.noNotification,
+      'no_notification': instance.noNotification,
       'metadata': instance.metadata,
-      'createdAt': instance.createdAt.toIso8601String(),
-      'updatedAt': instance.updatedAt.toIso8601String(),
-      'deletedAt': instance.deletedAt?.toIso8601String(),
+      'created_at': instance.createdAt.toIso8601String(),
+      'updated_at': instance.updatedAt.toIso8601String(),
+      'deleted_at': instance.deletedAt?.toIso8601String(),
     };
 
 const _$ClaimPaymentStatusEnumMap = {
@@ -152,39 +152,39 @@ const _$ClaimTypeEnumMap = {
 
 CreateClaimRequest _$CreateClaimRequestFromJson(Map<String, dynamic> json) =>
     CreateClaimRequest(
-      orderId: json['orderId'] as String,
+      orderId: json['order_id'] as String,
       type: $enumDecode(_$ClaimTypeEnumMap, json['type']),
       claimItems:
-          (json['claimItems'] as List<dynamic>)
+          (json['claim_items'] as List<dynamic>)
               .map(
                 (e) =>
                     CreateClaimItemRequest.fromJson(e as Map<String, dynamic>),
               )
               .toList(),
       additionalItems:
-          (json['additionalItems'] as List<dynamic>?)
+          (json['additional_items'] as List<dynamic>?)
               ?.map(
                 (e) => CreateAdditionalClaimItemRequest.fromJson(
                   e as Map<String, dynamic>,
                 ),
               )
               .toList(),
-      shippingAddressId: json['shippingAddressId'] as String?,
-      returnShipping: json['returnShipping'] as bool?,
-      noNotification: json['noNotification'] as bool?,
+      shippingAddressId: json['shipping_address_id'] as String?,
+      returnShipping: json['return_shipping'] as bool?,
+      noNotification: json['no_notification'] as bool?,
       note: json['note'] as String?,
       metadata: json['metadata'] as Map<String, dynamic>?,
     );
 
 Map<String, dynamic> _$CreateClaimRequestToJson(CreateClaimRequest instance) =>
     <String, dynamic>{
-      'orderId': instance.orderId,
+      'order_id': instance.orderId,
       'type': _$ClaimTypeEnumMap[instance.type]!,
-      'claimItems': instance.claimItems,
-      'additionalItems': instance.additionalItems,
-      'shippingAddressId': instance.shippingAddressId,
-      'returnShipping': instance.returnShipping,
-      'noNotification': instance.noNotification,
+      'claim_items': instance.claimItems,
+      'additional_items': instance.additionalItems,
+      'shipping_address_id': instance.shippingAddressId,
+      'return_shipping': instance.returnShipping,
+      'no_notification': instance.noNotification,
       'note': instance.note,
       'metadata': instance.metadata,
     };
@@ -192,7 +192,7 @@ Map<String, dynamic> _$CreateClaimRequestToJson(CreateClaimRequest instance) =>
 CreateClaimItemRequest _$CreateClaimItemRequestFromJson(
   Map<String, dynamic> json,
 ) => CreateClaimItemRequest(
-  itemId: json['itemId'] as String,
+  itemId: json['item_id'] as String,
   quantity: (json['quantity'] as num).toInt(),
   reason: json['reason'] as String?,
   note: json['note'] as String?,
@@ -203,7 +203,7 @@ CreateClaimItemRequest _$CreateClaimItemRequestFromJson(
 Map<String, dynamic> _$CreateClaimItemRequestToJson(
   CreateClaimItemRequest instance,
 ) => <String, dynamic>{
-  'itemId': instance.itemId,
+  'item_id': instance.itemId,
   'quantity': instance.quantity,
   'reason': instance.reason,
   'note': instance.note,
@@ -214,7 +214,7 @@ Map<String, dynamic> _$CreateClaimItemRequestToJson(
 CreateAdditionalClaimItemRequest _$CreateAdditionalClaimItemRequestFromJson(
   Map<String, dynamic> json,
 ) => CreateAdditionalClaimItemRequest(
-  variantId: json['variantId'] as String,
+  variantId: json['variant_id'] as String,
   quantity: (json['quantity'] as num).toInt(),
   metadata: json['metadata'] as Map<String, dynamic>?,
 );
@@ -222,7 +222,7 @@ CreateAdditionalClaimItemRequest _$CreateAdditionalClaimItemRequestFromJson(
 Map<String, dynamic> _$CreateAdditionalClaimItemRequestToJson(
   CreateAdditionalClaimItemRequest instance,
 ) => <String, dynamic>{
-  'variantId': instance.variantId,
+  'variant_id': instance.variantId,
   'quantity': instance.quantity,
   'metadata': instance.metadata,
 };
@@ -230,22 +230,22 @@ Map<String, dynamic> _$CreateAdditionalClaimItemRequestToJson(
 UpdateClaimRequest _$UpdateClaimRequestFromJson(Map<String, dynamic> json) =>
     UpdateClaimRequest(
       note: json['note'] as String?,
-      noNotification: json['noNotification'] as bool?,
+      noNotification: json['no_notification'] as bool?,
       metadata: json['metadata'] as Map<String, dynamic>?,
     );
 
 Map<String, dynamic> _$UpdateClaimRequestToJson(UpdateClaimRequest instance) =>
     <String, dynamic>{
       'note': instance.note,
-      'noNotification': instance.noNotification,
+      'no_notification': instance.noNotification,
       'metadata': instance.metadata,
     };
 
 CancelClaimRequest _$CancelClaimRequestFromJson(Map<String, dynamic> json) =>
-    CancelClaimRequest(noNotification: json['noNotification'] as bool?);
+    CancelClaimRequest(noNotification: json['no_notification'] as bool?);
 
 Map<String, dynamic> _$CancelClaimRequestToJson(CancelClaimRequest instance) =>
-    <String, dynamic>{'noNotification': instance.noNotification};
+    <String, dynamic>{'no_notification': instance.noNotification};
 
 ClaimResponse _$ClaimResponseFromJson(Map<String, dynamic> json) =>
     ClaimResponse(

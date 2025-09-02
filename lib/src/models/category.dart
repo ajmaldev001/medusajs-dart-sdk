@@ -3,7 +3,7 @@ import 'package:json_annotation/json_annotation.dart';
 part 'category.g.dart';
 
 /// Represents a product category
-@JsonSerializable()
+@JsonSerializable(fieldRename: FieldRename.snake)
 class Category {
   /// Unique identifier for the category
   final String id;
@@ -18,10 +18,10 @@ class Category {
   final String handle;
 
   /// Whether the category is active
-  final bool isActive;
+  final bool? isActive;
 
   /// Whether the category is internal only
-  final bool isInternal;
+  final bool? isInternal;
 
   /// Parent category ID
   final String? parentCategoryId;
@@ -43,8 +43,8 @@ class Category {
     required this.name,
     this.description,
     required this.handle,
-    required this.isActive,
-    required this.isInternal,
+    this.isActive,
+    this.isInternal,
     this.parentCategoryId,
     required this.rank,
     required this.createdAt,

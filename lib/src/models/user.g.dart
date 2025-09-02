@@ -9,30 +9,30 @@ part of 'user.dart';
 User _$UserFromJson(Map<String, dynamic> json) => User(
   id: json['id'] as String,
   email: json['email'] as String,
-  firstName: json['firstName'] as String?,
-  lastName: json['lastName'] as String?,
-  avatarUrl: json['avatarUrl'] as String?,
+  firstName: json['first_name'] as String?,
+  lastName: json['last_name'] as String?,
+  avatarUrl: json['avatar_url'] as String?,
   role: $enumDecodeNullable(_$UserRoleEnumMap, json['role']),
   metadata: json['metadata'] as Map<String, dynamic>?,
-  createdAt: DateTime.parse(json['createdAt'] as String),
-  updatedAt: DateTime.parse(json['updatedAt'] as String),
+  createdAt: DateTime.parse(json['created_at'] as String),
+  updatedAt: DateTime.parse(json['updated_at'] as String),
   deletedAt:
-      json['deletedAt'] == null
+      json['deleted_at'] == null
           ? null
-          : DateTime.parse(json['deletedAt'] as String),
+          : DateTime.parse(json['deleted_at'] as String),
 );
 
 Map<String, dynamic> _$UserToJson(User instance) => <String, dynamic>{
   'id': instance.id,
   'email': instance.email,
-  'firstName': instance.firstName,
-  'lastName': instance.lastName,
-  'avatarUrl': instance.avatarUrl,
+  'first_name': instance.firstName,
+  'last_name': instance.lastName,
+  'avatar_url': instance.avatarUrl,
   'role': _$UserRoleEnumMap[instance.role],
   'metadata': instance.metadata,
-  'createdAt': instance.createdAt.toIso8601String(),
-  'updatedAt': instance.updatedAt.toIso8601String(),
-  'deletedAt': instance.deletedAt?.toIso8601String(),
+  'created_at': instance.createdAt.toIso8601String(),
+  'updated_at': instance.updatedAt.toIso8601String(),
+  'deleted_at': instance.deletedAt?.toIso8601String(),
 };
 
 const _$UserRoleEnumMap = {
@@ -46,23 +46,23 @@ Invite _$InviteFromJson(Map<String, dynamic> json) => Invite(
   email: json['email'] as String,
   status: $enumDecode(_$InviteStatusEnumMap, json['status']),
   token: json['token'] as String,
-  userId: json['userId'] as String?,
+  userId: json['user_id'] as String?,
   user:
       json['user'] == null
           ? null
           : User.fromJson(json['user'] as Map<String, dynamic>),
-  expiresAt: DateTime.parse(json['expiresAt'] as String),
+  expiresAt: DateTime.parse(json['expires_at'] as String),
   acceptedAt:
-      json['acceptedAt'] == null
+      json['accepted_at'] == null
           ? null
-          : DateTime.parse(json['acceptedAt'] as String),
+          : DateTime.parse(json['accepted_at'] as String),
   metadata: json['metadata'] as Map<String, dynamic>?,
-  createdAt: DateTime.parse(json['createdAt'] as String),
-  updatedAt: DateTime.parse(json['updatedAt'] as String),
+  createdAt: DateTime.parse(json['created_at'] as String),
+  updatedAt: DateTime.parse(json['updated_at'] as String),
   deletedAt:
-      json['deletedAt'] == null
+      json['deleted_at'] == null
           ? null
-          : DateTime.parse(json['deletedAt'] as String),
+          : DateTime.parse(json['deleted_at'] as String),
 );
 
 Map<String, dynamic> _$InviteToJson(Invite instance) => <String, dynamic>{
@@ -70,14 +70,14 @@ Map<String, dynamic> _$InviteToJson(Invite instance) => <String, dynamic>{
   'email': instance.email,
   'status': _$InviteStatusEnumMap[instance.status]!,
   'token': instance.token,
-  'userId': instance.userId,
+  'user_id': instance.userId,
   'user': instance.user,
-  'expiresAt': instance.expiresAt.toIso8601String(),
-  'acceptedAt': instance.acceptedAt?.toIso8601String(),
+  'expires_at': instance.expiresAt.toIso8601String(),
+  'accepted_at': instance.acceptedAt?.toIso8601String(),
   'metadata': instance.metadata,
-  'createdAt': instance.createdAt.toIso8601String(),
-  'updatedAt': instance.updatedAt.toIso8601String(),
-  'deletedAt': instance.deletedAt?.toIso8601String(),
+  'created_at': instance.createdAt.toIso8601String(),
+  'updated_at': instance.updatedAt.toIso8601String(),
+  'deleted_at': instance.deletedAt?.toIso8601String(),
 };
 
 const _$InviteStatusEnumMap = {
@@ -90,8 +90,8 @@ const _$InviteStatusEnumMap = {
 CreateUserRequest _$CreateUserRequestFromJson(Map<String, dynamic> json) =>
     CreateUserRequest(
       email: json['email'] as String,
-      firstName: json['firstName'] as String?,
-      lastName: json['lastName'] as String?,
+      firstName: json['first_name'] as String?,
+      lastName: json['last_name'] as String?,
       role: $enumDecodeNullable(_$UserRoleEnumMap, json['role']),
       metadata: json['metadata'] as Map<String, dynamic>?,
     );
@@ -99,26 +99,26 @@ CreateUserRequest _$CreateUserRequestFromJson(Map<String, dynamic> json) =>
 Map<String, dynamic> _$CreateUserRequestToJson(CreateUserRequest instance) =>
     <String, dynamic>{
       'email': instance.email,
-      'firstName': instance.firstName,
-      'lastName': instance.lastName,
+      'first_name': instance.firstName,
+      'last_name': instance.lastName,
       'role': _$UserRoleEnumMap[instance.role],
       'metadata': instance.metadata,
     };
 
 UpdateUserRequest _$UpdateUserRequestFromJson(Map<String, dynamic> json) =>
     UpdateUserRequest(
-      firstName: json['firstName'] as String?,
-      lastName: json['lastName'] as String?,
-      avatarUrl: json['avatarUrl'] as String?,
+      firstName: json['first_name'] as String?,
+      lastName: json['last_name'] as String?,
+      avatarUrl: json['avatar_url'] as String?,
       role: $enumDecodeNullable(_$UserRoleEnumMap, json['role']),
       metadata: json['metadata'] as Map<String, dynamic>?,
     );
 
 Map<String, dynamic> _$UpdateUserRequestToJson(UpdateUserRequest instance) =>
     <String, dynamic>{
-      'firstName': instance.firstName,
-      'lastName': instance.lastName,
-      'avatarUrl': instance.avatarUrl,
+      'first_name': instance.firstName,
+      'last_name': instance.lastName,
+      'avatar_url': instance.avatarUrl,
       'role': _$UserRoleEnumMap[instance.role],
       'metadata': instance.metadata,
     };
@@ -141,8 +141,8 @@ Map<String, dynamic> _$CreateInviteRequestToJson(
 AcceptInviteRequest _$AcceptInviteRequestFromJson(Map<String, dynamic> json) =>
     AcceptInviteRequest(
       token: json['token'] as String,
-      firstName: json['firstName'] as String?,
-      lastName: json['lastName'] as String?,
+      firstName: json['first_name'] as String?,
+      lastName: json['last_name'] as String?,
       password: json['password'] as String,
     );
 
@@ -150,8 +150,8 @@ Map<String, dynamic> _$AcceptInviteRequestToJson(
   AcceptInviteRequest instance,
 ) => <String, dynamic>{
   'token': instance.token,
-  'firstName': instance.firstName,
-  'lastName': instance.lastName,
+  'first_name': instance.firstName,
+  'last_name': instance.lastName,
   'password': instance.password,
 };
 

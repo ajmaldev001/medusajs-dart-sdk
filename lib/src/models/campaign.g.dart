@@ -10,40 +10,42 @@ Campaign _$CampaignFromJson(Map<String, dynamic> json) => Campaign(
   id: json['id'] as String,
   name: json['name'] as String,
   description: json['description'] as String?,
-  currencyCode: json['currencyCode'] as String?,
+  currencyCode: json['currency_code'] as String?,
   status: $enumDecode(_$CampaignStatusEnumMap, json['status']),
   budget:
       json['budget'] == null
           ? null
           : CampaignBudget.fromJson(json['budget'] as Map<String, dynamic>),
   startsAt:
-      json['startsAt'] == null
+      json['starts_at'] == null
           ? null
-          : DateTime.parse(json['startsAt'] as String),
+          : DateTime.parse(json['starts_at'] as String),
   endsAt:
-      json['endsAt'] == null ? null : DateTime.parse(json['endsAt'] as String),
-  metadata: json['metadata'] as Map<String, dynamic>?,
-  createdAt: DateTime.parse(json['createdAt'] as String),
-  updatedAt: DateTime.parse(json['updatedAt'] as String),
-  deletedAt:
-      json['deletedAt'] == null
+      json['ends_at'] == null
           ? null
-          : DateTime.parse(json['deletedAt'] as String),
+          : DateTime.parse(json['ends_at'] as String),
+  metadata: json['metadata'] as Map<String, dynamic>?,
+  createdAt: DateTime.parse(json['created_at'] as String),
+  updatedAt: DateTime.parse(json['updated_at'] as String),
+  deletedAt:
+      json['deleted_at'] == null
+          ? null
+          : DateTime.parse(json['deleted_at'] as String),
 );
 
 Map<String, dynamic> _$CampaignToJson(Campaign instance) => <String, dynamic>{
   'id': instance.id,
   'name': instance.name,
   'description': instance.description,
-  'currencyCode': instance.currencyCode,
+  'currency_code': instance.currencyCode,
   'status': _$CampaignStatusEnumMap[instance.status]!,
   'budget': instance.budget,
-  'startsAt': instance.startsAt?.toIso8601String(),
-  'endsAt': instance.endsAt?.toIso8601String(),
+  'starts_at': instance.startsAt?.toIso8601String(),
+  'ends_at': instance.endsAt?.toIso8601String(),
   'metadata': instance.metadata,
-  'createdAt': instance.createdAt.toIso8601String(),
-  'updatedAt': instance.updatedAt.toIso8601String(),
-  'deletedAt': instance.deletedAt?.toIso8601String(),
+  'created_at': instance.createdAt.toIso8601String(),
+  'updated_at': instance.updatedAt.toIso8601String(),
+  'deleted_at': instance.deletedAt?.toIso8601String(),
 };
 
 const _$CampaignStatusEnumMap = {
@@ -76,18 +78,20 @@ CreateCampaignRequest _$CreateCampaignRequestFromJson(
 ) => CreateCampaignRequest(
   name: json['name'] as String,
   description: json['description'] as String?,
-  currencyCode: json['currencyCode'] as String?,
+  currencyCode: json['currency_code'] as String?,
   status: $enumDecodeNullable(_$CampaignStatusEnumMap, json['status']),
   budget:
       json['budget'] == null
           ? null
           : CampaignBudget.fromJson(json['budget'] as Map<String, dynamic>),
   startsAt:
-      json['startsAt'] == null
+      json['starts_at'] == null
           ? null
-          : DateTime.parse(json['startsAt'] as String),
+          : DateTime.parse(json['starts_at'] as String),
   endsAt:
-      json['endsAt'] == null ? null : DateTime.parse(json['endsAt'] as String),
+      json['ends_at'] == null
+          ? null
+          : DateTime.parse(json['ends_at'] as String),
   metadata: json['metadata'] as Map<String, dynamic>?,
 );
 
@@ -96,11 +100,11 @@ Map<String, dynamic> _$CreateCampaignRequestToJson(
 ) => <String, dynamic>{
   'name': instance.name,
   'description': instance.description,
-  'currencyCode': instance.currencyCode,
+  'currency_code': instance.currencyCode,
   'status': _$CampaignStatusEnumMap[instance.status],
   'budget': instance.budget,
-  'startsAt': instance.startsAt?.toIso8601String(),
-  'endsAt': instance.endsAt?.toIso8601String(),
+  'starts_at': instance.startsAt?.toIso8601String(),
+  'ends_at': instance.endsAt?.toIso8601String(),
   'metadata': instance.metadata,
 };
 
@@ -109,18 +113,20 @@ UpdateCampaignRequest _$UpdateCampaignRequestFromJson(
 ) => UpdateCampaignRequest(
   name: json['name'] as String?,
   description: json['description'] as String?,
-  currencyCode: json['currencyCode'] as String?,
+  currencyCode: json['currency_code'] as String?,
   status: $enumDecodeNullable(_$CampaignStatusEnumMap, json['status']),
   budget:
       json['budget'] == null
           ? null
           : CampaignBudget.fromJson(json['budget'] as Map<String, dynamic>),
   startsAt:
-      json['startsAt'] == null
+      json['starts_at'] == null
           ? null
-          : DateTime.parse(json['startsAt'] as String),
+          : DateTime.parse(json['starts_at'] as String),
   endsAt:
-      json['endsAt'] == null ? null : DateTime.parse(json['endsAt'] as String),
+      json['ends_at'] == null
+          ? null
+          : DateTime.parse(json['ends_at'] as String),
   metadata: json['metadata'] as Map<String, dynamic>?,
 );
 
@@ -129,10 +135,10 @@ Map<String, dynamic> _$UpdateCampaignRequestToJson(
 ) => <String, dynamic>{
   'name': instance.name,
   'description': instance.description,
-  'currencyCode': instance.currencyCode,
+  'currency_code': instance.currencyCode,
   'status': _$CampaignStatusEnumMap[instance.status],
   'budget': instance.budget,
-  'startsAt': instance.startsAt?.toIso8601String(),
-  'endsAt': instance.endsAt?.toIso8601String(),
+  'starts_at': instance.startsAt?.toIso8601String(),
+  'ends_at': instance.endsAt?.toIso8601String(),
   'metadata': instance.metadata,
 };

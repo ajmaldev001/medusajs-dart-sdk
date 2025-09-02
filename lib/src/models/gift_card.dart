@@ -3,7 +3,7 @@ import 'package:json_annotation/json_annotation.dart';
 part 'gift_card.g.dart';
 
 /// Represents a gift card in the Medusa system
-@JsonSerializable()
+@JsonSerializable(fieldRename: FieldRename.snake)
 class GiftCard {
   /// Unique identifier for the gift card
   final String id;

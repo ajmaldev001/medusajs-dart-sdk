@@ -11,14 +11,14 @@ ReturnReason _$ReturnReasonFromJson(Map<String, dynamic> json) => ReturnReason(
   value: json['value'] as String,
   label: json['label'] as String,
   description: json['description'] as String?,
-  parentReturnReasonId: json['parentReturnReasonId'] as String?,
+  parentReturnReasonId: json['parent_return_reason_id'] as String?,
   metadata: json['metadata'] as Map<String, dynamic>?,
-  createdAt: DateTime.parse(json['createdAt'] as String),
-  updatedAt: DateTime.parse(json['updatedAt'] as String),
+  createdAt: DateTime.parse(json['created_at'] as String),
+  updatedAt: DateTime.parse(json['updated_at'] as String),
   deletedAt:
-      json['deletedAt'] == null
+      json['deleted_at'] == null
           ? null
-          : DateTime.parse(json['deletedAt'] as String),
+          : DateTime.parse(json['deleted_at'] as String),
 );
 
 Map<String, dynamic> _$ReturnReasonToJson(ReturnReason instance) =>
@@ -27,124 +27,124 @@ Map<String, dynamic> _$ReturnReasonToJson(ReturnReason instance) =>
       'value': instance.value,
       'label': instance.label,
       'description': instance.description,
-      'parentReturnReasonId': instance.parentReturnReasonId,
+      'parent_return_reason_id': instance.parentReturnReasonId,
       'metadata': instance.metadata,
-      'createdAt': instance.createdAt.toIso8601String(),
-      'updatedAt': instance.updatedAt.toIso8601String(),
-      'deletedAt': instance.deletedAt?.toIso8601String(),
+      'created_at': instance.createdAt.toIso8601String(),
+      'updated_at': instance.updatedAt.toIso8601String(),
+      'deleted_at': instance.deletedAt?.toIso8601String(),
     };
 
 ReturnItem _$ReturnItemFromJson(Map<String, dynamic> json) => ReturnItem(
   id: json['id'] as String,
-  returnId: json['returnId'] as String,
-  orderItemId: json['orderItemId'] as String,
+  returnId: json['return_id'] as String,
+  orderItemId: json['order_item_id'] as String,
   quantity: (json['quantity'] as num).toInt(),
-  isDamaged: json['isDamaged'] as bool,
+  isDamaged: json['is_damaged'] as bool,
   note: json['note'] as String?,
-  reasonId: json['reasonId'] as String?,
+  reasonId: json['reason_id'] as String?,
   reason:
       json['reason'] == null
           ? null
           : ReturnReason.fromJson(json['reason'] as Map<String, dynamic>),
   metadata: json['metadata'] as Map<String, dynamic>?,
-  createdAt: DateTime.parse(json['createdAt'] as String),
-  updatedAt: DateTime.parse(json['updatedAt'] as String),
+  createdAt: DateTime.parse(json['created_at'] as String),
+  updatedAt: DateTime.parse(json['updated_at'] as String),
   deletedAt:
-      json['deletedAt'] == null
+      json['deleted_at'] == null
           ? null
-          : DateTime.parse(json['deletedAt'] as String),
+          : DateTime.parse(json['deleted_at'] as String),
 );
 
 Map<String, dynamic> _$ReturnItemToJson(ReturnItem instance) =>
     <String, dynamic>{
       'id': instance.id,
-      'returnId': instance.returnId,
-      'orderItemId': instance.orderItemId,
+      'return_id': instance.returnId,
+      'order_item_id': instance.orderItemId,
       'quantity': instance.quantity,
-      'isDamaged': instance.isDamaged,
+      'is_damaged': instance.isDamaged,
       'note': instance.note,
-      'reasonId': instance.reasonId,
+      'reason_id': instance.reasonId,
       'reason': instance.reason,
       'metadata': instance.metadata,
-      'createdAt': instance.createdAt.toIso8601String(),
-      'updatedAt': instance.updatedAt.toIso8601String(),
-      'deletedAt': instance.deletedAt?.toIso8601String(),
+      'created_at': instance.createdAt.toIso8601String(),
+      'updated_at': instance.updatedAt.toIso8601String(),
+      'deleted_at': instance.deletedAt?.toIso8601String(),
     };
 
 ReturnShippingMethod _$ReturnShippingMethodFromJson(
   Map<String, dynamic> json,
 ) => ReturnShippingMethod(
   id: json['id'] as String,
-  returnId: json['returnId'] as String,
-  shippingOptionId: json['shippingOptionId'] as String?,
+  returnId: json['return_id'] as String,
+  shippingOptionId: json['shipping_option_id'] as String?,
   price: (json['price'] as num?)?.toInt(),
   data: json['data'] as Map<String, dynamic>?,
-  createdAt: DateTime.parse(json['createdAt'] as String),
-  updatedAt: DateTime.parse(json['updatedAt'] as String),
+  createdAt: DateTime.parse(json['created_at'] as String),
+  updatedAt: DateTime.parse(json['updated_at'] as String),
 );
 
 Map<String, dynamic> _$ReturnShippingMethodToJson(
   ReturnShippingMethod instance,
 ) => <String, dynamic>{
   'id': instance.id,
-  'returnId': instance.returnId,
-  'shippingOptionId': instance.shippingOptionId,
+  'return_id': instance.returnId,
+  'shipping_option_id': instance.shippingOptionId,
   'price': instance.price,
   'data': instance.data,
-  'createdAt': instance.createdAt.toIso8601String(),
-  'updatedAt': instance.updatedAt.toIso8601String(),
+  'created_at': instance.createdAt.toIso8601String(),
+  'updated_at': instance.updatedAt.toIso8601String(),
 };
 
 Return _$ReturnFromJson(Map<String, dynamic> json) => Return(
   id: json['id'] as String,
   status: $enumDecode(_$ReturnStatusEnumMap, json['status']),
-  orderId: json['orderId'] as String?,
-  exchangeId: json['exchangeId'] as String?,
-  claimId: json['claimId'] as String?,
-  locationId: json['locationId'] as String?,
+  orderId: json['order_id'] as String?,
+  exchangeId: json['exchange_id'] as String?,
+  claimId: json['claim_id'] as String?,
+  locationId: json['location_id'] as String?,
   items:
       (json['items'] as List<dynamic>?)
           ?.map((e) => ReturnItem.fromJson(e as Map<String, dynamic>))
           .toList(),
   shippingMethod:
-      json['shippingMethod'] == null
+      json['shipping_method'] == null
           ? null
           : ReturnShippingMethod.fromJson(
-            json['shippingMethod'] as Map<String, dynamic>,
+            json['shipping_method'] as Map<String, dynamic>,
           ),
-  shippingData: json['shippingData'] as Map<String, dynamic>?,
-  refundAmount: (json['refundAmount'] as num?)?.toInt(),
+  shippingData: json['shipping_data'] as Map<String, dynamic>?,
+  refundAmount: (json['refund_amount'] as num?)?.toInt(),
   receivedAt:
-      json['receivedAt'] == null
+      json['received_at'] == null
           ? null
-          : DateTime.parse(json['receivedAt'] as String),
+          : DateTime.parse(json['received_at'] as String),
   note: json['note'] as String?,
   metadata: json['metadata'] as Map<String, dynamic>?,
-  createdAt: DateTime.parse(json['createdAt'] as String),
-  updatedAt: DateTime.parse(json['updatedAt'] as String),
+  createdAt: DateTime.parse(json['created_at'] as String),
+  updatedAt: DateTime.parse(json['updated_at'] as String),
   deletedAt:
-      json['deletedAt'] == null
+      json['deleted_at'] == null
           ? null
-          : DateTime.parse(json['deletedAt'] as String),
+          : DateTime.parse(json['deleted_at'] as String),
 );
 
 Map<String, dynamic> _$ReturnToJson(Return instance) => <String, dynamic>{
   'id': instance.id,
   'status': _$ReturnStatusEnumMap[instance.status]!,
-  'orderId': instance.orderId,
-  'exchangeId': instance.exchangeId,
-  'claimId': instance.claimId,
-  'locationId': instance.locationId,
+  'order_id': instance.orderId,
+  'exchange_id': instance.exchangeId,
+  'claim_id': instance.claimId,
+  'location_id': instance.locationId,
   'items': instance.items,
-  'shippingMethod': instance.shippingMethod,
-  'shippingData': instance.shippingData,
-  'refundAmount': instance.refundAmount,
-  'receivedAt': instance.receivedAt?.toIso8601String(),
+  'shipping_method': instance.shippingMethod,
+  'shipping_data': instance.shippingData,
+  'refund_amount': instance.refundAmount,
+  'received_at': instance.receivedAt?.toIso8601String(),
   'note': instance.note,
   'metadata': instance.metadata,
-  'createdAt': instance.createdAt.toIso8601String(),
-  'updatedAt': instance.updatedAt.toIso8601String(),
-  'deletedAt': instance.deletedAt?.toIso8601String(),
+  'created_at': instance.createdAt.toIso8601String(),
+  'updated_at': instance.updatedAt.toIso8601String(),
+  'deleted_at': instance.deletedAt?.toIso8601String(),
 };
 
 const _$ReturnStatusEnumMap = {
@@ -156,7 +156,7 @@ const _$ReturnStatusEnumMap = {
 
 CreateReturnRequest _$CreateReturnRequestFromJson(Map<String, dynamic> json) =>
     CreateReturnRequest(
-      orderId: json['orderId'] as String,
+      orderId: json['order_id'] as String,
       items:
           (json['items'] as List<dynamic>)
               .map(
@@ -164,42 +164,42 @@ CreateReturnRequest _$CreateReturnRequestFromJson(Map<String, dynamic> json) =>
                     CreateReturnItemRequest.fromJson(e as Map<String, dynamic>),
               )
               .toList(),
-      locationId: json['locationId'] as String?,
+      locationId: json['location_id'] as String?,
       note: json['note'] as String?,
-      receiveNow: json['receiveNow'] as bool?,
+      receiveNow: json['receive_now'] as bool?,
       metadata: json['metadata'] as Map<String, dynamic>?,
     );
 
 Map<String, dynamic> _$CreateReturnRequestToJson(
   CreateReturnRequest instance,
 ) => <String, dynamic>{
-  'orderId': instance.orderId,
+  'order_id': instance.orderId,
   'items': instance.items,
-  'locationId': instance.locationId,
+  'location_id': instance.locationId,
   'note': instance.note,
-  'receiveNow': instance.receiveNow,
+  'receive_now': instance.receiveNow,
   'metadata': instance.metadata,
 };
 
 CreateReturnItemRequest _$CreateReturnItemRequestFromJson(
   Map<String, dynamic> json,
 ) => CreateReturnItemRequest(
-  orderItemId: json['orderItemId'] as String,
+  orderItemId: json['order_item_id'] as String,
   quantity: (json['quantity'] as num).toInt(),
-  reasonId: json['reasonId'] as String?,
+  reasonId: json['reason_id'] as String?,
   note: json['note'] as String?,
-  isDamaged: json['isDamaged'] as bool?,
+  isDamaged: json['is_damaged'] as bool?,
   metadata: json['metadata'] as Map<String, dynamic>?,
 );
 
 Map<String, dynamic> _$CreateReturnItemRequestToJson(
   CreateReturnItemRequest instance,
 ) => <String, dynamic>{
-  'orderItemId': instance.orderItemId,
+  'order_item_id': instance.orderItemId,
   'quantity': instance.quantity,
-  'reasonId': instance.reasonId,
+  'reason_id': instance.reasonId,
   'note': instance.note,
-  'isDamaged': instance.isDamaged,
+  'is_damaged': instance.isDamaged,
   'metadata': instance.metadata,
 };
 
@@ -207,9 +207,9 @@ UpdateReturnRequest _$UpdateReturnRequestFromJson(Map<String, dynamic> json) =>
     UpdateReturnRequest(
       note: json['note'] as String?,
       receivedAt:
-          json['receivedAt'] == null
+          json['received_at'] == null
               ? null
-              : DateTime.parse(json['receivedAt'] as String),
+              : DateTime.parse(json['received_at'] as String),
       metadata: json['metadata'] as Map<String, dynamic>?,
     );
 
@@ -217,7 +217,7 @@ Map<String, dynamic> _$UpdateReturnRequestToJson(
   UpdateReturnRequest instance,
 ) => <String, dynamic>{
   'note': instance.note,
-  'receivedAt': instance.receivedAt?.toIso8601String(),
+  'received_at': instance.receivedAt?.toIso8601String(),
   'metadata': instance.metadata,
 };
 
@@ -245,28 +245,30 @@ Map<String, dynamic> _$ReceiveReturnRequestToJson(
 ReceiveReturnItemRequest _$ReceiveReturnItemRequestFromJson(
   Map<String, dynamic> json,
 ) => ReceiveReturnItemRequest(
-  returnItemId: json['returnItemId'] as String,
+  returnItemId: json['return_item_id'] as String,
   quantity: (json['quantity'] as num).toInt(),
-  isDamaged: json['isDamaged'] as bool?,
+  isDamaged: json['is_damaged'] as bool?,
   note: json['note'] as String?,
 );
 
 Map<String, dynamic> _$ReceiveReturnItemRequestToJson(
   ReceiveReturnItemRequest instance,
 ) => <String, dynamic>{
-  'returnItemId': instance.returnItemId,
+  'return_item_id': instance.returnItemId,
   'quantity': instance.quantity,
-  'isDamaged': instance.isDamaged,
+  'is_damaged': instance.isDamaged,
   'note': instance.note,
 };
 
 ReturnResponse _$ReturnResponseFromJson(Map<String, dynamic> json) =>
     ReturnResponse(
-      returnOrder: Return.fromJson(json['returnOrder'] as Map<String, dynamic>),
+      returnOrder: Return.fromJson(
+        json['return_order'] as Map<String, dynamic>,
+      ),
     );
 
 Map<String, dynamic> _$ReturnResponseToJson(ReturnResponse instance) =>
-    <String, dynamic>{'returnOrder': instance.returnOrder};
+    <String, dynamic>{'return_order': instance.returnOrder};
 
 ReturnsResponse _$ReturnsResponseFromJson(Map<String, dynamic> json) =>
     ReturnsResponse(
@@ -291,11 +293,11 @@ ReturnReasonsResponse _$ReturnReasonsResponseFromJson(
   Map<String, dynamic> json,
 ) => ReturnReasonsResponse(
   returnReasons:
-      (json['returnReasons'] as List<dynamic>)
+      (json['return_reasons'] as List<dynamic>)
           .map((e) => ReturnReason.fromJson(e as Map<String, dynamic>))
           .toList(),
 );
 
 Map<String, dynamic> _$ReturnReasonsResponseToJson(
   ReturnReasonsResponse instance,
-) => <String, dynamic>{'returnReasons': instance.returnReasons};
+) => <String, dynamic>{'return_reasons': instance.returnReasons};

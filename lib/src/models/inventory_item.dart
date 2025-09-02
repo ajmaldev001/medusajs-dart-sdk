@@ -3,7 +3,7 @@ import 'package:json_annotation/json_annotation.dart';
 part 'inventory_item.g.dart';
 
 /// Represents an inventory item
-@JsonSerializable()
+@JsonSerializable(fieldRename: FieldRename.snake)
 class InventoryItem {
   /// Unique identifier for the inventory item
   final String id;
@@ -92,7 +92,7 @@ class InventoryItem {
 }
 
 /// Request to create an inventory item
-@JsonSerializable()
+@JsonSerializable(fieldRename: FieldRename.snake)
 class CreateInventoryItemRequest {
   /// Inventory item SKU
   final String? sku;
@@ -159,7 +159,7 @@ class CreateInventoryItemRequest {
 }
 
 /// Request to update an inventory item
-@JsonSerializable()
+@JsonSerializable(fieldRename: FieldRename.snake)
 class UpdateInventoryItemRequest {
   /// Inventory item SKU
   final String? sku;

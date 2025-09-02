@@ -8,41 +8,41 @@ part of 'address.dart';
 
 Address _$AddressFromJson(Map<String, dynamic> json) => Address(
   id: json['id'] as String,
-  customerId: json['customerId'] as String?,
+  customerId: json['customer_id'] as String?,
   company: json['company'] as String?,
-  firstName: json['firstName'] as String?,
-  lastName: json['lastName'] as String?,
+  firstName: json['first_name'] as String?,
+  lastName: json['last_name'] as String?,
   address1: json['address1'] as String,
   address2: json['address2'] as String?,
   city: json['city'] as String,
-  countryCode: json['countryCode'] as String,
+  countryCode: json['country_code'] as String,
   province: json['province'] as String?,
-  postalCode: json['postalCode'] as String?,
+  postalCode: json['postal_code'] as String?,
   phone: json['phone'] as String?,
   metadata: json['metadata'] as Map<String, dynamic>?,
-  createdAt: DateTime.parse(json['createdAt'] as String),
-  updatedAt: DateTime.parse(json['updatedAt'] as String),
+  createdAt: DateTime.parse(json['created_at'] as String),
+  updatedAt: DateTime.parse(json['updated_at'] as String),
   deletedAt:
-      json['deletedAt'] == null
+      json['deleted_at'] == null
           ? null
-          : DateTime.parse(json['deletedAt'] as String),
+          : DateTime.parse(json['deleted_at'] as String),
 );
 
 Map<String, dynamic> _$AddressToJson(Address instance) => <String, dynamic>{
   'id': instance.id,
-  'customerId': instance.customerId,
+  'customer_id': instance.customerId,
   'company': instance.company,
-  'firstName': instance.firstName,
-  'lastName': instance.lastName,
+  'first_name': instance.firstName,
+  'last_name': instance.lastName,
   'address1': instance.address1,
   'address2': instance.address2,
   'city': instance.city,
-  'countryCode': instance.countryCode,
+  'country_code': instance.countryCode,
   'province': instance.province,
-  'postalCode': instance.postalCode,
+  'postal_code': instance.postalCode,
   'phone': instance.phone,
   'metadata': instance.metadata,
-  'createdAt': instance.createdAt.toIso8601String(),
-  'updatedAt': instance.updatedAt.toIso8601String(),
-  'deletedAt': instance.deletedAt?.toIso8601String(),
+  'created_at': instance.createdAt.toIso8601String(),
+  'updated_at': instance.updatedAt.toIso8601String(),
+  'deleted_at': instance.deletedAt?.toIso8601String(),
 };

@@ -8,34 +8,34 @@ part of 'price_list.dart';
 
 MoneyAmount _$MoneyAmountFromJson(Map<String, dynamic> json) => MoneyAmount(
   id: json['id'] as String,
-  currencyCode: json['currencyCode'] as String,
+  currencyCode: json['currency_code'] as String,
   amount: (json['amount'] as num).toInt(),
-  minQuantity: (json['minQuantity'] as num?)?.toInt(),
-  maxQuantity: (json['maxQuantity'] as num?)?.toInt(),
-  priceListId: json['priceListId'] as String?,
-  variantId: json['variantId'] as String?,
-  regionId: json['regionId'] as String?,
-  createdAt: DateTime.parse(json['createdAt'] as String),
-  updatedAt: DateTime.parse(json['updatedAt'] as String),
+  minQuantity: (json['min_quantity'] as num?)?.toInt(),
+  maxQuantity: (json['max_quantity'] as num?)?.toInt(),
+  priceListId: json['price_list_id'] as String?,
+  variantId: json['variant_id'] as String?,
+  regionId: json['region_id'] as String?,
+  createdAt: DateTime.parse(json['created_at'] as String),
+  updatedAt: DateTime.parse(json['updated_at'] as String),
   deletedAt:
-      json['deletedAt'] == null
+      json['deleted_at'] == null
           ? null
-          : DateTime.parse(json['deletedAt'] as String),
+          : DateTime.parse(json['deleted_at'] as String),
 );
 
 Map<String, dynamic> _$MoneyAmountToJson(MoneyAmount instance) =>
     <String, dynamic>{
       'id': instance.id,
-      'currencyCode': instance.currencyCode,
+      'currency_code': instance.currencyCode,
       'amount': instance.amount,
-      'minQuantity': instance.minQuantity,
-      'maxQuantity': instance.maxQuantity,
-      'priceListId': instance.priceListId,
-      'variantId': instance.variantId,
-      'regionId': instance.regionId,
-      'createdAt': instance.createdAt.toIso8601String(),
-      'updatedAt': instance.updatedAt.toIso8601String(),
-      'deletedAt': instance.deletedAt?.toIso8601String(),
+      'min_quantity': instance.minQuantity,
+      'max_quantity': instance.maxQuantity,
+      'price_list_id': instance.priceListId,
+      'variant_id': instance.variantId,
+      'region_id': instance.regionId,
+      'created_at': instance.createdAt.toIso8601String(),
+      'updated_at': instance.updatedAt.toIso8601String(),
+      'deleted_at': instance.deletedAt?.toIso8601String(),
     };
 
 CustomerGroup _$CustomerGroupFromJson(Map<String, dynamic> json) =>
@@ -43,12 +43,12 @@ CustomerGroup _$CustomerGroupFromJson(Map<String, dynamic> json) =>
       id: json['id'] as String,
       name: json['name'] as String,
       metadata: json['metadata'] as Map<String, dynamic>?,
-      createdAt: DateTime.parse(json['createdAt'] as String),
-      updatedAt: DateTime.parse(json['updatedAt'] as String),
+      createdAt: DateTime.parse(json['created_at'] as String),
+      updatedAt: DateTime.parse(json['updated_at'] as String),
       deletedAt:
-          json['deletedAt'] == null
+          json['deleted_at'] == null
               ? null
-              : DateTime.parse(json['deletedAt'] as String),
+              : DateTime.parse(json['deleted_at'] as String),
     );
 
 Map<String, dynamic> _$CustomerGroupToJson(CustomerGroup instance) =>
@@ -56,9 +56,9 @@ Map<String, dynamic> _$CustomerGroupToJson(CustomerGroup instance) =>
       'id': instance.id,
       'name': instance.name,
       'metadata': instance.metadata,
-      'createdAt': instance.createdAt.toIso8601String(),
-      'updatedAt': instance.updatedAt.toIso8601String(),
-      'deletedAt': instance.deletedAt?.toIso8601String(),
+      'created_at': instance.createdAt.toIso8601String(),
+      'updated_at': instance.updatedAt.toIso8601String(),
+      'deleted_at': instance.deletedAt?.toIso8601String(),
     };
 
 PriceList _$PriceListFromJson(Map<String, dynamic> json) => PriceList(
@@ -68,26 +68,28 @@ PriceList _$PriceListFromJson(Map<String, dynamic> json) => PriceList(
   type: $enumDecode(_$PriceListTypeEnumMap, json['type']),
   status: $enumDecode(_$PriceListStatusEnumMap, json['status']),
   startsAt:
-      json['startsAt'] == null
+      json['starts_at'] == null
           ? null
-          : DateTime.parse(json['startsAt'] as String),
+          : DateTime.parse(json['starts_at'] as String),
   endsAt:
-      json['endsAt'] == null ? null : DateTime.parse(json['endsAt'] as String),
+      json['ends_at'] == null
+          ? null
+          : DateTime.parse(json['ends_at'] as String),
   prices:
       (json['prices'] as List<dynamic>?)
           ?.map((e) => MoneyAmount.fromJson(e as Map<String, dynamic>))
           .toList(),
   customerGroups:
-      (json['customerGroups'] as List<dynamic>?)
+      (json['customer_groups'] as List<dynamic>?)
           ?.map((e) => CustomerGroup.fromJson(e as Map<String, dynamic>))
           .toList(),
   metadata: json['metadata'] as Map<String, dynamic>?,
-  createdAt: DateTime.parse(json['createdAt'] as String),
-  updatedAt: DateTime.parse(json['updatedAt'] as String),
+  createdAt: DateTime.parse(json['created_at'] as String),
+  updatedAt: DateTime.parse(json['updated_at'] as String),
   deletedAt:
-      json['deletedAt'] == null
+      json['deleted_at'] == null
           ? null
-          : DateTime.parse(json['deletedAt'] as String),
+          : DateTime.parse(json['deleted_at'] as String),
 );
 
 Map<String, dynamic> _$PriceListToJson(PriceList instance) => <String, dynamic>{
@@ -96,14 +98,14 @@ Map<String, dynamic> _$PriceListToJson(PriceList instance) => <String, dynamic>{
   'description': instance.description,
   'type': _$PriceListTypeEnumMap[instance.type]!,
   'status': _$PriceListStatusEnumMap[instance.status]!,
-  'startsAt': instance.startsAt?.toIso8601String(),
-  'endsAt': instance.endsAt?.toIso8601String(),
+  'starts_at': instance.startsAt?.toIso8601String(),
+  'ends_at': instance.endsAt?.toIso8601String(),
   'prices': instance.prices,
-  'customerGroups': instance.customerGroups,
+  'customer_groups': instance.customerGroups,
   'metadata': instance.metadata,
-  'createdAt': instance.createdAt.toIso8601String(),
-  'updatedAt': instance.updatedAt.toIso8601String(),
-  'deletedAt': instance.deletedAt?.toIso8601String(),
+  'created_at': instance.createdAt.toIso8601String(),
+  'updated_at': instance.updatedAt.toIso8601String(),
+  'deleted_at': instance.deletedAt?.toIso8601String(),
 };
 
 const _$PriceListTypeEnumMap = {
@@ -124,13 +126,15 @@ CreatePriceListRequest _$CreatePriceListRequestFromJson(
   type: $enumDecode(_$PriceListTypeEnumMap, json['type']),
   status: $enumDecodeNullable(_$PriceListStatusEnumMap, json['status']),
   startsAt:
-      json['startsAt'] == null
+      json['starts_at'] == null
           ? null
-          : DateTime.parse(json['startsAt'] as String),
+          : DateTime.parse(json['starts_at'] as String),
   endsAt:
-      json['endsAt'] == null ? null : DateTime.parse(json['endsAt'] as String),
+      json['ends_at'] == null
+          ? null
+          : DateTime.parse(json['ends_at'] as String),
   customerGroupIds:
-      (json['customerGroupIds'] as List<dynamic>?)
+      (json['customer_group_ids'] as List<dynamic>?)
           ?.map((e) => e as String)
           .toList(),
   metadata: json['metadata'] as Map<String, dynamic>?,
@@ -143,9 +147,9 @@ Map<String, dynamic> _$CreatePriceListRequestToJson(
   'description': instance.description,
   'type': _$PriceListTypeEnumMap[instance.type]!,
   'status': _$PriceListStatusEnumMap[instance.status],
-  'startsAt': instance.startsAt?.toIso8601String(),
-  'endsAt': instance.endsAt?.toIso8601String(),
-  'customerGroupIds': instance.customerGroupIds,
+  'starts_at': instance.startsAt?.toIso8601String(),
+  'ends_at': instance.endsAt?.toIso8601String(),
+  'customer_group_ids': instance.customerGroupIds,
   'metadata': instance.metadata,
 };
 
@@ -156,13 +160,15 @@ UpdatePriceListRequest _$UpdatePriceListRequestFromJson(
   description: json['description'] as String?,
   status: $enumDecodeNullable(_$PriceListStatusEnumMap, json['status']),
   startsAt:
-      json['startsAt'] == null
+      json['starts_at'] == null
           ? null
-          : DateTime.parse(json['startsAt'] as String),
+          : DateTime.parse(json['starts_at'] as String),
   endsAt:
-      json['endsAt'] == null ? null : DateTime.parse(json['endsAt'] as String),
+      json['ends_at'] == null
+          ? null
+          : DateTime.parse(json['ends_at'] as String),
   customerGroupIds:
-      (json['customerGroupIds'] as List<dynamic>?)
+      (json['customer_group_ids'] as List<dynamic>?)
           ?.map((e) => e as String)
           .toList(),
   metadata: json['metadata'] as Map<String, dynamic>?,
@@ -174,24 +180,24 @@ Map<String, dynamic> _$UpdatePriceListRequestToJson(
   'name': instance.name,
   'description': instance.description,
   'status': _$PriceListStatusEnumMap[instance.status],
-  'startsAt': instance.startsAt?.toIso8601String(),
-  'endsAt': instance.endsAt?.toIso8601String(),
-  'customerGroupIds': instance.customerGroupIds,
+  'starts_at': instance.startsAt?.toIso8601String(),
+  'ends_at': instance.endsAt?.toIso8601String(),
+  'customer_group_ids': instance.customerGroupIds,
   'metadata': instance.metadata,
 };
 
 PriceListResponse _$PriceListResponseFromJson(Map<String, dynamic> json) =>
     PriceListResponse(
-      priceList: PriceList.fromJson(json['priceList'] as Map<String, dynamic>),
+      priceList: PriceList.fromJson(json['price_list'] as Map<String, dynamic>),
     );
 
 Map<String, dynamic> _$PriceListResponseToJson(PriceListResponse instance) =>
-    <String, dynamic>{'priceList': instance.priceList};
+    <String, dynamic>{'price_list': instance.priceList};
 
 PriceListsResponse _$PriceListsResponseFromJson(Map<String, dynamic> json) =>
     PriceListsResponse(
       priceLists:
-          (json['priceLists'] as List<dynamic>)
+          (json['price_lists'] as List<dynamic>)
               .map((e) => PriceList.fromJson(e as Map<String, dynamic>))
               .toList(),
       count: (json['count'] as num).toInt(),
@@ -201,7 +207,7 @@ PriceListsResponse _$PriceListsResponseFromJson(Map<String, dynamic> json) =>
 
 Map<String, dynamic> _$PriceListsResponseToJson(PriceListsResponse instance) =>
     <String, dynamic>{
-      'priceLists': instance.priceLists,
+      'price_lists': instance.priceLists,
       'count': instance.count,
       'offset': instance.offset,
       'limit': instance.limit,

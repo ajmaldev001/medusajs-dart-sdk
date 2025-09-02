@@ -10,13 +10,13 @@ ShippingOption _$ShippingOptionFromJson(Map<String, dynamic> json) =>
     ShippingOption(
       id: json['id'] as String,
       name: json['name'] as String,
-      regionId: json['regionId'] as String,
-      profileId: json['profileId'] as String,
-      providerId: json['providerId'] as String,
-      priceType: $enumDecode(_$PriceTypeEnumMap, json['priceType']),
+      regionId: json['region_id'] as String,
+      profileId: json['profile_id'] as String,
+      providerId: json['provider_id'] as String,
+      priceType: $enumDecode(_$PriceTypeEnumMap, json['price_type']),
       amount: (json['amount'] as num?)?.toInt(),
-      isReturn: json['isReturn'] as bool,
-      adminOnly: json['adminOnly'] as bool?,
+      isReturn: json['is_return'] as bool,
+      adminOnly: json['admin_only'] as bool?,
       requirements:
           (json['requirements'] as List<dynamic>?)
               ?.map(
@@ -28,36 +28,36 @@ ShippingOption _$ShippingOptionFromJson(Map<String, dynamic> json) =>
       data: json['data'] as Map<String, dynamic>?,
       metadata: json['metadata'] as Map<String, dynamic>?,
       createdAt:
-          json['createdAt'] == null
+          json['created_at'] == null
               ? null
-              : DateTime.parse(json['createdAt'] as String),
+              : DateTime.parse(json['created_at'] as String),
       updatedAt:
-          json['updatedAt'] == null
+          json['updated_at'] == null
               ? null
-              : DateTime.parse(json['updatedAt'] as String),
+              : DateTime.parse(json['updated_at'] as String),
       deletedAt:
-          json['deletedAt'] == null
+          json['deleted_at'] == null
               ? null
-              : DateTime.parse(json['deletedAt'] as String),
+              : DateTime.parse(json['deleted_at'] as String),
     );
 
 Map<String, dynamic> _$ShippingOptionToJson(ShippingOption instance) =>
     <String, dynamic>{
       'id': instance.id,
       'name': instance.name,
-      'regionId': instance.regionId,
-      'profileId': instance.profileId,
-      'providerId': instance.providerId,
-      'priceType': _$PriceTypeEnumMap[instance.priceType]!,
+      'region_id': instance.regionId,
+      'profile_id': instance.profileId,
+      'provider_id': instance.providerId,
+      'price_type': _$PriceTypeEnumMap[instance.priceType]!,
       'amount': instance.amount,
-      'isReturn': instance.isReturn,
-      'adminOnly': instance.adminOnly,
+      'is_return': instance.isReturn,
+      'admin_only': instance.adminOnly,
       'requirements': instance.requirements,
       'data': instance.data,
       'metadata': instance.metadata,
-      'createdAt': instance.createdAt?.toIso8601String(),
-      'updatedAt': instance.updatedAt?.toIso8601String(),
-      'deletedAt': instance.deletedAt?.toIso8601String(),
+      'created_at': instance.createdAt?.toIso8601String(),
+      'updated_at': instance.updatedAt?.toIso8601String(),
+      'deleted_at': instance.deletedAt?.toIso8601String(),
     };
 
 const _$PriceTypeEnumMap = {
@@ -69,23 +69,23 @@ ShippingOptionRequirement _$ShippingOptionRequirementFromJson(
   Map<String, dynamic> json,
 ) => ShippingOptionRequirement(
   id: json['id'] as String,
-  shippingOptionId: json['shippingOptionId'] as String,
+  shippingOptionId: json['shipping_option_id'] as String,
   type: $enumDecode(_$RequirementTypeEnumMap, json['type']),
   amount: (json['amount'] as num).toInt(),
   deletedAt:
-      json['deletedAt'] == null
+      json['deleted_at'] == null
           ? null
-          : DateTime.parse(json['deletedAt'] as String),
+          : DateTime.parse(json['deleted_at'] as String),
 );
 
 Map<String, dynamic> _$ShippingOptionRequirementToJson(
   ShippingOptionRequirement instance,
 ) => <String, dynamic>{
   'id': instance.id,
-  'shippingOptionId': instance.shippingOptionId,
+  'shipping_option_id': instance.shippingOptionId,
   'type': _$RequirementTypeEnumMap[instance.type]!,
   'amount': instance.amount,
-  'deletedAt': instance.deletedAt?.toIso8601String(),
+  'deleted_at': instance.deletedAt?.toIso8601String(),
 };
 
 const _$RequirementTypeEnumMap = {
@@ -96,35 +96,35 @@ const _$RequirementTypeEnumMap = {
 ShippingMethod _$ShippingMethodFromJson(Map<String, dynamic> json) =>
     ShippingMethod(
       id: json['id'] as String,
-      shippingOptionId: json['shippingOptionId'] as String,
-      cartId: json['cartId'] as String?,
-      orderId: json['orderId'] as String?,
-      swapId: json['swapId'] as String?,
-      returnId: json['returnId'] as String?,
-      claimId: json['claimId'] as String?,
+      shippingOptionId: json['shipping_option_id'] as String,
+      cartId: json['cart_id'] as String?,
+      orderId: json['order_id'] as String?,
+      swapId: json['swap_id'] as String?,
+      returnId: json['return_id'] as String?,
+      claimId: json['claim_id'] as String?,
       price: (json['price'] as num).toInt(),
       data: json['data'] as Map<String, dynamic>?,
       createdAt:
-          json['createdAt'] == null
+          json['created_at'] == null
               ? null
-              : DateTime.parse(json['createdAt'] as String),
+              : DateTime.parse(json['created_at'] as String),
       updatedAt:
-          json['updatedAt'] == null
+          json['updated_at'] == null
               ? null
-              : DateTime.parse(json['updatedAt'] as String),
+              : DateTime.parse(json['updated_at'] as String),
     );
 
 Map<String, dynamic> _$ShippingMethodToJson(ShippingMethod instance) =>
     <String, dynamic>{
       'id': instance.id,
-      'shippingOptionId': instance.shippingOptionId,
-      'cartId': instance.cartId,
-      'orderId': instance.orderId,
-      'swapId': instance.swapId,
-      'returnId': instance.returnId,
-      'claimId': instance.claimId,
+      'shipping_option_id': instance.shippingOptionId,
+      'cart_id': instance.cartId,
+      'order_id': instance.orderId,
+      'swap_id': instance.swapId,
+      'return_id': instance.returnId,
+      'claim_id': instance.claimId,
       'price': instance.price,
       'data': instance.data,
-      'createdAt': instance.createdAt?.toIso8601String(),
-      'updatedAt': instance.updatedAt?.toIso8601String(),
+      'created_at': instance.createdAt?.toIso8601String(),
+      'updated_at': instance.updatedAt?.toIso8601String(),
     };

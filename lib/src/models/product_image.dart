@@ -3,7 +3,7 @@ import 'package:json_annotation/json_annotation.dart';
 part 'product_image.g.dart';
 
 /// Represents a product image
-@JsonSerializable()
+@JsonSerializable(fieldRename: FieldRename.snake)
 class ProductImage {
   /// Unique identifier for the image
   final String id;

@@ -17,7 +17,7 @@ enum ReservationType {
 }
 
 /// Reservation model for Medusa v2
-@JsonSerializable()
+@JsonSerializable(fieldRename: FieldRename.snake)
 class Reservation {
   final String id;
   final String inventoryItemId;
@@ -78,7 +78,7 @@ class Reservation {
 }
 
 /// Create reservation request
-@JsonSerializable()
+@JsonSerializable(fieldRename: FieldRename.snake)
 class CreateReservationRequest {
   final String inventoryItemId;
   final String locationId;
@@ -109,7 +109,7 @@ class CreateReservationRequest {
 }
 
 /// Update reservation request
-@JsonSerializable()
+@JsonSerializable(fieldRename: FieldRename.snake)
 class UpdateReservationRequest {
   final String? locationId;
   final int? quantity;
@@ -132,7 +132,7 @@ class UpdateReservationRequest {
 }
 
 /// Reservation response
-@JsonSerializable()
+@JsonSerializable(fieldRename: FieldRename.snake)
 class ReservationResponse {
   final Reservation reservation;
 
@@ -145,7 +145,7 @@ class ReservationResponse {
 }
 
 /// Reservations response
-@JsonSerializable()
+@JsonSerializable(fieldRename: FieldRename.snake)
 class ReservationsResponse {
   final List<Reservation> reservations;
   final int count;

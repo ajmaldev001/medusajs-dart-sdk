@@ -9,25 +9,25 @@ part of 'order_edit.dart';
 OrderEditChange _$OrderEditChangeFromJson(Map<String, dynamic> json) =>
     OrderEditChange(
       id: json['id'] as String,
-      orderEditId: json['orderEditId'] as String,
+      orderEditId: json['order_edit_id'] as String,
       type: $enumDecode(_$OrderEditChangeTypeEnumMap, json['type']),
-      originalLineItemId: json['originalLineItemId'] as String?,
-      lineItemId: json['lineItemId'] as String?,
+      originalLineItemId: json['original_line_item_id'] as String?,
+      lineItemId: json['line_item_id'] as String?,
       data: json['data'] as Map<String, dynamic>?,
-      createdAt: DateTime.parse(json['createdAt'] as String),
-      updatedAt: DateTime.parse(json['updatedAt'] as String),
+      createdAt: DateTime.parse(json['created_at'] as String),
+      updatedAt: DateTime.parse(json['updated_at'] as String),
     );
 
 Map<String, dynamic> _$OrderEditChangeToJson(OrderEditChange instance) =>
     <String, dynamic>{
       'id': instance.id,
-      'orderEditId': instance.orderEditId,
+      'order_edit_id': instance.orderEditId,
       'type': _$OrderEditChangeTypeEnumMap[instance.type]!,
-      'originalLineItemId': instance.originalLineItemId,
-      'lineItemId': instance.lineItemId,
+      'original_line_item_id': instance.originalLineItemId,
+      'line_item_id': instance.lineItemId,
       'data': instance.data,
-      'createdAt': instance.createdAt.toIso8601String(),
-      'updatedAt': instance.updatedAt.toIso8601String(),
+      'created_at': instance.createdAt.toIso8601String(),
+      'updated_at': instance.updatedAt.toIso8601String(),
     };
 
 const _$OrderEditChangeTypeEnumMap = {
@@ -40,67 +40,67 @@ const _$OrderEditChangeTypeEnumMap = {
 
 OrderEdit _$OrderEditFromJson(Map<String, dynamic> json) => OrderEdit(
   id: json['id'] as String,
-  orderId: json['orderId'] as String,
+  orderId: json['order_id'] as String,
   status: $enumDecode(_$OrderEditStatusEnumMap, json['status']),
-  internalNote: json['internalNote'] as String?,
-  createdBy: json['createdBy'] as String?,
-  requestedBy: json['requestedBy'] as String?,
+  internalNote: json['internal_note'] as String?,
+  createdBy: json['created_by'] as String?,
+  requestedBy: json['requested_by'] as String?,
   requestedAt:
-      json['requestedAt'] == null
+      json['requested_at'] == null
           ? null
-          : DateTime.parse(json['requestedAt'] as String),
-  confirmedBy: json['confirmedBy'] as String?,
+          : DateTime.parse(json['requested_at'] as String),
+  confirmedBy: json['confirmed_by'] as String?,
   confirmedAt:
-      json['confirmedAt'] == null
+      json['confirmed_at'] == null
           ? null
-          : DateTime.parse(json['confirmedAt'] as String),
-  declinedBy: json['declinedBy'] as String?,
+          : DateTime.parse(json['confirmed_at'] as String),
+  declinedBy: json['declined_by'] as String?,
   declinedAt:
-      json['declinedAt'] == null
+      json['declined_at'] == null
           ? null
-          : DateTime.parse(json['declinedAt'] as String),
-  declinedReason: json['declinedReason'] as String?,
-  canceledBy: json['canceledBy'] as String?,
+          : DateTime.parse(json['declined_at'] as String),
+  declinedReason: json['declined_reason'] as String?,
+  canceledBy: json['canceled_by'] as String?,
   canceledAt:
-      json['canceledAt'] == null
+      json['canceled_at'] == null
           ? null
-          : DateTime.parse(json['canceledAt'] as String),
+          : DateTime.parse(json['canceled_at'] as String),
   changes:
       (json['changes'] as List<dynamic>?)
           ?.map((e) => OrderEditChange.fromJson(e as Map<String, dynamic>))
           .toList(),
   subtotal: (json['subtotal'] as num?)?.toInt(),
   total: (json['total'] as num?)?.toInt(),
-  differenceDue: (json['differenceDue'] as num?)?.toInt(),
-  paymentCollectionId: json['paymentCollectionId'] as String?,
+  differenceDue: (json['difference_due'] as num?)?.toInt(),
+  paymentCollectionId: json['payment_collection_id'] as String?,
   metadata: json['metadata'] as Map<String, dynamic>?,
-  createdAt: DateTime.parse(json['createdAt'] as String),
-  updatedAt: DateTime.parse(json['updatedAt'] as String),
+  createdAt: DateTime.parse(json['created_at'] as String),
+  updatedAt: DateTime.parse(json['updated_at'] as String),
 );
 
 Map<String, dynamic> _$OrderEditToJson(OrderEdit instance) => <String, dynamic>{
   'id': instance.id,
-  'orderId': instance.orderId,
+  'order_id': instance.orderId,
   'status': _$OrderEditStatusEnumMap[instance.status]!,
-  'internalNote': instance.internalNote,
-  'createdBy': instance.createdBy,
-  'requestedBy': instance.requestedBy,
-  'requestedAt': instance.requestedAt?.toIso8601String(),
-  'confirmedBy': instance.confirmedBy,
-  'confirmedAt': instance.confirmedAt?.toIso8601String(),
-  'declinedBy': instance.declinedBy,
-  'declinedAt': instance.declinedAt?.toIso8601String(),
-  'declinedReason': instance.declinedReason,
-  'canceledBy': instance.canceledBy,
-  'canceledAt': instance.canceledAt?.toIso8601String(),
+  'internal_note': instance.internalNote,
+  'created_by': instance.createdBy,
+  'requested_by': instance.requestedBy,
+  'requested_at': instance.requestedAt?.toIso8601String(),
+  'confirmed_by': instance.confirmedBy,
+  'confirmed_at': instance.confirmedAt?.toIso8601String(),
+  'declined_by': instance.declinedBy,
+  'declined_at': instance.declinedAt?.toIso8601String(),
+  'declined_reason': instance.declinedReason,
+  'canceled_by': instance.canceledBy,
+  'canceled_at': instance.canceledAt?.toIso8601String(),
   'changes': instance.changes,
   'subtotal': instance.subtotal,
   'total': instance.total,
-  'differenceDue': instance.differenceDue,
-  'paymentCollectionId': instance.paymentCollectionId,
+  'difference_due': instance.differenceDue,
+  'payment_collection_id': instance.paymentCollectionId,
   'metadata': instance.metadata,
-  'createdAt': instance.createdAt.toIso8601String(),
-  'updatedAt': instance.updatedAt.toIso8601String(),
+  'created_at': instance.createdAt.toIso8601String(),
+  'updated_at': instance.updatedAt.toIso8601String(),
 };
 
 const _$OrderEditStatusEnumMap = {
@@ -114,37 +114,37 @@ const _$OrderEditStatusEnumMap = {
 CreateOrderEditRequest _$CreateOrderEditRequestFromJson(
   Map<String, dynamic> json,
 ) => CreateOrderEditRequest(
-  orderId: json['orderId'] as String,
-  internalNote: json['internalNote'] as String?,
+  orderId: json['order_id'] as String,
+  internalNote: json['internal_note'] as String?,
   metadata: json['metadata'] as Map<String, dynamic>?,
 );
 
 Map<String, dynamic> _$CreateOrderEditRequestToJson(
   CreateOrderEditRequest instance,
 ) => <String, dynamic>{
-  'orderId': instance.orderId,
-  'internalNote': instance.internalNote,
+  'order_id': instance.orderId,
+  'internal_note': instance.internalNote,
   'metadata': instance.metadata,
 };
 
 UpdateOrderEditRequest _$UpdateOrderEditRequestFromJson(
   Map<String, dynamic> json,
 ) => UpdateOrderEditRequest(
-  internalNote: json['internalNote'] as String?,
+  internalNote: json['internal_note'] as String?,
   metadata: json['metadata'] as Map<String, dynamic>?,
 );
 
 Map<String, dynamic> _$UpdateOrderEditRequestToJson(
   UpdateOrderEditRequest instance,
 ) => <String, dynamic>{
-  'internalNote': instance.internalNote,
+  'internal_note': instance.internalNote,
   'metadata': instance.metadata,
 };
 
 AddOrderEditLineItemRequest _$AddOrderEditLineItemRequestFromJson(
   Map<String, dynamic> json,
 ) => AddOrderEditLineItemRequest(
-  variantId: json['variantId'] as String,
+  variantId: json['variant_id'] as String,
   quantity: (json['quantity'] as num).toInt(),
   metadata: json['metadata'] as Map<String, dynamic>?,
 );
@@ -152,7 +152,7 @@ AddOrderEditLineItemRequest _$AddOrderEditLineItemRequestFromJson(
 Map<String, dynamic> _$AddOrderEditLineItemRequestToJson(
   AddOrderEditLineItemRequest instance,
 ) => <String, dynamic>{
-  'variantId': instance.variantId,
+  'variant_id': instance.variantId,
   'quantity': instance.quantity,
   'metadata': instance.metadata,
 };
@@ -216,16 +216,16 @@ Map<String, dynamic> _$CancelOrderEditRequestToJson(
 
 OrderEditResponse _$OrderEditResponseFromJson(Map<String, dynamic> json) =>
     OrderEditResponse(
-      orderEdit: OrderEdit.fromJson(json['orderEdit'] as Map<String, dynamic>),
+      orderEdit: OrderEdit.fromJson(json['order_edit'] as Map<String, dynamic>),
     );
 
 Map<String, dynamic> _$OrderEditResponseToJson(OrderEditResponse instance) =>
-    <String, dynamic>{'orderEdit': instance.orderEdit};
+    <String, dynamic>{'order_edit': instance.orderEdit};
 
 OrderEditsResponse _$OrderEditsResponseFromJson(Map<String, dynamic> json) =>
     OrderEditsResponse(
       orderEdits:
-          (json['orderEdits'] as List<dynamic>)
+          (json['order_edits'] as List<dynamic>)
               .map((e) => OrderEdit.fromJson(e as Map<String, dynamic>))
               .toList(),
       count: (json['count'] as num).toInt(),
@@ -235,7 +235,7 @@ OrderEditsResponse _$OrderEditsResponseFromJson(Map<String, dynamic> json) =>
 
 Map<String, dynamic> _$OrderEditsResponseToJson(OrderEditsResponse instance) =>
     <String, dynamic>{
-      'orderEdits': instance.orderEdits,
+      'order_edits': instance.orderEdits,
       'count': instance.count,
       'offset': instance.offset,
       'limit': instance.limit,

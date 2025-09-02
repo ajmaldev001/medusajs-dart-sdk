@@ -12,21 +12,19 @@ Product _$ProductFromJson(Map<String, dynamic> json) => Product(
   subtitle: json['subtitle'] as String?,
   description: json['description'] as String?,
   handle: json['handle'] as String?,
-  isGiftcard: json['isGiftcard'] as bool? ?? false,
-  status:
-      $enumDecodeNullable(_$ProductStatusEnumMap, json['status']) ??
-      ProductStatus.draft,
+  isGiftcard: json['is_giftcard'] as bool? ?? false,
+  status: $enumDecodeNullable(_$ProductStatusEnumMap, json['status']),
   thumbnail: json['thumbnail'] as String?,
   weight: (json['weight'] as num?)?.toInt(),
   length: (json['length'] as num?)?.toInt(),
   height: (json['height'] as num?)?.toInt(),
   width: (json['width'] as num?)?.toInt(),
-  originCountry: json['originCountry'] as String?,
-  hsCode: json['hsCode'] as String?,
+  originCountry: json['origin_country'] as String?,
+  hsCode: json['hs_code'] as String?,
   material: json['material'] as String?,
-  midCode: json['midCode'] as String?,
+  midCode: json['mid_code'] as String?,
   discountable: json['discountable'] as bool? ?? true,
-  externalId: json['externalId'] as String?,
+  externalId: json['external_id'] as String?,
   metadata: json['metadata'] as Map<String, dynamic>?,
   images:
       (json['images'] as List<dynamic>?)
@@ -57,15 +55,15 @@ Product _$ProductFromJson(Map<String, dynamic> json) => Product(
           ?.map((e) => Category.fromJson(e as Map<String, dynamic>))
           .toList(),
   salesChannels:
-      (json['salesChannels'] as List<dynamic>?)
+      (json['sales_channels'] as List<dynamic>?)
           ?.map((e) => SalesChannel.fromJson(e as Map<String, dynamic>))
           .toList(),
-  createdAt: DateTime.parse(json['createdAt'] as String),
-  updatedAt: DateTime.parse(json['updatedAt'] as String),
+  createdAt: DateTime.parse(json['created_at'] as String),
+  updatedAt: DateTime.parse(json['updated_at'] as String),
   deletedAt:
-      json['deletedAt'] == null
+      json['deleted_at'] == null
           ? null
-          : DateTime.parse(json['deletedAt'] as String),
+          : DateTime.parse(json['deleted_at'] as String),
 );
 
 Map<String, dynamic> _$ProductToJson(Product instance) => <String, dynamic>{
@@ -74,19 +72,19 @@ Map<String, dynamic> _$ProductToJson(Product instance) => <String, dynamic>{
   'subtitle': instance.subtitle,
   'description': instance.description,
   'handle': instance.handle,
-  'isGiftcard': instance.isGiftcard,
-  'status': _$ProductStatusEnumMap[instance.status]!,
+  'is_giftcard': instance.isGiftcard,
+  'status': _$ProductStatusEnumMap[instance.status],
   'thumbnail': instance.thumbnail,
   'weight': instance.weight,
   'length': instance.length,
   'height': instance.height,
   'width': instance.width,
-  'originCountry': instance.originCountry,
-  'hsCode': instance.hsCode,
+  'origin_country': instance.originCountry,
+  'hs_code': instance.hsCode,
   'material': instance.material,
-  'midCode': instance.midCode,
+  'mid_code': instance.midCode,
   'discountable': instance.discountable,
-  'externalId': instance.externalId,
+  'external_id': instance.externalId,
   'metadata': instance.metadata,
   'images': instance.images,
   'variants': instance.variants,
@@ -95,10 +93,10 @@ Map<String, dynamic> _$ProductToJson(Product instance) => <String, dynamic>{
   'type': instance.type,
   'collection': instance.collection,
   'categories': instance.categories,
-  'salesChannels': instance.salesChannels,
-  'createdAt': instance.createdAt.toIso8601String(),
-  'updatedAt': instance.updatedAt.toIso8601String(),
-  'deletedAt': instance.deletedAt?.toIso8601String(),
+  'sales_channels': instance.salesChannels,
+  'created_at': instance.createdAt.toIso8601String(),
+  'updated_at': instance.updatedAt.toIso8601String(),
+  'deleted_at': instance.deletedAt?.toIso8601String(),
 };
 
 const _$ProductStatusEnumMap = {

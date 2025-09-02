@@ -8,38 +8,38 @@ part of 'reservation.dart';
 
 Reservation _$ReservationFromJson(Map<String, dynamic> json) => Reservation(
   id: json['id'] as String,
-  inventoryItemId: json['inventoryItemId'] as String,
-  locationId: json['locationId'] as String,
+  inventoryItemId: json['inventory_item_id'] as String,
+  locationId: json['location_id'] as String,
   quantity: (json['quantity'] as num).toInt(),
-  orderId: json['orderId'] as String?,
-  lineItemId: json['lineItemId'] as String?,
+  orderId: json['order_id'] as String?,
+  lineItemId: json['line_item_id'] as String?,
   description: json['description'] as String?,
   type: $enumDecodeNullable(_$ReservationTypeEnumMap, json['type']),
-  externalId: json['externalId'] as String?,
+  externalId: json['external_id'] as String?,
   metadata: json['metadata'] as Map<String, dynamic>?,
-  createdAt: DateTime.parse(json['createdAt'] as String),
-  updatedAt: DateTime.parse(json['updatedAt'] as String),
+  createdAt: DateTime.parse(json['created_at'] as String),
+  updatedAt: DateTime.parse(json['updated_at'] as String),
   deletedAt:
-      json['deletedAt'] == null
+      json['deleted_at'] == null
           ? null
-          : DateTime.parse(json['deletedAt'] as String),
+          : DateTime.parse(json['deleted_at'] as String),
 );
 
 Map<String, dynamic> _$ReservationToJson(Reservation instance) =>
     <String, dynamic>{
       'id': instance.id,
-      'inventoryItemId': instance.inventoryItemId,
-      'locationId': instance.locationId,
+      'inventory_item_id': instance.inventoryItemId,
+      'location_id': instance.locationId,
       'quantity': instance.quantity,
-      'orderId': instance.orderId,
-      'lineItemId': instance.lineItemId,
+      'order_id': instance.orderId,
+      'line_item_id': instance.lineItemId,
       'description': instance.description,
       'type': _$ReservationTypeEnumMap[instance.type],
-      'externalId': instance.externalId,
+      'external_id': instance.externalId,
       'metadata': instance.metadata,
-      'createdAt': instance.createdAt.toIso8601String(),
-      'updatedAt': instance.updatedAt.toIso8601String(),
-      'deletedAt': instance.deletedAt?.toIso8601String(),
+      'created_at': instance.createdAt.toIso8601String(),
+      'updated_at': instance.updatedAt.toIso8601String(),
+      'deleted_at': instance.deletedAt?.toIso8601String(),
     };
 
 const _$ReservationTypeEnumMap = {
@@ -53,48 +53,48 @@ const _$ReservationTypeEnumMap = {
 CreateReservationRequest _$CreateReservationRequestFromJson(
   Map<String, dynamic> json,
 ) => CreateReservationRequest(
-  inventoryItemId: json['inventoryItemId'] as String,
-  locationId: json['locationId'] as String,
+  inventoryItemId: json['inventory_item_id'] as String,
+  locationId: json['location_id'] as String,
   quantity: (json['quantity'] as num).toInt(),
-  orderId: json['orderId'] as String?,
-  lineItemId: json['lineItemId'] as String?,
+  orderId: json['order_id'] as String?,
+  lineItemId: json['line_item_id'] as String?,
   description: json['description'] as String?,
   type: $enumDecodeNullable(_$ReservationTypeEnumMap, json['type']),
-  externalId: json['externalId'] as String?,
+  externalId: json['external_id'] as String?,
   metadata: json['metadata'] as Map<String, dynamic>?,
 );
 
 Map<String, dynamic> _$CreateReservationRequestToJson(
   CreateReservationRequest instance,
 ) => <String, dynamic>{
-  'inventoryItemId': instance.inventoryItemId,
-  'locationId': instance.locationId,
+  'inventory_item_id': instance.inventoryItemId,
+  'location_id': instance.locationId,
   'quantity': instance.quantity,
-  'orderId': instance.orderId,
-  'lineItemId': instance.lineItemId,
+  'order_id': instance.orderId,
+  'line_item_id': instance.lineItemId,
   'description': instance.description,
   'type': _$ReservationTypeEnumMap[instance.type],
-  'externalId': instance.externalId,
+  'external_id': instance.externalId,
   'metadata': instance.metadata,
 };
 
 UpdateReservationRequest _$UpdateReservationRequestFromJson(
   Map<String, dynamic> json,
 ) => UpdateReservationRequest(
-  locationId: json['locationId'] as String?,
+  locationId: json['location_id'] as String?,
   quantity: (json['quantity'] as num?)?.toInt(),
   description: json['description'] as String?,
-  externalId: json['externalId'] as String?,
+  externalId: json['external_id'] as String?,
   metadata: json['metadata'] as Map<String, dynamic>?,
 );
 
 Map<String, dynamic> _$UpdateReservationRequestToJson(
   UpdateReservationRequest instance,
 ) => <String, dynamic>{
-  'locationId': instance.locationId,
+  'location_id': instance.locationId,
   'quantity': instance.quantity,
   'description': instance.description,
-  'externalId': instance.externalId,
+  'external_id': instance.externalId,
   'metadata': instance.metadata,
 };
 

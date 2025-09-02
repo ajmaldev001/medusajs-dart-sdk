@@ -35,7 +35,7 @@ enum WorkflowStepStatus {
 }
 
 /// Workflow step execution model
-@JsonSerializable()
+@JsonSerializable(fieldRename: FieldRename.snake)
 class WorkflowStepExecution {
   final String id;
   final String workflowExecutionId;
@@ -106,7 +106,7 @@ class WorkflowStepExecution {
 }
 
 /// Workflow execution model for Medusa v2
-@JsonSerializable()
+@JsonSerializable(fieldRename: FieldRename.snake)
 class WorkflowExecution {
   final String id;
   final String workflowId;
@@ -209,7 +209,7 @@ class WorkflowExecution {
 }
 
 /// Execute workflow request
-@JsonSerializable()
+@JsonSerializable(fieldRename: FieldRename.snake)
 class ExecuteWorkflowRequest {
   final String workflowId;
   final Map<String, dynamic>? input;
@@ -232,7 +232,7 @@ class ExecuteWorkflowRequest {
 }
 
 /// Cancel workflow execution request
-@JsonSerializable()
+@JsonSerializable(fieldRename: FieldRename.snake)
 class CancelWorkflowExecutionRequest {
   final String? reason;
 
@@ -245,7 +245,7 @@ class CancelWorkflowExecutionRequest {
 }
 
 /// Retry workflow execution request
-@JsonSerializable()
+@JsonSerializable(fieldRename: FieldRename.snake)
 class RetryWorkflowExecutionRequest {
   final String? fromStepId;
   final Map<String, dynamic>? input;
@@ -259,7 +259,7 @@ class RetryWorkflowExecutionRequest {
 }
 
 /// Workflow execution response
-@JsonSerializable()
+@JsonSerializable(fieldRename: FieldRename.snake)
 class WorkflowExecutionResponse {
   final WorkflowExecution workflowExecution;
 
@@ -272,7 +272,7 @@ class WorkflowExecutionResponse {
 }
 
 /// Workflow executions response
-@JsonSerializable()
+@JsonSerializable(fieldRename: FieldRename.snake)
 class WorkflowExecutionsResponse {
   final List<WorkflowExecution> workflowExecutions;
   final int count;

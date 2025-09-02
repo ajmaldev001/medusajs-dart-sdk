@@ -17,7 +17,7 @@ enum FulfillmentStatus {
 }
 
 /// Represents a fulfillment
-@JsonSerializable()
+@JsonSerializable(fieldRename: FieldRename.snake)
 class Fulfillment {
   /// Unique identifier for the fulfillment
   final String id;
@@ -89,7 +89,7 @@ class Fulfillment {
 }
 
 /// Represents a shipping option
-@JsonSerializable()
+@JsonSerializable(fieldRename: FieldRename.snake)
 class ShippingOption {
   /// Unique identifier for the shipping option
   final String id;
@@ -144,7 +144,7 @@ class ShippingOption {
 }
 
 /// Represents a shipping profile
-@JsonSerializable()
+@JsonSerializable(fieldRename: FieldRename.snake)
 class ShippingProfile {
   /// Unique identifier for the shipping profile
   final String id;

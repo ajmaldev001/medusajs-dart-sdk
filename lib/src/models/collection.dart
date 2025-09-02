@@ -3,7 +3,7 @@ import 'package:json_annotation/json_annotation.dart';
 part 'collection.g.dart';
 
 /// Represents a product collection in the Medusa system
-@JsonSerializable()
+@JsonSerializable(fieldRename: FieldRename.snake)
 class Collection {
   /// Unique identifier for the collection
   final String id;

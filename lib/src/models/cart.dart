@@ -4,7 +4,7 @@ import 'common.dart';
 part 'cart.g.dart';
 
 /// Represents a shopping cart in the Medusa system
-@JsonSerializable()
+@JsonSerializable(fieldRename: FieldRename.snake)
 class Cart {
   /// Unique identifier for the cart
   final String id;
@@ -46,28 +46,51 @@ class Cart {
   final Map<String, dynamic>? context;
 
   /// Total amount (including tax)
-  final int total;
+  final double? total;
 
   /// Subtotal amount (before tax and shipping)
-  final int subtotal;
+  final double? subtotal;
 
   /// Tax amount
-  final int taxTotal;
+  final double? taxTotal;
 
   /// Shipping amount
-  final int shippingTotal;
+  final double? shippingTotal;
 
   /// Discount amount
-  final int discountTotal;
+  final double? discountTotal;
 
   /// Gift card amount
-  final int giftCardTotal;
+  final int? giftCardTotal;
 
   /// Gift card tax amount
-  final int giftCardTaxTotal;
+  final int? giftCardTaxTotal;
 
   /// Item count in the cart
-  final int itemCount;
+  final int? itemCount;
+
+  /// Sales channel ID
+  final String? salesChannelId;
+
+  /// Additional totals for comprehensive cart information
+  final int? discountSubtotal;
+  final int? discountTaxTotal;
+  final int? originalTotal;
+  final int? originalTaxTotal;
+  final int? itemTotal;
+  final int? itemSubtotal;
+  final int? itemTaxTotal;
+  final int? originalItemTotal;
+  final int? originalItemSubtotal;
+  final int? originalItemTaxTotal;
+  final int? shippingSubtotal;
+  final int? shippingTaxTotal;
+  final int? originalShippingTaxTotal;
+  final int? originalShippingSubtotal;
+  final int? originalShippingTotal;
+  final int? creditLineSubtotal;
+  final int? creditLineTaxTotal;
+  final int? creditLineTotal;
 
   /// When the cart was created
   final DateTime createdAt;
@@ -95,14 +118,33 @@ class Cart {
     this.paymentAuthorizedAt,
     this.idempotencyKey,
     this.context,
-    required this.total,
-    required this.subtotal,
-    required this.taxTotal,
-    required this.shippingTotal,
-    required this.discountTotal,
-    required this.giftCardTotal,
-    required this.giftCardTaxTotal,
-    required this.itemCount,
+    this.total = 0.0,
+    this.subtotal = 0.0,
+    this.taxTotal = 0.0,
+    this.shippingTotal = 0.0,
+    this.discountTotal = 0.0,
+    this.giftCardTotal,
+    this.giftCardTaxTotal,
+    this.itemCount,
+    this.salesChannelId,
+    this.discountSubtotal,
+    this.discountTaxTotal,
+    this.originalTotal,
+    this.originalTaxTotal,
+    this.itemTotal,
+    this.itemSubtotal,
+    this.itemTaxTotal,
+    this.originalItemTotal,
+    this.originalItemSubtotal,
+    this.originalItemTaxTotal,
+    this.shippingSubtotal,
+    this.shippingTaxTotal,
+    this.originalShippingTaxTotal,
+    this.originalShippingSubtotal,
+    this.originalShippingTotal,
+    this.creditLineSubtotal,
+    this.creditLineTaxTotal,
+    this.creditLineTotal,
     required this.createdAt,
     required this.updatedAt,
     this.deletedAt,
@@ -116,10 +158,10 @@ class Cart {
   bool get isCompleted => completedAt != null;
 
   /// Check if cart is empty
-  bool get isEmpty => itemCount == 0;
+  bool get isEmpty => (itemCount ?? 0) == 0;
 
   /// Check if cart has items
-  bool get hasItems => itemCount > 0;
+  bool get hasItems => (itemCount ?? 0) > 0;
 
   /// Check if payment is authorized
   bool get isPaymentAuthorized => paymentAuthorizedAt != null;
@@ -135,26 +177,26 @@ class Cart {
 
   /// Get cart total formatted
   String get formattedTotal {
-    return '\$${(total / 100).toStringAsFixed(2)}';
+    return '\$${(total ?? 0).toStringAsFixed(2)}';
   }
 
   /// Get cart subtotal formatted
   String get formattedSubtotal {
-    return '\$${(subtotal / 100).toStringAsFixed(2)}';
+    return '\$${(subtotal ?? 0).toStringAsFixed(2)}';
   }
 
   /// Get tax amount formatted
   String get formattedTaxTotal {
-    return '\$${(taxTotal / 100).toStringAsFixed(2)}';
+    return '\$${(taxTotal ?? 0).toStringAsFixed(2)}';
   }
 
   /// Get shipping amount formatted
   String get formattedShippingTotal {
-    return '\$${(shippingTotal / 100).toStringAsFixed(2)}';
+    return '\$${(shippingTotal ?? 0).toStringAsFixed(2)}';
   }
 
   /// Get discount amount formatted
   String get formattedDiscountTotal {
-    return '\$${(discountTotal / 100).toStringAsFixed(2)}';
+    return '\$${(discountTotal ?? 0).toStringAsFixed(2)}';
   }
 }

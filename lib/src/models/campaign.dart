@@ -22,7 +22,7 @@ enum CampaignBudgetType {
 }
 
 /// Represents a campaign in the Medusa system
-@JsonSerializable()
+@JsonSerializable(fieldRename: FieldRename.snake)
 class Campaign {
   /// Unique identifier for the campaign
   final String id;
@@ -92,7 +92,7 @@ class Campaign {
 }
 
 /// Campaign budget
-@JsonSerializable()
+@JsonSerializable(fieldRename: FieldRename.snake)
 class CampaignBudget {
   /// Budget type
   final CampaignBudgetType type;
@@ -123,7 +123,7 @@ class CampaignBudget {
 }
 
 /// Request to create a campaign
-@JsonSerializable()
+@JsonSerializable(fieldRename: FieldRename.snake)
 class CreateCampaignRequest {
   /// Campaign name
   final String name;
@@ -166,7 +166,7 @@ class CreateCampaignRequest {
 }
 
 /// Request to update a campaign
-@JsonSerializable()
+@JsonSerializable(fieldRename: FieldRename.snake)
 class UpdateCampaignRequest {
   /// Campaign name
   final String? name;

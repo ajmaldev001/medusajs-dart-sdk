@@ -43,7 +43,7 @@ enum ClaimFulfillmentStatus {
 }
 
 /// Claim item model
-@JsonSerializable()
+@JsonSerializable(fieldRename: FieldRename.snake)
 class ClaimItem {
   final String id;
   final String itemId;
@@ -80,7 +80,7 @@ class ClaimItem {
 }
 
 /// Additional claim item (for replacements)
-@JsonSerializable()
+@JsonSerializable(fieldRename: FieldRename.snake)
 class AdditionalClaimItem {
   final String id;
   final String variantId;
@@ -109,7 +109,7 @@ class AdditionalClaimItem {
 }
 
 /// Claim order model for Medusa v2
-@JsonSerializable()
+@JsonSerializable(fieldRename: FieldRename.snake)
 class ClaimOrder {
   final String id;
   final ClaimPaymentStatus paymentStatus;
@@ -186,7 +186,7 @@ class ClaimOrder {
 }
 
 /// Create claim request
-@JsonSerializable()
+@JsonSerializable(fieldRename: FieldRename.snake)
 class CreateClaimRequest {
   final String orderId;
   final ClaimType type;
@@ -217,7 +217,7 @@ class CreateClaimRequest {
 }
 
 /// Create claim item request
-@JsonSerializable()
+@JsonSerializable(fieldRename: FieldRename.snake)
 class CreateClaimItemRequest {
   final String itemId;
   final int quantity;
@@ -242,7 +242,7 @@ class CreateClaimItemRequest {
 }
 
 /// Create additional claim item request
-@JsonSerializable()
+@JsonSerializable(fieldRename: FieldRename.snake)
 class CreateAdditionalClaimItemRequest {
   final String variantId;
   final int quantity;
@@ -263,7 +263,7 @@ class CreateAdditionalClaimItemRequest {
 }
 
 /// Update claim request
-@JsonSerializable()
+@JsonSerializable(fieldRename: FieldRename.snake)
 class UpdateClaimRequest {
   final String? note;
   final bool? noNotification;
@@ -278,7 +278,7 @@ class UpdateClaimRequest {
 }
 
 /// Cancel claim request
-@JsonSerializable()
+@JsonSerializable(fieldRename: FieldRename.snake)
 class CancelClaimRequest {
   final bool? noNotification;
 
@@ -291,7 +291,7 @@ class CancelClaimRequest {
 }
 
 /// Claim response
-@JsonSerializable()
+@JsonSerializable(fieldRename: FieldRename.snake)
 class ClaimResponse {
   final ClaimOrder claim;
 
@@ -304,7 +304,7 @@ class ClaimResponse {
 }
 
 /// Claims response
-@JsonSerializable()
+@JsonSerializable(fieldRename: FieldRename.snake)
 class ClaimsResponse {
   final List<ClaimOrder> claims;
   final int count;

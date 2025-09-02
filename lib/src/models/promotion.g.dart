@@ -14,14 +14,14 @@ PromotionRule _$PromotionRuleFromJson(Map<String, dynamic> json) =>
       operator: $enumDecode(_$RuleOperatorEnumMap, json['operator']),
       values:
           (json['values'] as List<dynamic>).map((e) => e as String).toList(),
-      promotionId: json['promotionId'] as String?,
-      ruleType: $enumDecodeNullable(_$RuleTypeEnumMap, json['ruleType']),
-      createdAt: DateTime.parse(json['createdAt'] as String),
-      updatedAt: DateTime.parse(json['updatedAt'] as String),
+      promotionId: json['promotion_id'] as String?,
+      ruleType: $enumDecodeNullable(_$RuleTypeEnumMap, json['rule_type']),
+      createdAt: DateTime.parse(json['created_at'] as String),
+      updatedAt: DateTime.parse(json['updated_at'] as String),
       deletedAt:
-          json['deletedAt'] == null
+          json['deleted_at'] == null
               ? null
-              : DateTime.parse(json['deletedAt'] as String),
+              : DateTime.parse(json['deleted_at'] as String),
     );
 
 Map<String, dynamic> _$PromotionRuleToJson(PromotionRule instance) =>
@@ -31,11 +31,11 @@ Map<String, dynamic> _$PromotionRuleToJson(PromotionRule instance) =>
       'attribute': _$RuleAttributeEnumMap[instance.attribute]!,
       'operator': _$RuleOperatorEnumMap[instance.operator]!,
       'values': instance.values,
-      'promotionId': instance.promotionId,
-      'ruleType': _$RuleTypeEnumMap[instance.ruleType],
-      'createdAt': instance.createdAt.toIso8601String(),
-      'updatedAt': instance.updatedAt.toIso8601String(),
-      'deletedAt': instance.deletedAt?.toIso8601String(),
+      'promotion_id': instance.promotionId,
+      'rule_type': _$RuleTypeEnumMap[instance.ruleType],
+      'created_at': instance.createdAt.toIso8601String(),
+      'updated_at': instance.updatedAt.toIso8601String(),
+      'deleted_at': instance.deletedAt?.toIso8601String(),
     };
 
 const _$RuleAttributeEnumMap = {
@@ -72,14 +72,14 @@ CampaignBudget _$CampaignBudgetFromJson(Map<String, dynamic> json) =>
       type: json['type'] as String,
       limit: (json['limit'] as num?)?.toInt(),
       used: (json['used'] as num).toInt(),
-      currencyCode: json['currencyCode'] as String?,
-      campaignId: json['campaignId'] as String?,
-      createdAt: DateTime.parse(json['createdAt'] as String),
-      updatedAt: DateTime.parse(json['updatedAt'] as String),
+      currencyCode: json['currency_code'] as String?,
+      campaignId: json['campaign_id'] as String?,
+      createdAt: DateTime.parse(json['created_at'] as String),
+      updatedAt: DateTime.parse(json['updated_at'] as String),
       deletedAt:
-          json['deletedAt'] == null
+          json['deleted_at'] == null
               ? null
-              : DateTime.parse(json['deletedAt'] as String),
+              : DateTime.parse(json['deleted_at'] as String),
     );
 
 Map<String, dynamic> _$CampaignBudgetToJson(CampaignBudget instance) =>
@@ -88,71 +88,73 @@ Map<String, dynamic> _$CampaignBudgetToJson(CampaignBudget instance) =>
       'type': instance.type,
       'limit': instance.limit,
       'used': instance.used,
-      'currencyCode': instance.currencyCode,
-      'campaignId': instance.campaignId,
-      'createdAt': instance.createdAt.toIso8601String(),
-      'updatedAt': instance.updatedAt.toIso8601String(),
-      'deletedAt': instance.deletedAt?.toIso8601String(),
+      'currency_code': instance.currencyCode,
+      'campaign_id': instance.campaignId,
+      'created_at': instance.createdAt.toIso8601String(),
+      'updated_at': instance.updatedAt.toIso8601String(),
+      'deleted_at': instance.deletedAt?.toIso8601String(),
     };
 
 Promotion _$PromotionFromJson(Map<String, dynamic> json) => Promotion(
   id: json['id'] as String,
   code: json['code'] as String,
-  campaignId: json['campaignId'] as String?,
-  isAutomatic: json['isAutomatic'] as bool,
+  campaignId: json['campaign_id'] as String?,
+  isAutomatic: json['is_automatic'] as bool,
   type: $enumDecode(_$PromotionTypeEnumMap, json['type']),
   startsAt:
-      json['startsAt'] == null
+      json['starts_at'] == null
           ? null
-          : DateTime.parse(json['startsAt'] as String),
+          : DateTime.parse(json['starts_at'] as String),
   endsAt:
-      json['endsAt'] == null ? null : DateTime.parse(json['endsAt'] as String),
+      json['ends_at'] == null
+          ? null
+          : DateTime.parse(json['ends_at'] as String),
   rules:
       (json['rules'] as List<dynamic>?)
           ?.map((e) => PromotionRule.fromJson(e as Map<String, dynamic>))
           .toList(),
   targetRules:
-      (json['targetRules'] as List<dynamic>?)
+      (json['target_rules'] as List<dynamic>?)
           ?.map((e) => PromotionRule.fromJson(e as Map<String, dynamic>))
           .toList(),
   buyRules:
-      (json['buyRules'] as List<dynamic>?)
+      (json['buy_rules'] as List<dynamic>?)
           ?.map((e) => PromotionRule.fromJson(e as Map<String, dynamic>))
           .toList(),
   applicationMethod: $enumDecode(
     _$ApplicationMethodEnumMap,
-    json['applicationMethod'],
+    json['application_method'],
   ),
   budget:
       json['budget'] == null
           ? null
           : CampaignBudget.fromJson(json['budget'] as Map<String, dynamic>),
   metadata: json['metadata'] as Map<String, dynamic>?,
-  createdAt: DateTime.parse(json['createdAt'] as String),
-  updatedAt: DateTime.parse(json['updatedAt'] as String),
+  createdAt: DateTime.parse(json['created_at'] as String),
+  updatedAt: DateTime.parse(json['updated_at'] as String),
   deletedAt:
-      json['deletedAt'] == null
+      json['deleted_at'] == null
           ? null
-          : DateTime.parse(json['deletedAt'] as String),
+          : DateTime.parse(json['deleted_at'] as String),
 );
 
 Map<String, dynamic> _$PromotionToJson(Promotion instance) => <String, dynamic>{
   'id': instance.id,
   'code': instance.code,
-  'campaignId': instance.campaignId,
-  'isAutomatic': instance.isAutomatic,
+  'campaign_id': instance.campaignId,
+  'is_automatic': instance.isAutomatic,
   'type': _$PromotionTypeEnumMap[instance.type]!,
-  'startsAt': instance.startsAt?.toIso8601String(),
-  'endsAt': instance.endsAt?.toIso8601String(),
+  'starts_at': instance.startsAt?.toIso8601String(),
+  'ends_at': instance.endsAt?.toIso8601String(),
   'rules': instance.rules,
-  'targetRules': instance.targetRules,
-  'buyRules': instance.buyRules,
-  'applicationMethod': _$ApplicationMethodEnumMap[instance.applicationMethod]!,
+  'target_rules': instance.targetRules,
+  'buy_rules': instance.buyRules,
+  'application_method': _$ApplicationMethodEnumMap[instance.applicationMethod]!,
   'budget': instance.budget,
   'metadata': instance.metadata,
-  'createdAt': instance.createdAt.toIso8601String(),
-  'updatedAt': instance.updatedAt.toIso8601String(),
-  'deletedAt': instance.deletedAt?.toIso8601String(),
+  'created_at': instance.createdAt.toIso8601String(),
+  'updated_at': instance.updatedAt.toIso8601String(),
+  'deleted_at': instance.deletedAt?.toIso8601String(),
 };
 
 const _$PromotionTypeEnumMap = {
@@ -169,29 +171,31 @@ CreatePromotionRequest _$CreatePromotionRequestFromJson(
   Map<String, dynamic> json,
 ) => CreatePromotionRequest(
   code: json['code'] as String,
-  campaignId: json['campaignId'] as String?,
-  isAutomatic: json['isAutomatic'] as bool?,
+  campaignId: json['campaign_id'] as String?,
+  isAutomatic: json['is_automatic'] as bool?,
   type: $enumDecode(_$PromotionTypeEnumMap, json['type']),
   startsAt:
-      json['startsAt'] == null
+      json['starts_at'] == null
           ? null
-          : DateTime.parse(json['startsAt'] as String),
+          : DateTime.parse(json['starts_at'] as String),
   endsAt:
-      json['endsAt'] == null ? null : DateTime.parse(json['endsAt'] as String),
+      json['ends_at'] == null
+          ? null
+          : DateTime.parse(json['ends_at'] as String),
   applicationMethod: $enumDecode(
     _$ApplicationMethodEnumMap,
-    json['applicationMethod'],
+    json['application_method'],
   ),
   rules:
       (json['rules'] as List<dynamic>?)
           ?.map((e) => PromotionRule.fromJson(e as Map<String, dynamic>))
           .toList(),
   targetRules:
-      (json['targetRules'] as List<dynamic>?)
+      (json['target_rules'] as List<dynamic>?)
           ?.map((e) => PromotionRule.fromJson(e as Map<String, dynamic>))
           .toList(),
   buyRules:
-      (json['buyRules'] as List<dynamic>?)
+      (json['buy_rules'] as List<dynamic>?)
           ?.map((e) => PromotionRule.fromJson(e as Map<String, dynamic>))
           .toList(),
   metadata: json['metadata'] as Map<String, dynamic>?,
@@ -201,15 +205,15 @@ Map<String, dynamic> _$CreatePromotionRequestToJson(
   CreatePromotionRequest instance,
 ) => <String, dynamic>{
   'code': instance.code,
-  'campaignId': instance.campaignId,
-  'isAutomatic': instance.isAutomatic,
+  'campaign_id': instance.campaignId,
+  'is_automatic': instance.isAutomatic,
   'type': _$PromotionTypeEnumMap[instance.type]!,
-  'startsAt': instance.startsAt?.toIso8601String(),
-  'endsAt': instance.endsAt?.toIso8601String(),
-  'applicationMethod': _$ApplicationMethodEnumMap[instance.applicationMethod]!,
+  'starts_at': instance.startsAt?.toIso8601String(),
+  'ends_at': instance.endsAt?.toIso8601String(),
+  'application_method': _$ApplicationMethodEnumMap[instance.applicationMethod]!,
   'rules': instance.rules,
-  'targetRules': instance.targetRules,
-  'buyRules': instance.buyRules,
+  'target_rules': instance.targetRules,
+  'buy_rules': instance.buyRules,
   'metadata': instance.metadata,
 };
 
@@ -217,23 +221,25 @@ UpdatePromotionRequest _$UpdatePromotionRequestFromJson(
   Map<String, dynamic> json,
 ) => UpdatePromotionRequest(
   code: json['code'] as String?,
-  isAutomatic: json['isAutomatic'] as bool?,
+  isAutomatic: json['is_automatic'] as bool?,
   startsAt:
-      json['startsAt'] == null
+      json['starts_at'] == null
           ? null
-          : DateTime.parse(json['startsAt'] as String),
+          : DateTime.parse(json['starts_at'] as String),
   endsAt:
-      json['endsAt'] == null ? null : DateTime.parse(json['endsAt'] as String),
+      json['ends_at'] == null
+          ? null
+          : DateTime.parse(json['ends_at'] as String),
   rules:
       (json['rules'] as List<dynamic>?)
           ?.map((e) => PromotionRule.fromJson(e as Map<String, dynamic>))
           .toList(),
   targetRules:
-      (json['targetRules'] as List<dynamic>?)
+      (json['target_rules'] as List<dynamic>?)
           ?.map((e) => PromotionRule.fromJson(e as Map<String, dynamic>))
           .toList(),
   buyRules:
-      (json['buyRules'] as List<dynamic>?)
+      (json['buy_rules'] as List<dynamic>?)
           ?.map((e) => PromotionRule.fromJson(e as Map<String, dynamic>))
           .toList(),
   metadata: json['metadata'] as Map<String, dynamic>?,
@@ -243,12 +249,12 @@ Map<String, dynamic> _$UpdatePromotionRequestToJson(
   UpdatePromotionRequest instance,
 ) => <String, dynamic>{
   'code': instance.code,
-  'isAutomatic': instance.isAutomatic,
-  'startsAt': instance.startsAt?.toIso8601String(),
-  'endsAt': instance.endsAt?.toIso8601String(),
+  'is_automatic': instance.isAutomatic,
+  'starts_at': instance.startsAt?.toIso8601String(),
+  'ends_at': instance.endsAt?.toIso8601String(),
   'rules': instance.rules,
-  'targetRules': instance.targetRules,
-  'buyRules': instance.buyRules,
+  'target_rules': instance.targetRules,
+  'buy_rules': instance.buyRules,
   'metadata': instance.metadata,
 };
 

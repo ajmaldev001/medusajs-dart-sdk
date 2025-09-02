@@ -3,7 +3,7 @@ import 'package:json_annotation/json_annotation.dart';
 part 'region.g.dart';
 
 /// Represents a region in the Medusa system
-@JsonSerializable()
+@JsonSerializable(fieldRename: FieldRename.snake)
 class Region {
   /// Unique identifier for the region
   final String id;
@@ -15,7 +15,7 @@ class Region {
   final String currencyCode;
 
   /// Tax rate for the region
-  final double taxRate;
+  final double? taxRate;
 
   /// Tax code
   final String? taxCode;
@@ -48,7 +48,7 @@ class Region {
     required this.id,
     required this.name,
     required this.currencyCode,
-    required this.taxRate,
+    this.taxRate,
     this.taxCode,
     this.countries,
     this.paymentProviders,
@@ -77,16 +77,18 @@ class Region {
 }
 
 /// Represents a country in the Medusa system
-@JsonSerializable()
+@JsonSerializable(fieldRename: FieldRename.snake)
 class Country {
   /// ISO 2-letter country code
+  @JsonKey(name: 'iso_2')
   final String iso2;
 
   /// ISO 3-letter country code
+  @JsonKey(name: 'iso_3')
   final String iso3;
 
-  /// Numeric country code
-  final int numCode;
+  /// Numeric country code (as string in the API)
+  final String numCode;
 
   /// Country name
   final String name;
@@ -97,6 +99,18 @@ class Country {
   /// Region ID this country belongs to
   final String? regionId;
 
+  /// Metadata associated with the country
+  final Map<String, dynamic>? metadata;
+
+  /// Timestamp of creation
+  final DateTime? createdAt;
+
+  /// Timestamp of last update
+  final DateTime? updatedAt;
+
+  /// Timestamp of deletion (soft delete)
+  final DateTime? deletedAt;
+
   const Country({
     required this.iso2,
     required this.iso3,
@@ -104,6 +118,10 @@ class Country {
     required this.name,
     required this.displayName,
     this.regionId,
+    this.metadata,
+    this.createdAt,
+    this.updatedAt,
+    this.deletedAt,
   });
 
   factory Country.fromJson(Map<String, dynamic> json) =>
@@ -125,7 +143,7 @@ class Country {
 }
 
 /// Represents a payment provider
-@JsonSerializable()
+@JsonSerializable(fieldRename: FieldRename.snake)
 class PaymentProvider {
   /// Unique identifier for the payment provider
   final String id;
@@ -154,7 +172,7 @@ class PaymentProvider {
 }
 
 /// Represents a fulfillment provider
-@JsonSerializable()
+@JsonSerializable(fieldRename: FieldRename.snake)
 class FulfillmentProvider {
   /// Unique identifier for the fulfillment provider
   final String id;

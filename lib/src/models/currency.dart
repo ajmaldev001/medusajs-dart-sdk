@@ -3,7 +3,7 @@ import 'package:json_annotation/json_annotation.dart';
 part 'currency.g.dart';
 
 /// Represents a currency in the Medusa system
-@JsonSerializable()
+@JsonSerializable(fieldRename: FieldRename.snake)
 class Currency {
   /// Currency code (ISO 4217)
   final String code;

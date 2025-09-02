@@ -45,7 +45,7 @@ enum ExchangeFulfillmentStatus {
 }
 
 /// Exchange item model
-@JsonSerializable()
+@JsonSerializable(fieldRename: FieldRename.snake)
 class ExchangeItem {
   final String id;
   final String exchangeId;
@@ -74,7 +74,7 @@ class ExchangeItem {
 }
 
 /// Additional exchange item model
-@JsonSerializable()
+@JsonSerializable(fieldRename: FieldRename.snake)
 class AdditionalExchangeItem {
   final String id;
   final String exchangeId;
@@ -101,7 +101,7 @@ class AdditionalExchangeItem {
 }
 
 /// Exchange model for Medusa v2
-@JsonSerializable()
+@JsonSerializable(fieldRename: FieldRename.snake)
 class Exchange {
   final String id;
   final ExchangeStatus status;
@@ -206,7 +206,7 @@ class Exchange {
 }
 
 /// Create exchange request
-@JsonSerializable()
+@JsonSerializable(fieldRename: FieldRename.snake)
 class CreateExchangeRequest {
   final String orderId;
   final List<CreateExchangeItemRequest> exchangeItems;
@@ -235,7 +235,7 @@ class CreateExchangeRequest {
 }
 
 /// Create exchange item request
-@JsonSerializable()
+@JsonSerializable(fieldRename: FieldRename.snake)
 class CreateExchangeItemRequest {
   final String orderItemId;
   final int quantity;
@@ -256,7 +256,7 @@ class CreateExchangeItemRequest {
 }
 
 /// Create additional exchange item request
-@JsonSerializable()
+@JsonSerializable(fieldRename: FieldRename.snake)
 class CreateAdditionalExchangeItemRequest {
   final String variantId;
   final int quantity;
@@ -277,7 +277,7 @@ class CreateAdditionalExchangeItemRequest {
 }
 
 /// Update exchange request
-@JsonSerializable()
+@JsonSerializable(fieldRename: FieldRename.snake)
 class UpdateExchangeRequest {
   final String? note;
   final bool? noNotification;
@@ -292,7 +292,7 @@ class UpdateExchangeRequest {
 }
 
 /// Cancel exchange request
-@JsonSerializable()
+@JsonSerializable(fieldRename: FieldRename.snake)
 class CancelExchangeRequest {
   final bool? noNotification;
 
@@ -305,7 +305,7 @@ class CancelExchangeRequest {
 }
 
 /// Process exchange payment request
-@JsonSerializable()
+@JsonSerializable(fieldRename: FieldRename.snake)
 class ProcessExchangePaymentRequest {
   final int amount;
 
@@ -318,7 +318,7 @@ class ProcessExchangePaymentRequest {
 }
 
 /// Exchange response
-@JsonSerializable()
+@JsonSerializable(fieldRename: FieldRename.snake)
 class ExchangeResponse {
   final Exchange exchange;
 
@@ -331,7 +331,7 @@ class ExchangeResponse {
 }
 
 /// Exchanges response
-@JsonSerializable()
+@JsonSerializable(fieldRename: FieldRename.snake)
 class ExchangesResponse {
   final List<Exchange> exchanges;
   final int count;

@@ -3,7 +3,7 @@ import 'package:json_annotation/json_annotation.dart';
 part 'customer.g.dart';
 
 /// Represents a customer in the Medusa system
-@JsonSerializable()
+@JsonSerializable(fieldRename: FieldRename.snake)
 class Customer {
   /// Unique identifier for the customer
   final String id;

@@ -15,7 +15,7 @@ enum ReturnStatus {
 }
 
 /// Return item reason
-@JsonSerializable()
+@JsonSerializable(fieldRename: FieldRename.snake)
 class ReturnReason {
   final String id;
   final String value;
@@ -46,7 +46,7 @@ class ReturnReason {
 }
 
 /// Return item model
-@JsonSerializable()
+@JsonSerializable(fieldRename: FieldRename.snake)
 class ReturnItem {
   final String id;
   final String returnId;
@@ -83,7 +83,7 @@ class ReturnItem {
 }
 
 /// Shipping method for returns
-@JsonSerializable()
+@JsonSerializable(fieldRename: FieldRename.snake)
 class ReturnShippingMethod {
   final String id;
   final String returnId;
@@ -110,7 +110,7 @@ class ReturnShippingMethod {
 }
 
 /// Return model for Medusa v2
-@JsonSerializable()
+@JsonSerializable(fieldRename: FieldRename.snake)
 class Return {
   final String id;
   final ReturnStatus status;
@@ -178,7 +178,7 @@ class Return {
 }
 
 /// Create return request
-@JsonSerializable()
+@JsonSerializable(fieldRename: FieldRename.snake)
 class CreateReturnRequest {
   final String orderId;
   final List<CreateReturnItemRequest> items;
@@ -203,7 +203,7 @@ class CreateReturnRequest {
 }
 
 /// Create return item request
-@JsonSerializable()
+@JsonSerializable(fieldRename: FieldRename.snake)
 class CreateReturnItemRequest {
   final String orderItemId;
   final int quantity;
@@ -228,7 +228,7 @@ class CreateReturnItemRequest {
 }
 
 /// Update return request
-@JsonSerializable()
+@JsonSerializable(fieldRename: FieldRename.snake)
 class UpdateReturnRequest {
   final String? note;
   final DateTime? receivedAt;
@@ -243,7 +243,7 @@ class UpdateReturnRequest {
 }
 
 /// Receive return request
-@JsonSerializable()
+@JsonSerializable(fieldRename: FieldRename.snake)
 class ReceiveReturnRequest {
   final List<ReceiveReturnItemRequest>? items;
   final String? note;
@@ -258,7 +258,7 @@ class ReceiveReturnRequest {
 }
 
 /// Receive return item request
-@JsonSerializable()
+@JsonSerializable(fieldRename: FieldRename.snake)
 class ReceiveReturnItemRequest {
   final String returnItemId;
   final int quantity;
@@ -279,7 +279,7 @@ class ReceiveReturnItemRequest {
 }
 
 /// Return response
-@JsonSerializable()
+@JsonSerializable(fieldRename: FieldRename.snake)
 class ReturnResponse {
   final Return returnOrder;
 
@@ -292,7 +292,7 @@ class ReturnResponse {
 }
 
 /// Returns response
-@JsonSerializable()
+@JsonSerializable(fieldRename: FieldRename.snake)
 class ReturnsResponse {
   final List<Return> returns;
   final int count;
@@ -313,7 +313,7 @@ class ReturnsResponse {
 }
 
 /// Return reasons response
-@JsonSerializable()
+@JsonSerializable(fieldRename: FieldRename.snake)
 class ReturnReasonsResponse {
   final List<ReturnReason> returnReasons;
 

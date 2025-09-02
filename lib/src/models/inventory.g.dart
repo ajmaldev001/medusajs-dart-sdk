@@ -10,10 +10,10 @@ InventoryItem _$InventoryItemFromJson(Map<String, dynamic> json) =>
     InventoryItem(
       id: json['id'] as String,
       sku: json['sku'] as String?,
-      originCountry: json['originCountry'] as String?,
-      hsCode: json['hsCode'] as String?,
-      requiresShipping: json['requiresShipping'] as bool,
-      midCode: json['midCode'] as String?,
+      originCountry: json['origin_country'] as String?,
+      hsCode: json['hs_code'] as String?,
+      requiresShipping: json['requires_shipping'] as bool,
+      midCode: json['mid_code'] as String?,
       material: json['material'] as String?,
       weight: (json['weight'] as num?)?.toInt(),
       length: (json['length'] as num?)?.toInt(),
@@ -24,27 +24,27 @@ InventoryItem _$InventoryItemFromJson(Map<String, dynamic> json) =>
       thumbnail: json['thumbnail'] as String?,
       metadata: json['metadata'] as Map<String, dynamic>?,
       createdAt:
-          json['createdAt'] == null
+          json['created_at'] == null
               ? null
-              : DateTime.parse(json['createdAt'] as String),
+              : DateTime.parse(json['created_at'] as String),
       updatedAt:
-          json['updatedAt'] == null
+          json['updated_at'] == null
               ? null
-              : DateTime.parse(json['updatedAt'] as String),
+              : DateTime.parse(json['updated_at'] as String),
       deletedAt:
-          json['deletedAt'] == null
+          json['deleted_at'] == null
               ? null
-              : DateTime.parse(json['deletedAt'] as String),
+              : DateTime.parse(json['deleted_at'] as String),
     );
 
 Map<String, dynamic> _$InventoryItemToJson(InventoryItem instance) =>
     <String, dynamic>{
       'id': instance.id,
       'sku': instance.sku,
-      'originCountry': instance.originCountry,
-      'hsCode': instance.hsCode,
-      'requiresShipping': instance.requiresShipping,
-      'midCode': instance.midCode,
+      'origin_country': instance.originCountry,
+      'hs_code': instance.hsCode,
+      'requires_shipping': instance.requiresShipping,
+      'mid_code': instance.midCode,
       'material': instance.material,
       'weight': instance.weight,
       'length': instance.length,
@@ -54,80 +54,80 @@ Map<String, dynamic> _$InventoryItemToJson(InventoryItem instance) =>
       'description': instance.description,
       'thumbnail': instance.thumbnail,
       'metadata': instance.metadata,
-      'createdAt': instance.createdAt?.toIso8601String(),
-      'updatedAt': instance.updatedAt?.toIso8601String(),
-      'deletedAt': instance.deletedAt?.toIso8601String(),
+      'created_at': instance.createdAt?.toIso8601String(),
+      'updated_at': instance.updatedAt?.toIso8601String(),
+      'deleted_at': instance.deletedAt?.toIso8601String(),
     };
 
 InventoryLevel _$InventoryLevelFromJson(Map<String, dynamic> json) =>
     InventoryLevel(
       id: json['id'] as String,
-      inventoryItemId: json['inventoryItemId'] as String,
-      locationId: json['locationId'] as String,
-      stockedQuantity: (json['stockedQuantity'] as num).toInt(),
-      reservedQuantity: (json['reservedQuantity'] as num).toInt(),
-      incomingQuantity: (json['incomingQuantity'] as num).toInt(),
+      inventoryItemId: json['inventory_item_id'] as String,
+      locationId: json['location_id'] as String,
+      stockedQuantity: (json['stocked_quantity'] as num).toInt(),
+      reservedQuantity: (json['reserved_quantity'] as num).toInt(),
+      incomingQuantity: (json['incoming_quantity'] as num).toInt(),
       metadata: json['metadata'] as Map<String, dynamic>?,
       createdAt:
-          json['createdAt'] == null
+          json['created_at'] == null
               ? null
-              : DateTime.parse(json['createdAt'] as String),
+              : DateTime.parse(json['created_at'] as String),
       updatedAt:
-          json['updatedAt'] == null
+          json['updated_at'] == null
               ? null
-              : DateTime.parse(json['updatedAt'] as String),
+              : DateTime.parse(json['updated_at'] as String),
       deletedAt:
-          json['deletedAt'] == null
+          json['deleted_at'] == null
               ? null
-              : DateTime.parse(json['deletedAt'] as String),
+              : DateTime.parse(json['deleted_at'] as String),
     );
 
 Map<String, dynamic> _$InventoryLevelToJson(InventoryLevel instance) =>
     <String, dynamic>{
       'id': instance.id,
-      'inventoryItemId': instance.inventoryItemId,
-      'locationId': instance.locationId,
-      'stockedQuantity': instance.stockedQuantity,
-      'reservedQuantity': instance.reservedQuantity,
-      'incomingQuantity': instance.incomingQuantity,
+      'inventory_item_id': instance.inventoryItemId,
+      'location_id': instance.locationId,
+      'stocked_quantity': instance.stockedQuantity,
+      'reserved_quantity': instance.reservedQuantity,
+      'incoming_quantity': instance.incomingQuantity,
       'metadata': instance.metadata,
-      'createdAt': instance.createdAt?.toIso8601String(),
-      'updatedAt': instance.updatedAt?.toIso8601String(),
-      'deletedAt': instance.deletedAt?.toIso8601String(),
+      'created_at': instance.createdAt?.toIso8601String(),
+      'updated_at': instance.updatedAt?.toIso8601String(),
+      'deleted_at': instance.deletedAt?.toIso8601String(),
     };
 
 Reservation _$ReservationFromJson(Map<String, dynamic> json) => Reservation(
   id: json['id'] as String,
-  inventoryItemId: json['inventoryItemId'] as String,
-  locationId: json['locationId'] as String,
+  inventoryItemId: json['inventory_item_id'] as String,
+  locationId: json['location_id'] as String,
   quantity: (json['quantity'] as num).toInt(),
-  lineItemId: json['lineItemId'] as String?,
+  lineItemId: json['line_item_id'] as String?,
   description: json['description'] as String?,
   metadata: json['metadata'] as Map<String, dynamic>?,
   createdAt:
-      json['createdAt'] == null
+      json['created_at'] == null
           ? null
-          : DateTime.parse(json['createdAt'] as String),
+          : DateTime.parse(json['created_at'] as String),
   updatedAt:
-      json['updatedAt'] == null
+      json['updated_at'] == null
           ? null
-          : DateTime.parse(json['updatedAt'] as String),
+          : DateTime.parse(json['updated_at'] as String),
   deletedAt:
-      json['deletedAt'] == null
+      json['deleted_at'] == null
           ? null
-          : DateTime.parse(json['deletedAt'] as String),
+          : DateTime.parse(json['deleted_at'] as String),
 );
 
 Map<String, dynamic> _$ReservationToJson(Reservation instance) =>
     <String, dynamic>{
       'id': instance.id,
-      'inventoryItemId': instance.inventoryItemId,
-      'locationId': instance.locationId,
+      'inventory_item_id': instance.inventoryItemId,
+      'location_id': instance.locationId,
       'quantity': instance.quantity,
-      'lineItemId': instance.lineItemId,
+      'line_item_id': instance.lineItemId,
       'description': instance.description,
       'metadata': instance.metadata,
-      'createdAt': instance.createdAt?.toIso8601String(),
-      'updatedAt': instance.updatedAt?.toIso8601String(),
-      'deletedAt': instance.deletedAt?.toIso8601String(),
+      'created_at': instance.createdAt?.toIso8601String(),
+      'updated_at': instance.updatedAt?.toIso8601String(),
+      'deleted_at': instance.deletedAt?.toIso8601String(),
     };

@@ -9,56 +9,56 @@ part of 'draft_order.dart';
 DraftOrder _$DraftOrderFromJson(Map<String, dynamic> json) => DraftOrder(
   id: json['id'] as String,
   status: $enumDecode(_$DraftOrderStatusEnumMap, json['status']),
-  displayId: json['displayId'] as String?,
-  cartId: json['cartId'] as String?,
-  orderId: json['orderId'] as String?,
-  regionId: json['regionId'] as String?,
-  customerId: json['customerId'] as String?,
-  salesChannelId: json['salesChannelId'] as String?,
+  displayId: json['display_id'] as String?,
+  cartId: json['cart_id'] as String?,
+  orderId: json['order_id'] as String?,
+  regionId: json['region_id'] as String?,
+  customerId: json['customer_id'] as String?,
+  salesChannelId: json['sales_channel_id'] as String?,
   email: json['email'] as String,
-  currencyCode: json['currencyCode'] as String?,
-  shippingAddressId: json['shippingAddressId'] as String?,
-  billingAddressId: json['billingAddressId'] as String?,
+  currencyCode: json['currency_code'] as String?,
+  shippingAddressId: json['shipping_address_id'] as String?,
+  billingAddressId: json['billing_address_id'] as String?,
   subtotal: (json['subtotal'] as num?)?.toInt(),
-  taxTotal: (json['taxTotal'] as num?)?.toInt(),
+  taxTotal: (json['tax_total'] as num?)?.toInt(),
   total: (json['total'] as num?)?.toInt(),
   completedAt:
-      json['completedAt'] == null
+      json['completed_at'] == null
           ? null
-          : DateTime.parse(json['completedAt'] as String),
-  noNotificationOrder: json['noNotificationOrder'] as bool?,
+          : DateTime.parse(json['completed_at'] as String),
+  noNotificationOrder: json['no_notification_order'] as bool?,
   metadata: json['metadata'] as Map<String, dynamic>?,
-  createdAt: DateTime.parse(json['createdAt'] as String),
-  updatedAt: DateTime.parse(json['updatedAt'] as String),
+  createdAt: DateTime.parse(json['created_at'] as String),
+  updatedAt: DateTime.parse(json['updated_at'] as String),
   deletedAt:
-      json['deletedAt'] == null
+      json['deleted_at'] == null
           ? null
-          : DateTime.parse(json['deletedAt'] as String),
+          : DateTime.parse(json['deleted_at'] as String),
 );
 
 Map<String, dynamic> _$DraftOrderToJson(DraftOrder instance) =>
     <String, dynamic>{
       'id': instance.id,
       'status': _$DraftOrderStatusEnumMap[instance.status]!,
-      'displayId': instance.displayId,
-      'cartId': instance.cartId,
-      'orderId': instance.orderId,
-      'regionId': instance.regionId,
-      'customerId': instance.customerId,
-      'salesChannelId': instance.salesChannelId,
+      'display_id': instance.displayId,
+      'cart_id': instance.cartId,
+      'order_id': instance.orderId,
+      'region_id': instance.regionId,
+      'customer_id': instance.customerId,
+      'sales_channel_id': instance.salesChannelId,
       'email': instance.email,
-      'currencyCode': instance.currencyCode,
-      'shippingAddressId': instance.shippingAddressId,
-      'billingAddressId': instance.billingAddressId,
+      'currency_code': instance.currencyCode,
+      'shipping_address_id': instance.shippingAddressId,
+      'billing_address_id': instance.billingAddressId,
       'subtotal': instance.subtotal,
-      'taxTotal': instance.taxTotal,
+      'tax_total': instance.taxTotal,
       'total': instance.total,
-      'completedAt': instance.completedAt?.toIso8601String(),
-      'noNotificationOrder': instance.noNotificationOrder,
+      'completed_at': instance.completedAt?.toIso8601String(),
+      'no_notification_order': instance.noNotificationOrder,
       'metadata': instance.metadata,
-      'createdAt': instance.createdAt.toIso8601String(),
-      'updatedAt': instance.updatedAt.toIso8601String(),
-      'deletedAt': instance.deletedAt?.toIso8601String(),
+      'created_at': instance.createdAt.toIso8601String(),
+      'updated_at': instance.updatedAt.toIso8601String(),
+      'deleted_at': instance.deletedAt?.toIso8601String(),
     };
 
 const _$DraftOrderStatusEnumMap = {
@@ -70,11 +70,11 @@ CreateDraftOrderRequest _$CreateDraftOrderRequestFromJson(
   Map<String, dynamic> json,
 ) => CreateDraftOrderRequest(
   email: json['email'] as String,
-  regionId: json['regionId'] as String?,
-  customerId: json['customerId'] as String?,
-  salesChannelId: json['salesChannelId'] as String?,
-  shippingAddress: json['shippingAddress'] as Map<String, dynamic>?,
-  billingAddress: json['billingAddress'] as Map<String, dynamic>?,
+  regionId: json['region_id'] as String?,
+  customerId: json['customer_id'] as String?,
+  salesChannelId: json['sales_channel_id'] as String?,
+  shippingAddress: json['shipping_address'] as Map<String, dynamic>?,
+  billingAddress: json['billing_address'] as Map<String, dynamic>?,
   items:
       (json['items'] as List<dynamic>?)
           ?.map(
@@ -90,7 +90,7 @@ CreateDraftOrderRequest _$CreateDraftOrderRequestFromJson(
             ),
           )
           .toList(),
-  noNotificationOrder: json['noNotificationOrder'] as bool?,
+  noNotificationOrder: json['no_notification_order'] as bool?,
   metadata: json['metadata'] as Map<String, dynamic>?,
 );
 
@@ -98,23 +98,23 @@ Map<String, dynamic> _$CreateDraftOrderRequestToJson(
   CreateDraftOrderRequest instance,
 ) => <String, dynamic>{
   'email': instance.email,
-  'regionId': instance.regionId,
-  'customerId': instance.customerId,
-  'salesChannelId': instance.salesChannelId,
-  'shippingAddress': instance.shippingAddress,
-  'billingAddress': instance.billingAddress,
+  'region_id': instance.regionId,
+  'customer_id': instance.customerId,
+  'sales_channel_id': instance.salesChannelId,
+  'shipping_address': instance.shippingAddress,
+  'billing_address': instance.billingAddress,
   'items': instance.items,
   'discounts': instance.discounts,
-  'noNotificationOrder': instance.noNotificationOrder,
+  'no_notification_order': instance.noNotificationOrder,
   'metadata': instance.metadata,
 };
 
 CreateDraftOrderItemRequest _$CreateDraftOrderItemRequestFromJson(
   Map<String, dynamic> json,
 ) => CreateDraftOrderItemRequest(
-  variantId: json['variantId'] as String,
+  variantId: json['variant_id'] as String,
   quantity: (json['quantity'] as num).toInt(),
-  unitPrice: (json['unitPrice'] as num?)?.toInt(),
+  unitPrice: (json['unit_price'] as num?)?.toInt(),
   title: json['title'] as String?,
   metadata: json['metadata'] as Map<String, dynamic>?,
 );
@@ -122,9 +122,9 @@ CreateDraftOrderItemRequest _$CreateDraftOrderItemRequestFromJson(
 Map<String, dynamic> _$CreateDraftOrderItemRequestToJson(
   CreateDraftOrderItemRequest instance,
 ) => <String, dynamic>{
-  'variantId': instance.variantId,
+  'variant_id': instance.variantId,
   'quantity': instance.quantity,
-  'unitPrice': instance.unitPrice,
+  'unit_price': instance.unitPrice,
   'title': instance.title,
   'metadata': instance.metadata,
 };
@@ -140,36 +140,36 @@ Map<String, dynamic> _$CreateDraftOrderDiscountRequestToJson(
 UpdateDraftOrderRequest _$UpdateDraftOrderRequestFromJson(
   Map<String, dynamic> json,
 ) => UpdateDraftOrderRequest(
-  regionId: json['regionId'] as String?,
-  customerId: json['customerId'] as String?,
+  regionId: json['region_id'] as String?,
+  customerId: json['customer_id'] as String?,
   email: json['email'] as String?,
-  shippingAddress: json['shippingAddress'] as Map<String, dynamic>?,
-  billingAddress: json['billingAddress'] as Map<String, dynamic>?,
-  noNotificationOrder: json['noNotificationOrder'] as bool?,
+  shippingAddress: json['shipping_address'] as Map<String, dynamic>?,
+  billingAddress: json['billing_address'] as Map<String, dynamic>?,
+  noNotificationOrder: json['no_notification_order'] as bool?,
   metadata: json['metadata'] as Map<String, dynamic>?,
 );
 
 Map<String, dynamic> _$UpdateDraftOrderRequestToJson(
   UpdateDraftOrderRequest instance,
 ) => <String, dynamic>{
-  'regionId': instance.regionId,
-  'customerId': instance.customerId,
+  'region_id': instance.regionId,
+  'customer_id': instance.customerId,
   'email': instance.email,
-  'shippingAddress': instance.shippingAddress,
-  'billingAddress': instance.billingAddress,
-  'noNotificationOrder': instance.noNotificationOrder,
+  'shipping_address': instance.shippingAddress,
+  'billing_address': instance.billingAddress,
+  'no_notification_order': instance.noNotificationOrder,
   'metadata': instance.metadata,
 };
 
 CompleteDraftOrderRequest _$CompleteDraftOrderRequestFromJson(
   Map<String, dynamic> json,
 ) => CompleteDraftOrderRequest(
-  noNotificationOrder: json['noNotificationOrder'] as bool?,
+  noNotificationOrder: json['no_notification_order'] as bool?,
 );
 
 Map<String, dynamic> _$CompleteDraftOrderRequestToJson(
   CompleteDraftOrderRequest instance,
-) => <String, dynamic>{'noNotificationOrder': instance.noNotificationOrder};
+) => <String, dynamic>{'no_notification_order': instance.noNotificationOrder};
 
 RegisterPaymentRequest _$RegisterPaymentRequestFromJson(
   Map<String, dynamic> json,
@@ -182,17 +182,17 @@ Map<String, dynamic> _$RegisterPaymentRequestToJson(
 DraftOrderResponse _$DraftOrderResponseFromJson(Map<String, dynamic> json) =>
     DraftOrderResponse(
       draftOrder: DraftOrder.fromJson(
-        json['draftOrder'] as Map<String, dynamic>,
+        json['draft_order'] as Map<String, dynamic>,
       ),
     );
 
 Map<String, dynamic> _$DraftOrderResponseToJson(DraftOrderResponse instance) =>
-    <String, dynamic>{'draftOrder': instance.draftOrder};
+    <String, dynamic>{'draft_order': instance.draftOrder};
 
 DraftOrdersResponse _$DraftOrdersResponseFromJson(Map<String, dynamic> json) =>
     DraftOrdersResponse(
       draftOrders:
-          (json['draftOrders'] as List<dynamic>)
+          (json['draft_orders'] as List<dynamic>)
               .map((e) => DraftOrder.fromJson(e as Map<String, dynamic>))
               .toList(),
       count: (json['count'] as num).toInt(),
@@ -203,7 +203,7 @@ DraftOrdersResponse _$DraftOrdersResponseFromJson(Map<String, dynamic> json) =>
 Map<String, dynamic> _$DraftOrdersResponseToJson(
   DraftOrdersResponse instance,
 ) => <String, dynamic>{
-  'draftOrders': instance.draftOrders,
+  'draft_orders': instance.draftOrders,
   'count': instance.count,
   'offset': instance.offset,
   'limit': instance.limit,

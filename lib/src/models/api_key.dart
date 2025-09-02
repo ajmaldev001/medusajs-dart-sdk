@@ -12,7 +12,7 @@ enum ApiKeyType {
 }
 
 /// Represents an API key in the Medusa system
-@JsonSerializable()
+@JsonSerializable(fieldRename: FieldRename.snake)
 class ApiKey {
   /// Unique identifier for the API key
   final String id;
@@ -75,7 +75,7 @@ class ApiKey {
 }
 
 /// Request to create an API key
-@JsonSerializable()
+@JsonSerializable(fieldRename: FieldRename.snake)
 class CreateApiKeyRequest {
   /// API key title
   final String title;
@@ -91,7 +91,7 @@ class CreateApiKeyRequest {
 }
 
 /// Request to update an API key
-@JsonSerializable()
+@JsonSerializable(fieldRename: FieldRename.snake)
 class UpdateApiKeyRequest {
   /// API key title
   final String? title;
