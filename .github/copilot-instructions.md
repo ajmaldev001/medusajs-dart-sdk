@@ -6,7 +6,7 @@ This document provides AI coding agents with comprehensive guidance for contribu
 
 The Medusa Dart SDK is a comprehensive client library for interacting with Medusa.js v2.10+ backends. It provides type-safe access to both Store (customer-facing) and Admin API endpoints with robust error handling, caching, and developer-friendly features.
 
-**Version:** 2.10.0  
+**Version:** 2.10.1  
 **Target:** Medusa.js v2.10+ compatibility  
 **Language:** Dart/Flutter  
 
@@ -246,11 +246,12 @@ Include practical examples in resource documentation:
 
 ## Version Compatibility
 
-**Current Target:** Medusa.js v2.10.0
+**Current Target:** Medusa.js v2.10.1
 **Breaking Changes from v2.8:**
 - Shipping option types are now required for some operations
 - `withDeleted()` must be explicitly called to include deleted records
 - Some response structures have changed to use more generic types
+- Cart operations performance improvements in v2.10.1
 
 When updating for new Medusa versions:
 1. Review Medusa.js changelog for breaking changes

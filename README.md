@@ -6,7 +6,7 @@ A comprehensive Dart SDK for [Medusa.js](https://medusajs.com), the open-source 
 
 ## Features
 
-- 🚀 **Complete API Coverage** - Full support for Medusa v2.10.0 APIs
+- 🚀 **Complete API Coverage** - Full support for Medusa v2.10.1 APIs
 - 🔐 **Authentication** - Built-in auth management with automatic token handling
 - 🛍️ **Store Operations** - Products, collections, carts, orders, and more
 - ⚙️ **Admin Operations** - Full admin API support for backend management
@@ -18,6 +18,7 @@ A comprehensive Dart SDK for [Medusa.js](https://medusajs.com), the open-source 
 - 🎯 **Type Safety** - Fully typed models with JSON serialization
 - 🪝 **Webhooks** - Easy webhook signature verification
 - 📊 **Batch Operations** - Efficient bulk operations support
+- ⚡ **Performance Optimized** - Improved cart operations performance (v2.10.1)
 
 ## Installation
 
@@ -136,18 +137,58 @@ final cache = MedusaCache(
 final medusa = Medusa(config, cache: cache);
 ```
 
-### Query Building
+### Query Building (v2.10.1 Features)
 
 ```dart
-// Use query builder for complex requests
+// Use withDeleted() to include soft-deleted records (v2.10.1)
 final query = QueryBuilder()
   .expand(['variants', 'images'])
   .limit(20)
   .offset(0)
-  .order('created_at')
+  .orderBy('created_at', ascending: false)
+  .withDeleted()  // Include deleted records
   .build();
 
 final products = await medusa.store.product.list(query: query);
+
+// Advanced filtering with flexible parameters
+final advancedQuery = QueryBuilder()
+  .whereAll({
+    'status': 'published',
+    'category_id': 'cat_123',
+  })
+  .dateRange('created_at', 
+    from: DateTime.now().subtract(Duration(days: 30)))
+  .search('premium')
+  .build();
+```
+
+### Flexible API Parameters
+
+```dart
+// v2.10.1 supports more flexible API calls with Map<String, dynamic>
+// This allows for custom attributes and dynamic fields
+
+// Create product with custom metadata
+final customProduct = await medusa.admin.product.create({
+  'title': 'Custom Product',
+  'description': 'Product with custom attributes',
+  'status': 'draft',
+  'metadata': {
+    'custom_field_1': 'value1',
+    'custom_field_2': 'value2',
+    'nested_data': {
+      'sub_field': 'sub_value',
+    },
+  },
+});
+
+// Shipping option types (v2.10 feature)
+final shippingType = await medusa.admin.shippingOptionType.create({
+  'label': 'Express Delivery',
+  'description': 'Fast shipping option',
+  'code': 'express',
+});
 ```
 
 ### Real-time Updates
@@ -263,4 +304,13 @@ This project is licensed under the MIT License - see the [LICENSE](LICENSE) file
 
 ## Acknowledgments
 
-This SDK is based on the official [Medusa.js JavaScript SDK](https://www.npmjs.com/package/@medusajs/js-sdk) v2.8.3 and follows the same API structure and conventions.
+This SDK is based on the official [Medusa.js JavaScript SDK](https://www.npmjs.com/package/@medusajs/js-sdk) v2.10.1 and follows the same API structure and conventions.
+
+**Version 2.10.1 Features:**
+- Performance improvements for cart operations (regression fix)
+- Enhanced `withDeleted()` query support for soft-deleted records
+- Improved flexible parameter handling with `Map<String, dynamic>`
+- Shipping option types management introduced in v2.10
+- Better error handling and API response compatibility
+
+Special thanks to the Medusa.js team for their excellent API design and the open-source community for their contributions.

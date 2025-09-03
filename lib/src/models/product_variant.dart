@@ -1,4 +1,5 @@
 import 'package:json_annotation/json_annotation.dart';
+import 'product_variant_option_request.dart';
 import 'product_variant_option_value.dart';
 
 part 'product_variant.g.dart';
@@ -318,7 +319,7 @@ class CreateProductVariantRequest {
   final String? material;
 
   /// Product variant options
-  final Map<String, dynamic>? options;
+  final List<ProductVariantOptionRequest>? options;
 
   /// Product variant metadata
   final Map<String, dynamic>? metadata;
@@ -430,7 +431,7 @@ class UpdateProductVariantRequest {
   final String? material;
 
   /// Product variant options
-  final Map<String, dynamic>? options;
+  final List<ProductVariantOptionRequest>? options;
 
   /// Product variant metadata
   final Map<String, dynamic>? metadata;

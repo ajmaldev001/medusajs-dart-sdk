@@ -73,8 +73,18 @@ CreateDraftOrderRequest _$CreateDraftOrderRequestFromJson(
   regionId: json['region_id'] as String?,
   customerId: json['customer_id'] as String?,
   salesChannelId: json['sales_channel_id'] as String?,
-  shippingAddress: json['shipping_address'] as Map<String, dynamic>?,
-  billingAddress: json['billing_address'] as Map<String, dynamic>?,
+  shippingAddress:
+      json['shipping_address'] == null
+          ? null
+          : AddressRequest.fromJson(
+            json['shipping_address'] as Map<String, dynamic>,
+          ),
+  billingAddress:
+      json['billing_address'] == null
+          ? null
+          : AddressRequest.fromJson(
+            json['billing_address'] as Map<String, dynamic>,
+          ),
   items:
       (json['items'] as List<dynamic>?)
           ?.map(
@@ -143,8 +153,18 @@ UpdateDraftOrderRequest _$UpdateDraftOrderRequestFromJson(
   regionId: json['region_id'] as String?,
   customerId: json['customer_id'] as String?,
   email: json['email'] as String?,
-  shippingAddress: json['shipping_address'] as Map<String, dynamic>?,
-  billingAddress: json['billing_address'] as Map<String, dynamic>?,
+  shippingAddress:
+      json['shipping_address'] == null
+          ? null
+          : AddressRequest.fromJson(
+            json['shipping_address'] as Map<String, dynamic>,
+          ),
+  billingAddress:
+      json['billing_address'] == null
+          ? null
+          : AddressRequest.fromJson(
+            json['billing_address'] as Map<String, dynamic>,
+          ),
   noNotificationOrder: json['no_notification_order'] as bool?,
   metadata: json['metadata'] as Map<String, dynamic>?,
 );

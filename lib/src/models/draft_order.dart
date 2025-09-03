@@ -1,4 +1,5 @@
 import 'package:json_annotation/json_annotation.dart';
+import 'address_request.dart';
 
 part 'draft_order.g.dart';
 
@@ -96,8 +97,8 @@ class CreateDraftOrderRequest {
   final String? regionId;
   final String? customerId;
   final String? salesChannelId;
-  final Map<String, dynamic>? shippingAddress;
-  final Map<String, dynamic>? billingAddress;
+  final AddressRequest? shippingAddress;
+  final AddressRequest? billingAddress;
   final List<CreateDraftOrderItemRequest>? items;
   final List<CreateDraftOrderDiscountRequest>? discounts;
   final bool? noNotificationOrder;
@@ -165,8 +166,8 @@ class UpdateDraftOrderRequest {
   final String? regionId;
   final String? customerId;
   final String? email;
-  final Map<String, dynamic>? shippingAddress;
-  final Map<String, dynamic>? billingAddress;
+  final AddressRequest? shippingAddress;
+  final AddressRequest? billingAddress;
   final bool? noNotificationOrder;
   final Map<String, dynamic>? metadata;
 

@@ -64,7 +64,6 @@ void main() {
           discountTotal: 0,
           giftCardTotal: 0,
           giftCardTaxTotal: 0,
-          itemCount: 2,
           createdAt: DateTime.parse('2023-01-01T00:00:00Z'),
           updatedAt: DateTime.parse('2023-01-01T00:00:00Z'),
         );
@@ -75,7 +74,7 @@ void main() {
         expect(cart.currencyCode, equals('usd'));
         expect(cart.total, equals(1000));
         expect(cart.subtotal, equals(900));
-        expect(cart.itemCount, equals(2));
+        expect(cart.itemCount, equals(0)); // No items in the cart
         expect(cart.createdAt, isNotNull);
         expect(cart.updatedAt, isNotNull);
       });
@@ -92,7 +91,6 @@ void main() {
           discountTotal: 0,
           giftCardTotal: 0,
           giftCardTaxTotal: 0,
-          itemCount: 0,
           createdAt: DateTime.now(),
           updatedAt: DateTime.now(),
         );
@@ -108,7 +106,26 @@ void main() {
           discountTotal: 0,
           giftCardTotal: 0,
           giftCardTaxTotal: 0,
-          itemCount: 3,
+          items: [
+            LineItem(
+              id: 'item_1',
+              cartId: 'cart_filled',
+              title: 'Test Product 1',
+              quantity: 1,
+              unitPrice: 500,
+              createdAt: DateTime.now(),
+              updatedAt: DateTime.now(),
+            ),
+            LineItem(
+              id: 'item_2',
+              cartId: 'cart_filled',
+              title: 'Test Product 2',
+              quantity: 2,
+              unitPrice: 200,
+              createdAt: DateTime.now(),
+              updatedAt: DateTime.now(),
+            ),
+          ],
           createdAt: DateTime.now(),
           updatedAt: DateTime.now(),
         );
@@ -117,6 +134,7 @@ void main() {
         expect(emptyCart.hasItems, equals(false));
         expect(filledCart.isEmpty, equals(false));
         expect(filledCart.hasItems, equals(true));
+        expect(filledCart.itemCount, equals(2)); // 2 line items
       });
     });
 
@@ -324,13 +342,16 @@ void main() {
     });
 
     test('should correctly calculate pagination information', () {
-      final products = List.generate(20, (index) => Product(
-        id: 'prod_$index',
-        title: 'Product $index',
-        handle: 'product-$index',
-        createdAt: DateTime.now(),
-        updatedAt: DateTime.now(),
-      ));
+      final products = List.generate(
+        20,
+        (index) => Product(
+          id: 'prod_$index',
+          title: 'Product $index',
+          handle: 'product-$index',
+          createdAt: DateTime.now(),
+          updatedAt: DateTime.now(),
+        ),
+      );
 
       // First page
       final firstPage = PaginatedResponse<Product>(

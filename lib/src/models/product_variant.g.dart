@@ -159,7 +159,13 @@ CreateProductVariantRequest _$CreateProductVariantRequestFromJson(
   width: (json['width'] as num?)?.toInt(),
   originCountry: json['origin_country'] as String?,
   material: json['material'] as String?,
-  options: json['options'] as Map<String, dynamic>?,
+  options:
+      (json['options'] as List<dynamic>?)
+          ?.map(
+            (e) =>
+                ProductVariantOptionRequest.fromJson(e as Map<String, dynamic>),
+          )
+          .toList(),
   metadata: json['metadata'] as Map<String, dynamic>?,
   prices:
       (json['prices'] as List<dynamic>?)
@@ -230,7 +236,13 @@ UpdateProductVariantRequest _$UpdateProductVariantRequestFromJson(
   width: (json['width'] as num?)?.toInt(),
   originCountry: json['origin_country'] as String?,
   material: json['material'] as String?,
-  options: json['options'] as Map<String, dynamic>?,
+  options:
+      (json['options'] as List<dynamic>?)
+          ?.map(
+            (e) =>
+                ProductVariantOptionRequest.fromJson(e as Map<String, dynamic>),
+          )
+          .toList(),
   metadata: json['metadata'] as Map<String, dynamic>?,
 );
 

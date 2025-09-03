@@ -90,4 +90,13 @@ class Cart {
 
   factory Cart.fromJson(Map<String, dynamic> json) => _$CartFromJson(json);
   Map<String, dynamic> toJson() => _$CartToJson(this);
+
+  /// Get the number of items in the cart
+  int get itemCount => items?.length ?? 0;
+
+  /// Check if cart is empty
+  bool get isEmpty => itemCount == 0;
+
+  /// Check if cart has items
+  bool get hasItems => itemCount > 0;
 }

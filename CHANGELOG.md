@@ -5,6 +5,34 @@ All notable changes to this project will be documented in this file.
 The format is based on [Keep a Changelog](https://keepachangelog.com/en/1.0.0/),
 and this project adheres to [Semantic Versioning](https://semver.org/spec/v2.0.0.html).
 
+## [2.10.1] - 2024-12-09
+
+### Fixed
+- **Performance**: Updated to Medusa.js v2.10.1 for improved cart operations performance
+- Reverted cart operation concurrency changes that caused performance regression
+- Optimized cart-related HTTP requests response times
+
+### Improved
+- **Type Safety**: Replaced inappropriate `Map<String, dynamic>` usage with proper types
+  - Added `AddressRequest` class for address creation/update operations
+  - Added `ProductVariantOptionRequest` class for structured variant options
+  - Updated `CreateDraftOrderRequest` and `UpdateDraftOrderRequest` to use `AddressRequest`
+  - Updated `CreateProductVariantRequest` and `UpdateProductVariantRequest` to use proper option types
+- **Cart Model**: Added helpful getters (`itemCount`, `isEmpty`, `hasItems`)
+- Enhanced flexible type handling with better use of `Map<String, dynamic>` for metadata
+- Improved API response compatibility for variable structures
+- Better support for custom attributes and metadata fields
+
+### Breaking Changes
+- **Draft Order Requests**: `shippingAddress` and `billingAddress` now use `AddressRequest` instead of `Map<String, dynamic>`
+- **Product Variant Requests**: `options` field now uses `List<ProductVariantOptionRequest>` instead of `Map<String, dynamic>`
+- These changes improve type safety and IDE support while maintaining JSON serialization compatibility
+
+### Notes
+- This version fixes performance regressions introduced in v2.10.0
+- Cart operations now perform at expected speeds matching previous versions
+- No breaking changes from v2.10.0
+
 ## [2.10.0] - 2024-12-07
 
 ### Added
