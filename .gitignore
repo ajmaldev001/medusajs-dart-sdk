@@ -36,7 +36,7 @@ build/
 .pub/
 
 # Generated files
-*.g.dart
+#*.g.dart
 *.freezed.dart
 *.config.dart
 
